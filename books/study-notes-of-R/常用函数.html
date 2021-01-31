@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 常用函数 | 关于R的一点总结</title>
+  <meta name="description" content="4 常用函数 | 关于R的一点总结" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 常用函数 | 关于R的一点总结" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 常用函数 | 关于R的一点总结" />
+  
+  
+  
+
+<meta name="author" content="G. B." />
+
+
+<meta name="date" content="2020-11-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="子集选取.html"/>
+<link rel="next" href="面向对象编程.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 前言</a></li>
+<li class="chapter" data-level="2" data-path="数据结构.html"><a href="数据结构.html"><i class="fa fa-check"></i><b>2</b> 数据结构</a><ul>
+<li class="chapter" data-level="2.1" data-path="数据结构.html"><a href="数据结构.html#向量"><i class="fa fa-check"></i><b>2.1</b> 向量</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="数据结构.html"><a href="数据结构.html#section"><i class="fa fa-check"></i><b>2.1.1</b> </a></li>
+<li class="chapter" data-level="2.1.2" data-path="数据结构.html"><a href="数据结构.html#section-1"><i class="fa fa-check"></i><b>2.1.2</b> </a></li>
+<li class="chapter" data-level="2.1.3" data-path="数据结构.html"><a href="数据结构.html#section-2"><i class="fa fa-check"></i><b>2.1.3</b> </a></li>
+<li class="chapter" data-level="2.1.4" data-path="数据结构.html"><a href="数据结构.html#section-3"><i class="fa fa-check"></i><b>2.1.4</b> </a></li>
+<li class="chapter" data-level="2.1.5" data-path="数据结构.html"><a href="数据结构.html#section-4"><i class="fa fa-check"></i><b>2.1.5</b> </a></li>
+<li class="chapter" data-level="2.1.6" data-path="数据结构.html"><a href="数据结构.html#section-5"><i class="fa fa-check"></i><b>2.1.6</b> </a></li>
+<li class="chapter" data-level="2.1.7" data-path="数据结构.html"><a href="数据结构.html#section-6"><i class="fa fa-check"></i><b>2.1.7</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="数据结构.html"><a href="数据结构.html#属性"><i class="fa fa-check"></i><b>2.2</b> 属性</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="数据结构.html"><a href="数据结构.html#section-7"><i class="fa fa-check"></i><b>2.2.1</b> </a></li>
+<li class="chapter" data-level="2.2.2" data-path="数据结构.html"><a href="数据结构.html#section-8"><i class="fa fa-check"></i><b>2.2.2</b> </a></li>
+<li class="chapter" data-level="2.2.3" data-path="数据结构.html"><a href="数据结构.html#section-9"><i class="fa fa-check"></i><b>2.2.3</b> </a></li>
+<li class="chapter" data-level="2.2.4" data-path="数据结构.html"><a href="数据结构.html#section-10"><i class="fa fa-check"></i><b>2.2.4</b> </a></li>
+<li class="chapter" data-level="2.2.5" data-path="数据结构.html"><a href="数据结构.html#section-11"><i class="fa fa-check"></i><b>2.2.5</b> </a></li>
+<li class="chapter" data-level="2.2.6" data-path="数据结构.html"><a href="数据结构.html#section-12"><i class="fa fa-check"></i><b>2.2.6</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="数据结构.html"><a href="数据结构.html#矩阵和数据框"><i class="fa fa-check"></i><b>2.3</b> 矩阵和数据框</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="数据结构.html"><a href="数据结构.html#section-13"><i class="fa fa-check"></i><b>2.3.1</b> </a></li>
+<li class="chapter" data-level="2.3.2" data-path="数据结构.html"><a href="数据结构.html#section-14"><i class="fa fa-check"></i><b>2.3.2</b> </a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="子集选取.html"><a href="子集选取.html"><i class="fa fa-check"></i><b>3</b> 子集选取</a><ul>
+<li class="chapter" data-level="3.1" data-path="子集选取.html"><a href="子集选取.html#数据类型"><i class="fa fa-check"></i><b>3.1</b> 数据类型</a></li>
+<li class="chapter" data-level="3.2" data-path="子集选取.html"><a href="子集选取.html#子集选取运算符"><i class="fa fa-check"></i><b>3.2</b> 子集选取运算符</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="子集选取.html"><a href="子集选取.html#section-15"><i class="fa fa-check"></i><b>3.2.1</b> </a></li>
+<li class="chapter" data-level="3.2.2" data-path="子集选取.html"><a href="子集选取.html#section-16"><i class="fa fa-check"></i><b>3.2.2</b> </a></li>
+<li class="chapter" data-level="3.2.3" data-path="子集选取.html"><a href="子集选取.html#section-17"><i class="fa fa-check"></i><b>3.2.3</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="子集选取.html"><a href="子集选取.html#应用"><i class="fa fa-check"></i><b>3.3</b> 应用</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="子集选取.html"><a href="子集选取.html#section-18"><i class="fa fa-check"></i><b>3.3.1</b> </a></li>
+<li class="chapter" data-level="3.3.2" data-path="子集选取.html"><a href="子集选取.html#section-19"><i class="fa fa-check"></i><b>3.3.2</b> </a></li>
+<li class="chapter" data-level="3.3.3" data-path="子集选取.html"><a href="子集选取.html#section-20"><i class="fa fa-check"></i><b>3.3.3</b> </a></li>
+<li class="chapter" data-level="3.3.4" data-path="子集选取.html"><a href="子集选取.html#section-21"><i class="fa fa-check"></i><b>3.3.4</b> </a></li>
+<li class="chapter" data-level="3.3.5" data-path="子集选取.html"><a href="子集选取.html#section-22"><i class="fa fa-check"></i><b>3.3.5</b> </a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="常用函数.html"><a href="常用函数.html"><i class="fa fa-check"></i><b>4</b> 常用函数</a><ul>
+<li class="chapter" data-level="4.1" data-path="常用函数.html"><a href="常用函数.html#基础函数"><i class="fa fa-check"></i><b>4.1</b> 基础函数</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="常用函数.html"><a href="常用函数.html#两个最常用的"><i class="fa fa-check"></i><b>4.1.1</b> 两个最常用的</a></li>
+<li class="chapter" data-level="4.1.2" data-path="常用函数.html"><a href="常用函数.html#常用运算符和操作符"><i class="fa fa-check"></i><b>4.1.2</b> 常用运算符和操作符</a></li>
+<li class="chapter" data-level="4.1.3" data-path="常用函数.html"><a href="常用函数.html#比较"><i class="fa fa-check"></i><b>4.1.3</b> 比较</a></li>
+<li class="chapter" data-level="4.1.4" data-path="常用函数.html"><a href="常用函数.html#数学"><i class="fa fa-check"></i><b>4.1.4</b> 数学</a></li>
+<li class="chapter" data-level="4.1.5" data-path="常用函数.html"><a href="常用函数.html#编写函数"><i class="fa fa-check"></i><b>4.1.5</b> 编写函数</a></li>
+<li class="chapter" data-level="4.1.6" data-path="常用函数.html"><a href="常用函数.html#逻辑与集合"><i class="fa fa-check"></i><b>4.1.6</b> 逻辑与集合</a></li>
+<li class="chapter" data-level="4.1.7" data-path="常用函数.html"><a href="常用函数.html#构建向量"><i class="fa fa-check"></i><b>4.1.7</b> 构建向量</a></li>
+<li class="chapter" data-level="4.1.8" data-path="常用函数.html"><a href="常用函数.html#列表和数据框"><i class="fa fa-check"></i><b>4.1.8</b> 列表和数据框</a></li>
+<li class="chapter" data-level="4.1.9" data-path="常用函数.html"><a href="常用函数.html#控制流"><i class="fa fa-check"></i><b>4.1.9</b> 控制流</a></li>
+<li class="chapter" data-level="4.1.10" data-path="常用函数.html"><a href="常用函数.html#apply族"><i class="fa fa-check"></i><b>4.1.10</b> apply族</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="常用函数.html"><a href="常用函数.html#常见数据结构"><i class="fa fa-check"></i><b>4.2</b> 常见数据结构</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="常用函数.html"><a href="常用函数.html#date-time"><i class="fa fa-check"></i><b>4.2.1</b> Date time</a></li>
+<li class="chapter" data-level="4.2.2" data-path="常用函数.html"><a href="常用函数.html#character-manipulation"><i class="fa fa-check"></i><b>4.2.2</b> Character manipulation</a></li>
+<li class="chapter" data-level="4.2.3" data-path="常用函数.html"><a href="常用函数.html#factors"><i class="fa fa-check"></i><b>4.2.3</b> Factors</a></li>
+<li class="chapter" data-level="4.2.4" data-path="常用函数.html"><a href="常用函数.html#array-manipulation"><i class="fa fa-check"></i><b>4.2.4</b> Array manipulation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="常用函数.html"><a href="常用函数.html#统计函数"><i class="fa fa-check"></i><b>4.3</b> 统计函数</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="常用函数.html"><a href="常用函数.html#排序和制表"><i class="fa fa-check"></i><b>4.3.1</b> 排序和制表</a></li>
+<li class="chapter" data-level="4.3.2" data-path="常用函数.html"><a href="常用函数.html#linear-models"><i class="fa fa-check"></i><b>4.3.2</b> Linear models</a></li>
+<li class="chapter" data-level="4.3.3" data-path="常用函数.html"><a href="常用函数.html#测试函数"><i class="fa fa-check"></i><b>4.3.3</b> 测试函数</a></li>
+<li class="chapter" data-level="4.3.4" data-path="常用函数.html"><a href="常用函数.html#随机变量"><i class="fa fa-check"></i><b>4.3.4</b> 随机变量</a></li>
+<li class="chapter" data-level="4.3.5" data-path="常用函数.html"><a href="常用函数.html#矩阵运算"><i class="fa fa-check"></i><b>4.3.5</b> 矩阵运算</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="常用函数.html"><a href="常用函数.html#使用r"><i class="fa fa-check"></i><b>4.4</b> 使用R</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="常用函数.html"><a href="常用函数.html#workspace"><i class="fa fa-check"></i><b>4.4.1</b> Workspace</a></li>
+<li class="chapter" data-level="4.4.2" data-path="常用函数.html"><a href="常用函数.html#help"><i class="fa fa-check"></i><b>4.4.2</b> Help</a></li>
+<li class="chapter" data-level="4.4.3" data-path="常用函数.html"><a href="常用函数.html#debugging"><i class="fa fa-check"></i><b>4.4.3</b> Debugging</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="常用函数.html"><a href="常用函数.html#io函数"><i class="fa fa-check"></i><b>4.5</b> I/O函数</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="常用函数.html"><a href="常用函数.html#output"><i class="fa fa-check"></i><b>4.5.1</b> Output</a></li>
+<li class="chapter" data-level="4.5.2" data-path="常用函数.html"><a href="常用函数.html#reading-and-writing-data"><i class="fa fa-check"></i><b>4.5.2</b> Reading and writing data</a></li>
+<li class="chapter" data-level="4.5.3" data-path="常用函数.html"><a href="常用函数.html#files-and-directories"><i class="fa fa-check"></i><b>4.5.3</b> Files and directories</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="面向对象编程.html"><a href="面向对象编程.html"><i class="fa fa-check"></i><b>5</b> 面向对象编程</a><ul>
+<li class="chapter" data-level="5.1" data-path="面向对象编程.html"><a href="面向对象编程.html#小知识点"><i class="fa fa-check"></i><b>5.1</b> 小知识点</a></li>
+<li class="chapter" data-level="5.2" data-path="面向对象编程.html"><a href="面向对象编程.html#例子"><i class="fa fa-check"></i><b>5.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="泛函.html"><a href="泛函.html"><i class="fa fa-check"></i><b>6</b> 泛函</a><ul>
+<li class="chapter" data-level="6.1" data-path="泛函.html"><a href="泛函.html#小知识点-1"><i class="fa fa-check"></i><b>6.1</b> 小知识点</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="环境.html"><a href="环境.html"><i class="fa fa-check"></i><b>7</b> 环境</a><ul>
+<li class="chapter" data-level="7.1" data-path="环境.html"><a href="环境.html#小知识点-2"><i class="fa fa-check"></i><b>7.1</b> 小知识点</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="函数运算符.html"><a href="函数运算符.html"><i class="fa fa-check"></i><b>8</b> 函数运算符</a><ul>
+<li class="chapter" data-level="8.1" data-path="函数运算符.html"><a href="函数运算符.html#缓存"><i class="fa fa-check"></i><b>8.1</b> 缓存</a></li>
+<li class="chapter" data-level="8.2" data-path="函数运算符.html"><a href="函数运算符.html#惰性"><i class="fa fa-check"></i><b>8.2</b> 惰性</a></li>
+<li class="chapter" data-level="8.3" data-path="函数运算符.html"><a href="函数运算符.html#预填充函数参数"><i class="fa fa-check"></i><b>8.3</b> 预填充函数参数</a></li>
+<li class="chapter" data-level="8.4" data-path="函数运算符.html"><a href="函数运算符.html#改变输入类型"><i class="fa fa-check"></i><b>8.4</b> 改变输入类型</a></li>
+<li class="chapter" data-level="8.5" data-path="函数运算符.html"><a href="函数运算符.html#组合函数运算符"><i class="fa fa-check"></i><b>8.5</b> 组合函数运算符</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="函数式编程.html"><a href="函数式编程.html"><i class="fa fa-check"></i><b>9</b> 函数式编程</a><ul>
+<li class="chapter" data-level="9.1" data-path="函数式编程.html"><a href="函数式编程.html#闭包"><i class="fa fa-check"></i><b>9.1</b> 闭包</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="函数式编程.html"><a href="函数式编程.html#例1"><i class="fa fa-check"></i><b>9.1.1</b> 例1</a></li>
+<li class="chapter" data-level="9.1.2" data-path="函数式编程.html"><a href="函数式编程.html#例2"><i class="fa fa-check"></i><b>9.1.2</b> 例2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="函数式编程.html"><a href="函数式编程.html#编译优化"><i class="fa fa-check"></i><b>9.2</b> 编译优化</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="非标准计算.html"><a href="非标准计算.html"><i class="fa fa-check"></i><b>10</b> 非标准计算</a><ul>
+<li class="chapter" data-level="10.1" data-path="非标准计算.html"><a href="非标准计算.html#定义"><i class="fa fa-check"></i><b>10.1</b> 定义</a></li>
+<li class="chapter" data-level="10.2" data-path="非标准计算.html"><a href="非标准计算.html#例子-1"><i class="fa fa-check"></i><b>10.2</b> 例子</a></li>
+<li class="chapter" data-level="10.3" data-path="非标准计算.html"><a href="非标准计算.html#小知识点-3"><i class="fa fa-check"></i><b>10.3</b> 小知识点</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="debug.html"><a href="debug.html"><i class="fa fa-check"></i><b>11</b> Debug</a><ul>
+<li class="chapter" data-level="11.1" data-path="debug.html"><a href="debug.html#查看调用栈"><i class="fa fa-check"></i><b>11.1</b> 查看调用栈</a></li>
+<li class="chapter" data-level="11.2" data-path="debug.html"><a href="debug.html#debug模式"><i class="fa fa-check"></i><b>11.2</b> Debug模式</a></li>
+<li class="chapter" data-level="11.3" data-path="debug.html"><a href="debug.html#服务器环境debug"><i class="fa fa-check"></i><b>11.3</b> 服务器环境Debug</a></li>
+<li class="chapter" data-level="11.4" data-path="debug.html"><a href="debug.html#warning"><i class="fa fa-check"></i><b>11.4</b> Warning</a></li>
+<li class="chapter" data-level="11.5" data-path="debug.html"><a href="debug.html#message"><i class="fa fa-check"></i><b>11.5</b> Message</a></li>
+<li class="chapter" data-level="11.6" data-path="debug.html"><a href="debug.html#处理错误"><i class="fa fa-check"></i><b>11.6</b> 处理错误</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="debug.html"><a href="debug.html#try"><i class="fa fa-check"></i><b>11.6.1</b> try()</a></li>
+<li class="chapter" data-level="11.6.2" data-path="debug.html"><a href="debug.html#trycatch"><i class="fa fa-check"></i><b>11.6.2</b> tryCatch()</a></li>
+<li class="chapter" data-level="11.6.3" data-path="debug.html"><a href="debug.html#withcallinghandlers"><i class="fa fa-check"></i><b>11.6.3</b> withCallingHandlers()</a></li>
+<li class="chapter" data-level="11.6.4" data-path="debug.html"><a href="debug.html#自定义信号类"><i class="fa fa-check"></i><b>11.6.4</b> 自定义信号类</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="rcpp.html"><a href="rcpp.html"><i class="fa fa-check"></i><b>12</b> Rcpp</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">关于R的一点总结</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="常用函数" class="section level1">
+<h1><span class="header-section-number">4</span> 常用函数</h1>
+<div id="基础函数" class="section level2">
+<h2><span class="header-section-number">4.1</span> 基础函数</h2>
+<div id="两个最常用的" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> 两个最常用的</h3>
+<ul>
+<li><code>?</code></li>
+<li><code>str()</code></li>
+</ul>
+</div>
+<div id="常用运算符和操作符" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> 常用运算符和操作符</h3>
+<ul>
+<li><code>%in%</code></li>
+<li><code>match()</code></li>
+<li><code>=</code></li>
+<li><code>&lt;-</code></li>
+<li><code>&lt;&lt;-</code></li>
+<li><code>$</code></li>
+<li><code>[</code></li>
+<li><code>[[</code></li>
+<li><code>head()</code></li>
+<li><code>tail()</code></li>
+<li><code>subset()</code></li>
+<li><code>with()</code></li>
+<li><code>assign()</code></li>
+<li><code>get()</code> (return the value of a named object)</li>
+</ul>
+</div>
+<div id="比较" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> 比较</h3>
+<ul>
+<li><code>all.equal()</code> 近似比较</li>
+<li><code>identical()</code> 用于条件判断语句中，平时使用的<code>==</code>运算符看似合理，其实不然，因为如果运算符两边的长度不为1，则结果长度就不为1，一旦有其中一个为NA，则结果为NA</li>
+<li><code>!=</code>, <code>==</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code></li>
+<li><code>is.na()</code></li>
+<li><code>complete.cases()</code> 判断向量中有没有缺失值，有缺失值的位置返回FALSE</li>
+<li><code>is.finite()</code></li>
+</ul>
+</div>
+<div id="数学" class="section level3">
+<h3><span class="header-section-number">4.1.4</span> 数学</h3>
+<ul>
+<li><p><code>*</code>, <code>+</code>, <code>-</code>, <code>/</code>, <code>^</code>, <code>%%</code>, <code>%/%</code></p></li>
+<li><p><code>abs()</code>, <code>sign()</code></p></li>
+<li><p><code>acos()</code>, <code>asin()</code>, <code>atan()</code>, <code>atan2()</code></p></li>
+<li><p><code>sin()</code>, <code>cos()</code>, <code>tan()</code></p></li>
+<li><p><code>ceiling()</code>, <code>floor()</code>, <code>round()</code>, <code>trunc()</code>, <code>signif()</code></p></li>
+<li><p><code>exp()</code>, <code>log()</code>, <code>log10()</code>, <code>log2()</code>, <code>sqrt()</code></p></li>
+<li><p><code>max()</code>, <code>min()</code>, <code>prod()</code>（返回其中所有元素的乘积）, <code>sum()</code></p></li>
+<li><p><code>cummax()</code>, <code>cummin()</code>, <code>cumprod()</code>, <code>cumsum()</code> 累积计算</p></li>
+<li><p><code>diff()</code></p></li>
+<li><p><code>pmax()</code>, <code>pmin()</code></p></li>
+<li><p><code>range()</code></p></li>
+<li><p><code>mean()</code>, <code>median()</code>, <code>cor()</code>, <code>sd()</code>, <code>var()</code></p>
+<ul>
+<li><p>其中需要注意：</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="常用函数.html#cb12-1"></a><span class="kw">mean</span>(x, <span class="dt">trim =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p>trim参数的作用是，当trim = 0.1时，会先删除向量x中最大的10%和最小的10%之后，再计算均值，如果trim &gt; 0.5，则返回的结果是中位数median()</p></li>
+</ul></li>
+<li><p><code>rle()</code> (Compute the lengths and values of runs of equal values in a vector)</p></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="常用函数.html#cb13-1"></a>x &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">rep</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</span>
+<span id="cb13-2"><a href="常用函数.html#cb13-2"></a><span class="kw">rle</span>(x)</span>
+<span id="cb13-3"><a href="常用函数.html#cb13-3"></a><span class="co">## lengths [1:5]  5 4 3 2 1</span></span>
+<span id="cb13-4"><a href="常用函数.html#cb13-4"></a><span class="co">## values  [1:5] 10 9 8 7 6</span></span></code></pre></div>
+</div>
+<div id="编写函数" class="section level3">
+<h3><span class="header-section-number">4.1.5</span> 编写函数</h3>
+<ul>
+<li><code>function()</code> 中 <code>missing</code> 用法 <code>function(x,y){if(missing(y)) ...}</code></li>
+<li><code>on.exit()</code> 用于函数内部，指定在函数运行结束时（不论是正常结束还是遇到错误）需要执行的代码，常用来清空绘图面板之类的操作</li>
+<li><code>return()</code>, <code>invisible()</code></li>
+<li><code>flush.console()</code> 用于使打印在屏幕上的输出结果覆盖上一个</li>
+</ul>
+</div>
+<div id="逻辑与集合" class="section level3">
+<h3><span class="header-section-number">4.1.6</span> 逻辑与集合</h3>
+<ul>
+<li><p><code>&amp;</code>, <code>|</code>, <code>!</code>, <code>xor</code></p></li>
+<li><p><code>all()</code>, <code>any()</code></p></li>
+<li><p><code>intersect()</code>, <code>union()</code>, <code>setdiff()</code>, <code>setequal()</code>（比较集合的相等性）</p></li>
+<li><p><code>which()</code>
+()
+### 向量和矩阵</p></li>
+<li><p><code>c()</code>, <code>matrix()</code></p></li>
+<li><p>自动转换规则 character &gt; double &gt; integer &gt; logical</p></li>
+<li><p><code>length()</code>, <code>dim()</code>, <code>ncol()</code>, <code>nrow()</code></p></li>
+<li><p><code>cbind()</code>, <code>rbind()</code></p></li>
+<li><p><code>names()</code>, <code>colnames()</code>, <code>rownames()</code></p></li>
+<li><p><code>t()</code></p></li>
+<li><p><code>diag()</code>（生成对角矩阵）</p></li>
+<li><p><code>sweep()</code></p></li>
+<li><p><code>as.matrix()</code>, <code>data.matrix()</code>（将data.frame转成numeric matrix）</p></li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="常用函数.html#cb14-1"></a><span class="co"># 例：给数组x的第一行都加1，第二行都加4，第三行都加7</span></span>
+<span id="cb14-2"><a href="常用函数.html#cb14-2"></a><span class="kw">sweep</span>(x, <span class="dv">1</span>, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">7</span>), <span class="st">&quot;+&quot;</span>)</span></code></pre></div>
+</div>
+<div id="构建向量" class="section level3">
+<h3><span class="header-section-number">4.1.7</span> 构建向量</h3>
+<ul>
+<li><code>c()</code></li>
+<li><code>rep()</code>, <code>rep_len()</code></li>
+<li><code>seq()</code>, <code>seq_len()</code>, <code>seq_along()</code></li>
+<li><code>rev()</code></li>
+<li><code>sample()</code></li>
+<li><code>choose()</code> 组合</li>
+<li><code>factorial()</code> 阶乘</li>
+<li><code>combn(x,m)</code> #Generate all combinations of the elements of x taken m at a time</li>
+<li><code>(is/as).(character/numeric/logical/...)</code></li>
+</ul>
+</div>
+<div id="列表和数据框" class="section level3">
+<h3><span class="header-section-number">4.1.8</span> 列表和数据框</h3>
+<ul>
+<li><code>list()</code>, <code>unlist()</code></li>
+<li><code>data.frame()</code>, <code>as.data.frame()</code></li>
+<li><code>split()</code></li>
+<li><code>expand.grid()</code> Create a data frame from all combinations of the supplied vectors or factors.</li>
+</ul>
+</div>
+<div id="控制流" class="section level3">
+<h3><span class="header-section-number">4.1.9</span> 控制流</h3>
+<ul>
+<li><code>if</code>, <code>&amp;&amp;</code>, <code>||</code></li>
+<li><code>for</code>, <code>while</code></li>
+<li><code>next</code>, <code>break</code></li>
+<li><code>switch()</code></li>
+<li><code>ifelse()</code></li>
+</ul>
+</div>
+<div id="apply族" class="section level3">
+<h3><span class="header-section-number">4.1.10</span> apply族</h3>
+<ul>
+<li><code>lapply()</code>, <code>sapply()</code>, <code>vapply()()</code></li>
+<li><code>apply()</code></li>
+<li><code>tapply()</code></li>
+<li><code>replicate()</code> 将sapply的结果重复指定次数</li>
+</ul>
+</div>
+</div>
+<div id="常见数据结构" class="section level2">
+<h2><span class="header-section-number">4.2</span> 常见数据结构</h2>
+<div id="date-time" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Date time</h3>
+<ul>
+<li><code>ISOdate</code>, <code>ISOdatetime</code>, <code>strftime</code>, <code>strptime</code>, <code>date</code></li>
+<li><code>difftime</code></li>
+<li><code>julian</code>, <code>months</code>, <code>quarters</code>, <code>weekdays</code></li>
+<li><code>library(lubridate)</code></li>
+</ul>
+</div>
+<div id="character-manipulation" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Character manipulation</h3>
+<ul>
+<li><code>grep</code>, <code>agrep</code></li>
+<li><code>gsub</code></li>
+<li><code>strsplit</code></li>
+<li><code>chartr(old,new,x)</code> 将x中的字符串old替换成new</li>
+<li><code>nchar</code></li>
+<li><code>tolower</code>, <code>toupper</code></li>
+<li><code>substr</code></li>
+<li><code>paste</code></li>
+<li><code>trimws</code> Remove Leading/Trailing Whitespace</li>
+<li><code>library(stringr)</code></li>
+</ul>
+</div>
+<div id="factors" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Factors</h3>
+<ul>
+<li><code>factor</code>, <code>levels</code>, <code>nlevels</code></li>
+<li><code>reorder</code>, <code>relevel</code></li>
+<li><code>cut</code>, <code>findInterval</code></li>
+<li><code>interaction</code></li>
+<li><code>options(stringsAsFactors = FALSE)</code></li>
+</ul>
+</div>
+<div id="array-manipulation" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> Array manipulation</h3>
+<ul>
+<li><code>array</code></li>
+<li><code>dim</code></li>
+<li><code>dimnames</code></li>
+<li><code>aperm</code> 调整一个数组的维度</li>
+<li><code>library(abind)</code></li>
+</ul>
+</div>
+</div>
+<div id="统计函数" class="section level2">
+<h2><span class="header-section-number">4.3</span> 统计函数</h2>
+<div id="排序和制表" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> 排序和制表</h3>
+<ul>
+<li><code>duplicated</code>, <code>unique</code></li>
+<li><code>merge</code></li>
+<li><code>order</code>, <code>rank</code>, <code>quantile</code></li>
+<li><code>sort</code></li>
+<li><code>table</code>, <code>ftable</code></li>
+</ul>
+</div>
+<div id="linear-models" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Linear models</h3>
+<ul>
+<li><code>fitted</code>, <code>predict</code></li>
+<li><code>resid</code> extracts model residuals from objects returned by modeling functions</li>
+<li><code>rstandard</code></li>
+<li><code>lm</code>, <code>glm</code></li>
+<li><code>hat</code>, <code>influence.measures</code></li>
+<li><code>logLik</code>, <code>df</code>, <code>deviance</code></li>
+<li><code>formula</code>, <code>~</code>, <code>I</code></li>
+<li><code>anova</code>, <code>coef</code>, <code>confint</code> 计算某一个参数的置信区间</li>
+<li><code>vcov</code> Calculate Variance-Covariance Matrix for a Fitted Model Object</li>
+<li><code>contrasts</code></li>
+</ul>
+</div>
+<div id="测试函数" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> 测试函数</h3>
+<ul>
+<li><code>apropos("\\.test$")</code> Find Objects by (Partial) Name</li>
+</ul>
+</div>
+<div id="随机变量" class="section level3">
+<h3><span class="header-section-number">4.3.4</span> 随机变量</h3>
+<ul>
+<li>d : density</li>
+<li>p : distribution</li>
+<li>q : quantile</li>
+<li>r : random generation</li>
+<li>(q, p, d, r) * (beta, binom, cauchy, chisq, exp, f, gamma, geom,
+hyper, lnorm, logis, multinom, nbinom, norm, pois, signrank, t,
+unif, weibull, wilcox, birthday, tukey)</li>
+</ul>
+</div>
+<div id="矩阵运算" class="section level3">
+<h3><span class="header-section-number">4.3.5</span> 矩阵运算</h3>
+<ul>
+<li><code>crossprod(x,y)</code> 矩阵乘积，比用<code>%*%</code>符号要快一点，即<code>t(x) %*% y</code></li>
+<li><code>tcrossprod</code> 即 <code>x %*% t(y)</code></li>
+<li><code>eigen</code> 计算矩阵特征值和特征向量</li>
+<li><code>qr</code> 矩阵的QR分解</li>
+<li><code>svd</code> 矩阵的奇异值分解</li>
+<li><code>%*%</code> 矩阵的内积</li>
+<li><code>%o%</code>, <code>outer</code> 矩阵的外积</li>
+<li><code>rcond</code></li>
+<li><code>solve</code> 解方程组</li>
+</ul>
+</div>
+</div>
+<div id="使用r" class="section level2">
+<h2><span class="header-section-number">4.4</span> 使用R</h2>
+<div id="workspace" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Workspace</h3>
+<ul>
+<li><code>ls</code>, <code>exists</code>, <code>rm</code></li>
+<li><code>getwd</code>, <code>setwd</code></li>
+<li><code>q</code>, <code>quit</code></li>
+<li><code>source</code></li>
+<li><code>install.packages</code>, <code>library</code>, <code>require</code></li>
+</ul>
+</div>
+<div id="help" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Help</h3>
+<ul>
+<li><code>help</code>, <code>?</code></li>
+<li><code>help.search</code>, <code>??</code></li>
+<li><code>apropos</code></li>
+<li><code>RSiteSearch</code></li>
+<li><code>citation</code></li>
+<li><code>demo</code></li>
+<li><code>example</code></li>
+<li><code>vignette</code></li>
+</ul>
+</div>
+<div id="debugging" class="section level3">
+<h3><span class="header-section-number">4.4.3</span> Debugging</h3>
+<ul>
+<li><code>traceback</code> Get and Print Call Stacks</li>
+<li><code>browser</code></li>
+<li><code>recover</code></li>
+<li><code>options(error = )</code> 可选<code>stop</code>, <code>warning</code>, <code>message</code></li>
+<li><code>tryCatch</code>, <code>try</code></li>
+</ul>
+</div>
+</div>
+<div id="io函数" class="section level2">
+<h2><span class="header-section-number">4.5</span> I/O函数</h2>
+<div id="output" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> Output</h3>
+<ul>
+<li><code>print</code>, <code>cat</code></li>
+<li><code>message</code>, <code>warning</code></li>
+<li><code>dput</code> 将R对象以ASCII文本表示形式写入文件或连接，或使用ASCII文本表示形式重新创建该对象</li>
+<li><code>format</code></li>
+<li><code>sink</code> 将R在屏幕上的输出保存在文件中</li>
+<li><code>capture.output</code> 将屏幕上的输出结果保存成一个字符串变量</li>
+<li><code>sprintf</code></li>
+</ul>
+</div>
+<div id="reading-and-writing-data" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> Reading and writing data</h3>
+<ul>
+<li><code>data</code> 加载一个内置的数据集</li>
+<li><code>count.fields</code></li>
+<li><code>read.csv</code>, <code>write.csv</code> 默认读写以逗号为分隔符的table文件</li>
+<li><code>read.delim</code>, <code>write.delim</code> 默认读写以TAB为分隔符的table文件</li>
+<li><code>read.fwf</code> 读取以等间隔为分隔符的table文件</li>
+<li><code>readLines</code>, <code>writeLines</code></li>
+<li><code>readRDS</code>, <code>saveRDS</code></li>
+<li><code>load</code>, <code>save</code></li>
+<li><code>library(foreign)</code></li>
+<li><code>library(data.table)</code></li>
+<li><code>library(readxl)</code></li>
+</ul>
+</div>
+<div id="files-and-directories" class="section level3">
+<h3><span class="header-section-number">4.5.3</span> Files and directories</h3>
+<ul>
+<li><code>dir</code></li>
+<li><code>basename</code>, <code>dirname</code>, <code>tools::file_ext</code></li>
+<li><code>file.path</code></li>
+<li><code>path.expand</code>, <code>normalizePath</code></li>
+<li><code>file.choose</code> Choose a file interactively</li>
+<li><code>file.copy</code>, <code>file.create</code>, <code>file.remove</code>, <code>file.rename</code>, <code>dir.create</code></li>
+<li><code>file.exists</code>, <code>file.info</code></li>
+<li><code>tempdir</code></li>
+<li><code>tempfile</code> returns a vector of character strings which can be used as names for temporary files.</li>
+<li><code>download.file</code>, <code>library(downloader)</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="子集选取.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="面向对象编程.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": true,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false,
+"info": false
+});
+});
+</script>
+
+</body>
+
+</html>

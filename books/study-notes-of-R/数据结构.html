@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 数据结构 | 关于R的一点总结</title>
+  <meta name="description" content="2 数据结构 | 关于R的一点总结" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 数据结构 | 关于R的一点总结" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 数据结构 | 关于R的一点总结" />
+  
+  
+  
+
+<meta name="author" content="G. B." />
+
+
+<meta name="date" content="2020-11-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="子集选取.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 前言</a></li>
+<li class="chapter" data-level="2" data-path="数据结构.html"><a href="数据结构.html"><i class="fa fa-check"></i><b>2</b> 数据结构</a><ul>
+<li class="chapter" data-level="2.1" data-path="数据结构.html"><a href="数据结构.html#向量"><i class="fa fa-check"></i><b>2.1</b> 向量</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="数据结构.html"><a href="数据结构.html#section"><i class="fa fa-check"></i><b>2.1.1</b> </a></li>
+<li class="chapter" data-level="2.1.2" data-path="数据结构.html"><a href="数据结构.html#section-1"><i class="fa fa-check"></i><b>2.1.2</b> </a></li>
+<li class="chapter" data-level="2.1.3" data-path="数据结构.html"><a href="数据结构.html#section-2"><i class="fa fa-check"></i><b>2.1.3</b> </a></li>
+<li class="chapter" data-level="2.1.4" data-path="数据结构.html"><a href="数据结构.html#section-3"><i class="fa fa-check"></i><b>2.1.4</b> </a></li>
+<li class="chapter" data-level="2.1.5" data-path="数据结构.html"><a href="数据结构.html#section-4"><i class="fa fa-check"></i><b>2.1.5</b> </a></li>
+<li class="chapter" data-level="2.1.6" data-path="数据结构.html"><a href="数据结构.html#section-5"><i class="fa fa-check"></i><b>2.1.6</b> </a></li>
+<li class="chapter" data-level="2.1.7" data-path="数据结构.html"><a href="数据结构.html#section-6"><i class="fa fa-check"></i><b>2.1.7</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="数据结构.html"><a href="数据结构.html#属性"><i class="fa fa-check"></i><b>2.2</b> 属性</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="数据结构.html"><a href="数据结构.html#section-7"><i class="fa fa-check"></i><b>2.2.1</b> </a></li>
+<li class="chapter" data-level="2.2.2" data-path="数据结构.html"><a href="数据结构.html#section-8"><i class="fa fa-check"></i><b>2.2.2</b> </a></li>
+<li class="chapter" data-level="2.2.3" data-path="数据结构.html"><a href="数据结构.html#section-9"><i class="fa fa-check"></i><b>2.2.3</b> </a></li>
+<li class="chapter" data-level="2.2.4" data-path="数据结构.html"><a href="数据结构.html#section-10"><i class="fa fa-check"></i><b>2.2.4</b> </a></li>
+<li class="chapter" data-level="2.2.5" data-path="数据结构.html"><a href="数据结构.html#section-11"><i class="fa fa-check"></i><b>2.2.5</b> </a></li>
+<li class="chapter" data-level="2.2.6" data-path="数据结构.html"><a href="数据结构.html#section-12"><i class="fa fa-check"></i><b>2.2.6</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="数据结构.html"><a href="数据结构.html#矩阵和数据框"><i class="fa fa-check"></i><b>2.3</b> 矩阵和数据框</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="数据结构.html"><a href="数据结构.html#section-13"><i class="fa fa-check"></i><b>2.3.1</b> </a></li>
+<li class="chapter" data-level="2.3.2" data-path="数据结构.html"><a href="数据结构.html#section-14"><i class="fa fa-check"></i><b>2.3.2</b> </a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="子集选取.html"><a href="子集选取.html"><i class="fa fa-check"></i><b>3</b> 子集选取</a><ul>
+<li class="chapter" data-level="3.1" data-path="子集选取.html"><a href="子集选取.html#数据类型"><i class="fa fa-check"></i><b>3.1</b> 数据类型</a></li>
+<li class="chapter" data-level="3.2" data-path="子集选取.html"><a href="子集选取.html#子集选取运算符"><i class="fa fa-check"></i><b>3.2</b> 子集选取运算符</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="子集选取.html"><a href="子集选取.html#section-15"><i class="fa fa-check"></i><b>3.2.1</b> </a></li>
+<li class="chapter" data-level="3.2.2" data-path="子集选取.html"><a href="子集选取.html#section-16"><i class="fa fa-check"></i><b>3.2.2</b> </a></li>
+<li class="chapter" data-level="3.2.3" data-path="子集选取.html"><a href="子集选取.html#section-17"><i class="fa fa-check"></i><b>3.2.3</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="子集选取.html"><a href="子集选取.html#应用"><i class="fa fa-check"></i><b>3.3</b> 应用</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="子集选取.html"><a href="子集选取.html#section-18"><i class="fa fa-check"></i><b>3.3.1</b> </a></li>
+<li class="chapter" data-level="3.3.2" data-path="子集选取.html"><a href="子集选取.html#section-19"><i class="fa fa-check"></i><b>3.3.2</b> </a></li>
+<li class="chapter" data-level="3.3.3" data-path="子集选取.html"><a href="子集选取.html#section-20"><i class="fa fa-check"></i><b>3.3.3</b> </a></li>
+<li class="chapter" data-level="3.3.4" data-path="子集选取.html"><a href="子集选取.html#section-21"><i class="fa fa-check"></i><b>3.3.4</b> </a></li>
+<li class="chapter" data-level="3.3.5" data-path="子集选取.html"><a href="子集选取.html#section-22"><i class="fa fa-check"></i><b>3.3.5</b> </a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="常用函数.html"><a href="常用函数.html"><i class="fa fa-check"></i><b>4</b> 常用函数</a><ul>
+<li class="chapter" data-level="4.1" data-path="常用函数.html"><a href="常用函数.html#基础函数"><i class="fa fa-check"></i><b>4.1</b> 基础函数</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="常用函数.html"><a href="常用函数.html#两个最常用的"><i class="fa fa-check"></i><b>4.1.1</b> 两个最常用的</a></li>
+<li class="chapter" data-level="4.1.2" data-path="常用函数.html"><a href="常用函数.html#常用运算符和操作符"><i class="fa fa-check"></i><b>4.1.2</b> 常用运算符和操作符</a></li>
+<li class="chapter" data-level="4.1.3" data-path="常用函数.html"><a href="常用函数.html#比较"><i class="fa fa-check"></i><b>4.1.3</b> 比较</a></li>
+<li class="chapter" data-level="4.1.4" data-path="常用函数.html"><a href="常用函数.html#数学"><i class="fa fa-check"></i><b>4.1.4</b> 数学</a></li>
+<li class="chapter" data-level="4.1.5" data-path="常用函数.html"><a href="常用函数.html#编写函数"><i class="fa fa-check"></i><b>4.1.5</b> 编写函数</a></li>
+<li class="chapter" data-level="4.1.6" data-path="常用函数.html"><a href="常用函数.html#逻辑与集合"><i class="fa fa-check"></i><b>4.1.6</b> 逻辑与集合</a></li>
+<li class="chapter" data-level="4.1.7" data-path="常用函数.html"><a href="常用函数.html#构建向量"><i class="fa fa-check"></i><b>4.1.7</b> 构建向量</a></li>
+<li class="chapter" data-level="4.1.8" data-path="常用函数.html"><a href="常用函数.html#列表和数据框"><i class="fa fa-check"></i><b>4.1.8</b> 列表和数据框</a></li>
+<li class="chapter" data-level="4.1.9" data-path="常用函数.html"><a href="常用函数.html#控制流"><i class="fa fa-check"></i><b>4.1.9</b> 控制流</a></li>
+<li class="chapter" data-level="4.1.10" data-path="常用函数.html"><a href="常用函数.html#apply族"><i class="fa fa-check"></i><b>4.1.10</b> apply族</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="常用函数.html"><a href="常用函数.html#常见数据结构"><i class="fa fa-check"></i><b>4.2</b> 常见数据结构</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="常用函数.html"><a href="常用函数.html#date-time"><i class="fa fa-check"></i><b>4.2.1</b> Date time</a></li>
+<li class="chapter" data-level="4.2.2" data-path="常用函数.html"><a href="常用函数.html#character-manipulation"><i class="fa fa-check"></i><b>4.2.2</b> Character manipulation</a></li>
+<li class="chapter" data-level="4.2.3" data-path="常用函数.html"><a href="常用函数.html#factors"><i class="fa fa-check"></i><b>4.2.3</b> Factors</a></li>
+<li class="chapter" data-level="4.2.4" data-path="常用函数.html"><a href="常用函数.html#array-manipulation"><i class="fa fa-check"></i><b>4.2.4</b> Array manipulation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="常用函数.html"><a href="常用函数.html#统计函数"><i class="fa fa-check"></i><b>4.3</b> 统计函数</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="常用函数.html"><a href="常用函数.html#排序和制表"><i class="fa fa-check"></i><b>4.3.1</b> 排序和制表</a></li>
+<li class="chapter" data-level="4.3.2" data-path="常用函数.html"><a href="常用函数.html#linear-models"><i class="fa fa-check"></i><b>4.3.2</b> Linear models</a></li>
+<li class="chapter" data-level="4.3.3" data-path="常用函数.html"><a href="常用函数.html#测试函数"><i class="fa fa-check"></i><b>4.3.3</b> 测试函数</a></li>
+<li class="chapter" data-level="4.3.4" data-path="常用函数.html"><a href="常用函数.html#随机变量"><i class="fa fa-check"></i><b>4.3.4</b> 随机变量</a></li>
+<li class="chapter" data-level="4.3.5" data-path="常用函数.html"><a href="常用函数.html#矩阵运算"><i class="fa fa-check"></i><b>4.3.5</b> 矩阵运算</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="常用函数.html"><a href="常用函数.html#使用r"><i class="fa fa-check"></i><b>4.4</b> 使用R</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="常用函数.html"><a href="常用函数.html#workspace"><i class="fa fa-check"></i><b>4.4.1</b> Workspace</a></li>
+<li class="chapter" data-level="4.4.2" data-path="常用函数.html"><a href="常用函数.html#help"><i class="fa fa-check"></i><b>4.4.2</b> Help</a></li>
+<li class="chapter" data-level="4.4.3" data-path="常用函数.html"><a href="常用函数.html#debugging"><i class="fa fa-check"></i><b>4.4.3</b> Debugging</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="常用函数.html"><a href="常用函数.html#io函数"><i class="fa fa-check"></i><b>4.5</b> I/O函数</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="常用函数.html"><a href="常用函数.html#output"><i class="fa fa-check"></i><b>4.5.1</b> Output</a></li>
+<li class="chapter" data-level="4.5.2" data-path="常用函数.html"><a href="常用函数.html#reading-and-writing-data"><i class="fa fa-check"></i><b>4.5.2</b> Reading and writing data</a></li>
+<li class="chapter" data-level="4.5.3" data-path="常用函数.html"><a href="常用函数.html#files-and-directories"><i class="fa fa-check"></i><b>4.5.3</b> Files and directories</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="面向对象编程.html"><a href="面向对象编程.html"><i class="fa fa-check"></i><b>5</b> 面向对象编程</a><ul>
+<li class="chapter" data-level="5.1" data-path="面向对象编程.html"><a href="面向对象编程.html#小知识点"><i class="fa fa-check"></i><b>5.1</b> 小知识点</a></li>
+<li class="chapter" data-level="5.2" data-path="面向对象编程.html"><a href="面向对象编程.html#例子"><i class="fa fa-check"></i><b>5.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="泛函.html"><a href="泛函.html"><i class="fa fa-check"></i><b>6</b> 泛函</a><ul>
+<li class="chapter" data-level="6.1" data-path="泛函.html"><a href="泛函.html#小知识点-1"><i class="fa fa-check"></i><b>6.1</b> 小知识点</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="环境.html"><a href="环境.html"><i class="fa fa-check"></i><b>7</b> 环境</a><ul>
+<li class="chapter" data-level="7.1" data-path="环境.html"><a href="环境.html#小知识点-2"><i class="fa fa-check"></i><b>7.1</b> 小知识点</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="函数运算符.html"><a href="函数运算符.html"><i class="fa fa-check"></i><b>8</b> 函数运算符</a><ul>
+<li class="chapter" data-level="8.1" data-path="函数运算符.html"><a href="函数运算符.html#缓存"><i class="fa fa-check"></i><b>8.1</b> 缓存</a></li>
+<li class="chapter" data-level="8.2" data-path="函数运算符.html"><a href="函数运算符.html#惰性"><i class="fa fa-check"></i><b>8.2</b> 惰性</a></li>
+<li class="chapter" data-level="8.3" data-path="函数运算符.html"><a href="函数运算符.html#预填充函数参数"><i class="fa fa-check"></i><b>8.3</b> 预填充函数参数</a></li>
+<li class="chapter" data-level="8.4" data-path="函数运算符.html"><a href="函数运算符.html#改变输入类型"><i class="fa fa-check"></i><b>8.4</b> 改变输入类型</a></li>
+<li class="chapter" data-level="8.5" data-path="函数运算符.html"><a href="函数运算符.html#组合函数运算符"><i class="fa fa-check"></i><b>8.5</b> 组合函数运算符</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="函数式编程.html"><a href="函数式编程.html"><i class="fa fa-check"></i><b>9</b> 函数式编程</a><ul>
+<li class="chapter" data-level="9.1" data-path="函数式编程.html"><a href="函数式编程.html#闭包"><i class="fa fa-check"></i><b>9.1</b> 闭包</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="函数式编程.html"><a href="函数式编程.html#例1"><i class="fa fa-check"></i><b>9.1.1</b> 例1</a></li>
+<li class="chapter" data-level="9.1.2" data-path="函数式编程.html"><a href="函数式编程.html#例2"><i class="fa fa-check"></i><b>9.1.2</b> 例2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="函数式编程.html"><a href="函数式编程.html#编译优化"><i class="fa fa-check"></i><b>9.2</b> 编译优化</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="非标准计算.html"><a href="非标准计算.html"><i class="fa fa-check"></i><b>10</b> 非标准计算</a><ul>
+<li class="chapter" data-level="10.1" data-path="非标准计算.html"><a href="非标准计算.html#定义"><i class="fa fa-check"></i><b>10.1</b> 定义</a></li>
+<li class="chapter" data-level="10.2" data-path="非标准计算.html"><a href="非标准计算.html#例子-1"><i class="fa fa-check"></i><b>10.2</b> 例子</a></li>
+<li class="chapter" data-level="10.3" data-path="非标准计算.html"><a href="非标准计算.html#小知识点-3"><i class="fa fa-check"></i><b>10.3</b> 小知识点</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="debug.html"><a href="debug.html"><i class="fa fa-check"></i><b>11</b> Debug</a><ul>
+<li class="chapter" data-level="11.1" data-path="debug.html"><a href="debug.html#查看调用栈"><i class="fa fa-check"></i><b>11.1</b> 查看调用栈</a></li>
+<li class="chapter" data-level="11.2" data-path="debug.html"><a href="debug.html#debug模式"><i class="fa fa-check"></i><b>11.2</b> Debug模式</a></li>
+<li class="chapter" data-level="11.3" data-path="debug.html"><a href="debug.html#服务器环境debug"><i class="fa fa-check"></i><b>11.3</b> 服务器环境Debug</a></li>
+<li class="chapter" data-level="11.4" data-path="debug.html"><a href="debug.html#warning"><i class="fa fa-check"></i><b>11.4</b> Warning</a></li>
+<li class="chapter" data-level="11.5" data-path="debug.html"><a href="debug.html#message"><i class="fa fa-check"></i><b>11.5</b> Message</a></li>
+<li class="chapter" data-level="11.6" data-path="debug.html"><a href="debug.html#处理错误"><i class="fa fa-check"></i><b>11.6</b> 处理错误</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="debug.html"><a href="debug.html#try"><i class="fa fa-check"></i><b>11.6.1</b> try()</a></li>
+<li class="chapter" data-level="11.6.2" data-path="debug.html"><a href="debug.html#trycatch"><i class="fa fa-check"></i><b>11.6.2</b> tryCatch()</a></li>
+<li class="chapter" data-level="11.6.3" data-path="debug.html"><a href="debug.html#withcallinghandlers"><i class="fa fa-check"></i><b>11.6.3</b> withCallingHandlers()</a></li>
+<li class="chapter" data-level="11.6.4" data-path="debug.html"><a href="debug.html#自定义信号类"><i class="fa fa-check"></i><b>11.6.4</b> 自定义信号类</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="rcpp.html"><a href="rcpp.html"><i class="fa fa-check"></i><b>12</b> Rcpp</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">关于R的一点总结</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="数据结构" class="section level1">
+<h1><span class="header-section-number">2</span> 数据结构</h1>
+<div id="向量" class="section level2">
+<h2><span class="header-section-number">2.1</span> 向量</h2>
+<p>向量包含atomic vector和list，它们有三个共同性质属性：</p>
+<ul>
+<li>类型 <code>typeof()</code></li>
+<li>长度 <code>length()</code></li>
+<li>属性 <code>attributes()</code>，附加的任意元数据</li>
+</ul>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> </h3>
+<p>原子向量atomic vector包含：</p>
+<ul>
+<li>logical</li>
+<li>integer</li>
+<li>double 即 numeric</li>
+<li>character</li>
+<li>complex 复合型</li>
+<li>raw 原始型</li>
+</ul>
+<p>其中后两者属于罕见类型</p>
+</div>
+<div id="section-1" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> </h3>
+<p>原子向量使用<code>c()</code>来创建，在<code>c()</code>中使用<code>NA</code>，<code>NA</code>会自动被转换成正确的数据类型，<code>NA</code>有以下几种类型：</p>
+<ul>
+<li><code>NA_real_</code></li>
+<li><code>NA_integer_</code></li>
+<li><code>NA_character_</code></li>
+</ul>
+</div>
+<div id="section-2" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> </h3>
+<p><code>is.numeric()</code>通常用来判断向量的“数值性”，无论是整型还是双精度型向量都返回TRUE。所以如果需要精确的判断，还是要用<code>is.integer</code>或<code>is.double</code></p>
+</div>
+<div id="section-3" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> </h3>
+<p>atomic vector中的每个元素都必须具有相同的类型，所以如果把不同的数据结合成一个向量，他们会被强制转换成最具有灵活性的数据类型。数据类型的灵活性排序为：character &gt; double &gt; integer &gt; logical</p>
+</div>
+<div id="section-4" class="section level3">
+<h3><span class="header-section-number">2.1.5</span> </h3>
+<p>不要使用<code>is.vector()</code>来判断一个对象是否是向量，只有在对象是向量且除了名字之外没有其他属性的情况下它才返回TRUE，前面定义了向量的概念，所以判断向量应该用 <code>is.atomic() || is.list()</code></p>
+</div>
+<div id="section-5" class="section level3">
+<h3><span class="header-section-number">2.1.6</span> </h3>
+<p>列表使用<code>list()</code>来创建，有时被称作递归(recursive)向量，因为一个列表可以包含其他列表</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="数据结构.html#cb1-1"></a>x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">list</span>(<span class="kw">list</span>(<span class="kw">list</span>())))</span>
+<span id="cb1-2"><a href="数据结构.html#cb1-2"></a><span class="kw">str</span>(x)</span>
+<span id="cb1-3"><a href="数据结构.html#cb1-3"></a><span class="co">#List of 1</span></span>
+<span id="cb1-4"><a href="数据结构.html#cb1-4"></a><span class="co"># $ :List of 1</span></span>
+<span id="cb1-5"><a href="数据结构.html#cb1-5"></a><span class="co">#  ..$ :List of 1</span></span>
+<span id="cb1-6"><a href="数据结构.html#cb1-6"></a><span class="co">#  .. ..$ : list()</span></span></code></pre></div>
+</div>
+<div id="section-6" class="section level3">
+<h3><span class="header-section-number">2.1.7</span> </h3>
+<p><code>c()</code>可以将多个列表结合在一起，但如果把原子向量和列表放在一起，<code>c()</code>会强制把原子向量转换成列表</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="数据结构.html#cb2-1"></a>x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>))</span>
+<span id="cb2-2"><a href="数据结构.html#cb2-2"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>))</span>
+<span id="cb2-3"><a href="数据结构.html#cb2-3"></a><span class="kw">str</span>(x)</span>
+<span id="cb2-4"><a href="数据结构.html#cb2-4"></a><span class="co">#List of 2</span></span>
+<span id="cb2-5"><a href="数据结构.html#cb2-5"></a><span class="co"># $ :List of 2</span></span>
+<span id="cb2-6"><a href="数据结构.html#cb2-6"></a><span class="co">#  ..$ : num 1</span></span>
+<span id="cb2-7"><a href="数据结构.html#cb2-7"></a><span class="co">#  ..$ : num 2</span></span>
+<span id="cb2-8"><a href="数据结构.html#cb2-8"></a><span class="co"># $ : num [1:2] 3 4</span></span>
+<span id="cb2-9"><a href="数据结构.html#cb2-9"></a><span class="kw">str</span>(y)</span>
+<span id="cb2-10"><a href="数据结构.html#cb2-10"></a><span class="co">#List of 4</span></span>
+<span id="cb2-11"><a href="数据结构.html#cb2-11"></a><span class="co"># $ : num 1</span></span>
+<span id="cb2-12"><a href="数据结构.html#cb2-12"></a><span class="co"># $ : num 2</span></span>
+<span id="cb2-13"><a href="数据结构.html#cb2-13"></a><span class="co"># $ : num 3</span></span>
+<span id="cb2-14"><a href="数据结构.html#cb2-14"></a><span class="co"># $ : num 4</span></span></code></pre></div>
+</div>
+</div>
+<div id="属性" class="section level2">
+<h2><span class="header-section-number">2.2</span> 属性</h2>
+<div id="section-7" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> </h3>
+<p><code>attr()</code>可以单独访问对象的一个属性，<code>attributes()</code>可以同时访问所有属性</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="数据结构.html#cb3-1"></a>y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb3-2"><a href="数据结构.html#cb3-2"></a><span class="kw">attr</span>(y,<span class="st">&quot;my_attributes&quot;</span>) &lt;-<span class="st"> &quot;This is a vector&quot;</span></span>
+<span id="cb3-3"><a href="数据结构.html#cb3-3"></a><span class="kw">structure</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dt">my_attributes =</span> <span class="st">&quot;This is a vector&quot;</span>)</span></code></pre></div>
+<p>两种方式是相同效果的。</p>
+</div>
+<div id="section-8" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> </h3>
+<p>默认情况下向量被修改后它的大多数属性都会丢失，除了以下三个：</p>
+<ul>
+<li>name</li>
+<li>dimension</li>
+<li>class</li>
+</ul>
+<p>这三个属性都使用各自专门的存取函数，而不能用<code>attr()</code>来做操作，可以使用<code>uname()</code>来删除向量的名称</p>
+</div>
+<div id="section-9" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> </h3>
+<p>因子factor是只能包含预先定义值的向量，因子建立在整型向量的基础上，只有两个属性<code>class()</code>和<code>levels()</code></p>
+</div>
+<div id="section-10" class="section level3">
+<h3><span class="header-section-number">2.2.4</span> </h3>
+<p>进行读取文件操作时，一个很好用的配置项<code>stringsAsFactors = FALSE</code>，避免了默认设置下字符串向量被转换成因子向量（挺烦人的）。</p>
+</div>
+<div id="section-11" class="section level3">
+<h3><span class="header-section-number">2.2.5</span> </h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="数据结构.html#cb4-1"></a><span class="kw">structure</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dt">comment =</span> <span class="st">&quot;my attribute&quot;</span>)</span>
+<span id="cb4-2"><a href="数据结构.html#cb4-2"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div>
+<p>没有显示属性的原因是comment属性是一个特殊的属性，它默认不输出，是隐式保存的，只能用<code>attributes()</code>或<code>comment()</code>来调取</p>
+</div>
+<div id="section-12" class="section level3">
+<h3><span class="header-section-number">2.2.6</span> </h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="数据结构.html#cb5-1"></a>f1 &lt;-<span class="st"> </span><span class="kw">factor</span>(letters)</span>
+<span id="cb5-2"><a href="数据结构.html#cb5-2"></a><span class="kw">levels</span>(f1) &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">levels</span>(f1))  <span class="co"># 整个f1对象被倒序了</span></span>
+<span id="cb5-3"><a href="数据结构.html#cb5-3"></a>f2 &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">factor</span>(letters))  <span class="co"># 只有数值被倒序了，levels没有</span></span>
+<span id="cb5-4"><a href="数据结构.html#cb5-4"></a>f3 &lt;-<span class="st"> </span><span class="kw">factor</span>(letters,<span class="dt">levels =</span> <span class="kw">rev</span>(letters))  <span class="co"># 只有levels被倒序了</span></span></code></pre></div>
+</div>
+</div>
+<div id="矩阵和数据框" class="section level2">
+<h2><span class="header-section-number">2.3</span> 矩阵和数据框</h2>
+<div id="section-13" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> </h3>
+<p>使用<code>plyr::rbind.fill()</code>，如果合并数据框时两个数据框列数不同，则将没有的列以<code>NA</code>填充</p>
+</div>
+<div id="section-14" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> </h3>
+<p>数据框实际上是一个向量列表，所以数据框可能有某一列是list</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="数据结构.html#cb6-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span>
+<span id="cb6-2"><a href="数据结构.html#cb6-2"></a>df<span class="op">$</span>y &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</span>
+<span id="cb6-3"><a href="数据结构.html#cb6-3"></a><span class="co"># 也可以写成</span></span>
+<span id="cb6-4"><a href="数据结构.html#cb6-4"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dt">y=</span><span class="kw">I</span>(<span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)))</span>
+<span id="cb6-5"><a href="数据结构.html#cb6-5"></a><span class="co">#&gt; str(df)</span></span>
+<span id="cb6-6"><a href="数据结构.html#cb6-6"></a><span class="co">#&gt;&#39;data.frame&#39;: 3 obs. of  2 variables:</span></span>
+<span id="cb6-7"><a href="数据结构.html#cb6-7"></a><span class="co">#&gt; $ x: int  1 2 3</span></span>
+<span id="cb6-8"><a href="数据结构.html#cb6-8"></a><span class="co">#&gt; $ y:List of 3</span></span>
+<span id="cb6-9"><a href="数据结构.html#cb6-9"></a><span class="co">#&gt;  ..$ : int  1 2</span></span>
+<span id="cb6-10"><a href="数据结构.html#cb6-10"></a><span class="co">#&gt;  ..$ : int  1 2 3</span></span>
+<span id="cb6-11"><a href="数据结构.html#cb6-11"></a><span class="co">#&gt;  ..$ : int  1 2 3 4</span></span></code></pre></div>
+<p>同理数据框的某一列也可以是matrix或array，只要生成时用<code>I()</code>包裹即可，但应该小心，很多函数默认数据框的每一列都是atomic vector</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="子集选取.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": true,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false,
+"info": false
+});
+});
+</script>
+
+</body>
+
+</html>

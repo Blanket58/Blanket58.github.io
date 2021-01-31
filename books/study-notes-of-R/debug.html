@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11 Debug | 关于R的一点总结</title>
+  <meta name="description" content="11 Debug | 关于R的一点总结" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11 Debug | 关于R的一点总结" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11 Debug | 关于R的一点总结" />
+  
+  
+  
+
+<meta name="author" content="G. B." />
+
+
+<meta name="date" content="2020-11-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="非标准计算.html"/>
+<link rel="next" href="rcpp.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 前言</a></li>
+<li class="chapter" data-level="2" data-path="数据结构.html"><a href="数据结构.html"><i class="fa fa-check"></i><b>2</b> 数据结构</a><ul>
+<li class="chapter" data-level="2.1" data-path="数据结构.html"><a href="数据结构.html#向量"><i class="fa fa-check"></i><b>2.1</b> 向量</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="数据结构.html"><a href="数据结构.html#section"><i class="fa fa-check"></i><b>2.1.1</b> </a></li>
+<li class="chapter" data-level="2.1.2" data-path="数据结构.html"><a href="数据结构.html#section-1"><i class="fa fa-check"></i><b>2.1.2</b> </a></li>
+<li class="chapter" data-level="2.1.3" data-path="数据结构.html"><a href="数据结构.html#section-2"><i class="fa fa-check"></i><b>2.1.3</b> </a></li>
+<li class="chapter" data-level="2.1.4" data-path="数据结构.html"><a href="数据结构.html#section-3"><i class="fa fa-check"></i><b>2.1.4</b> </a></li>
+<li class="chapter" data-level="2.1.5" data-path="数据结构.html"><a href="数据结构.html#section-4"><i class="fa fa-check"></i><b>2.1.5</b> </a></li>
+<li class="chapter" data-level="2.1.6" data-path="数据结构.html"><a href="数据结构.html#section-5"><i class="fa fa-check"></i><b>2.1.6</b> </a></li>
+<li class="chapter" data-level="2.1.7" data-path="数据结构.html"><a href="数据结构.html#section-6"><i class="fa fa-check"></i><b>2.1.7</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="数据结构.html"><a href="数据结构.html#属性"><i class="fa fa-check"></i><b>2.2</b> 属性</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="数据结构.html"><a href="数据结构.html#section-7"><i class="fa fa-check"></i><b>2.2.1</b> </a></li>
+<li class="chapter" data-level="2.2.2" data-path="数据结构.html"><a href="数据结构.html#section-8"><i class="fa fa-check"></i><b>2.2.2</b> </a></li>
+<li class="chapter" data-level="2.2.3" data-path="数据结构.html"><a href="数据结构.html#section-9"><i class="fa fa-check"></i><b>2.2.3</b> </a></li>
+<li class="chapter" data-level="2.2.4" data-path="数据结构.html"><a href="数据结构.html#section-10"><i class="fa fa-check"></i><b>2.2.4</b> </a></li>
+<li class="chapter" data-level="2.2.5" data-path="数据结构.html"><a href="数据结构.html#section-11"><i class="fa fa-check"></i><b>2.2.5</b> </a></li>
+<li class="chapter" data-level="2.2.6" data-path="数据结构.html"><a href="数据结构.html#section-12"><i class="fa fa-check"></i><b>2.2.6</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="数据结构.html"><a href="数据结构.html#矩阵和数据框"><i class="fa fa-check"></i><b>2.3</b> 矩阵和数据框</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="数据结构.html"><a href="数据结构.html#section-13"><i class="fa fa-check"></i><b>2.3.1</b> </a></li>
+<li class="chapter" data-level="2.3.2" data-path="数据结构.html"><a href="数据结构.html#section-14"><i class="fa fa-check"></i><b>2.3.2</b> </a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="子集选取.html"><a href="子集选取.html"><i class="fa fa-check"></i><b>3</b> 子集选取</a><ul>
+<li class="chapter" data-level="3.1" data-path="子集选取.html"><a href="子集选取.html#数据类型"><i class="fa fa-check"></i><b>3.1</b> 数据类型</a></li>
+<li class="chapter" data-level="3.2" data-path="子集选取.html"><a href="子集选取.html#子集选取运算符"><i class="fa fa-check"></i><b>3.2</b> 子集选取运算符</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="子集选取.html"><a href="子集选取.html#section-15"><i class="fa fa-check"></i><b>3.2.1</b> </a></li>
+<li class="chapter" data-level="3.2.2" data-path="子集选取.html"><a href="子集选取.html#section-16"><i class="fa fa-check"></i><b>3.2.2</b> </a></li>
+<li class="chapter" data-level="3.2.3" data-path="子集选取.html"><a href="子集选取.html#section-17"><i class="fa fa-check"></i><b>3.2.3</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="子集选取.html"><a href="子集选取.html#应用"><i class="fa fa-check"></i><b>3.3</b> 应用</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="子集选取.html"><a href="子集选取.html#section-18"><i class="fa fa-check"></i><b>3.3.1</b> </a></li>
+<li class="chapter" data-level="3.3.2" data-path="子集选取.html"><a href="子集选取.html#section-19"><i class="fa fa-check"></i><b>3.3.2</b> </a></li>
+<li class="chapter" data-level="3.3.3" data-path="子集选取.html"><a href="子集选取.html#section-20"><i class="fa fa-check"></i><b>3.3.3</b> </a></li>
+<li class="chapter" data-level="3.3.4" data-path="子集选取.html"><a href="子集选取.html#section-21"><i class="fa fa-check"></i><b>3.3.4</b> </a></li>
+<li class="chapter" data-level="3.3.5" data-path="子集选取.html"><a href="子集选取.html#section-22"><i class="fa fa-check"></i><b>3.3.5</b> </a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="常用函数.html"><a href="常用函数.html"><i class="fa fa-check"></i><b>4</b> 常用函数</a><ul>
+<li class="chapter" data-level="4.1" data-path="常用函数.html"><a href="常用函数.html#基础函数"><i class="fa fa-check"></i><b>4.1</b> 基础函数</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="常用函数.html"><a href="常用函数.html#两个最常用的"><i class="fa fa-check"></i><b>4.1.1</b> 两个最常用的</a></li>
+<li class="chapter" data-level="4.1.2" data-path="常用函数.html"><a href="常用函数.html#常用运算符和操作符"><i class="fa fa-check"></i><b>4.1.2</b> 常用运算符和操作符</a></li>
+<li class="chapter" data-level="4.1.3" data-path="常用函数.html"><a href="常用函数.html#比较"><i class="fa fa-check"></i><b>4.1.3</b> 比较</a></li>
+<li class="chapter" data-level="4.1.4" data-path="常用函数.html"><a href="常用函数.html#数学"><i class="fa fa-check"></i><b>4.1.4</b> 数学</a></li>
+<li class="chapter" data-level="4.1.5" data-path="常用函数.html"><a href="常用函数.html#编写函数"><i class="fa fa-check"></i><b>4.1.5</b> 编写函数</a></li>
+<li class="chapter" data-level="4.1.6" data-path="常用函数.html"><a href="常用函数.html#逻辑与集合"><i class="fa fa-check"></i><b>4.1.6</b> 逻辑与集合</a></li>
+<li class="chapter" data-level="4.1.7" data-path="常用函数.html"><a href="常用函数.html#构建向量"><i class="fa fa-check"></i><b>4.1.7</b> 构建向量</a></li>
+<li class="chapter" data-level="4.1.8" data-path="常用函数.html"><a href="常用函数.html#列表和数据框"><i class="fa fa-check"></i><b>4.1.8</b> 列表和数据框</a></li>
+<li class="chapter" data-level="4.1.9" data-path="常用函数.html"><a href="常用函数.html#控制流"><i class="fa fa-check"></i><b>4.1.9</b> 控制流</a></li>
+<li class="chapter" data-level="4.1.10" data-path="常用函数.html"><a href="常用函数.html#apply族"><i class="fa fa-check"></i><b>4.1.10</b> apply族</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="常用函数.html"><a href="常用函数.html#常见数据结构"><i class="fa fa-check"></i><b>4.2</b> 常见数据结构</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="常用函数.html"><a href="常用函数.html#date-time"><i class="fa fa-check"></i><b>4.2.1</b> Date time</a></li>
+<li class="chapter" data-level="4.2.2" data-path="常用函数.html"><a href="常用函数.html#character-manipulation"><i class="fa fa-check"></i><b>4.2.2</b> Character manipulation</a></li>
+<li class="chapter" data-level="4.2.3" data-path="常用函数.html"><a href="常用函数.html#factors"><i class="fa fa-check"></i><b>4.2.3</b> Factors</a></li>
+<li class="chapter" data-level="4.2.4" data-path="常用函数.html"><a href="常用函数.html#array-manipulation"><i class="fa fa-check"></i><b>4.2.4</b> Array manipulation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="常用函数.html"><a href="常用函数.html#统计函数"><i class="fa fa-check"></i><b>4.3</b> 统计函数</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="常用函数.html"><a href="常用函数.html#排序和制表"><i class="fa fa-check"></i><b>4.3.1</b> 排序和制表</a></li>
+<li class="chapter" data-level="4.3.2" data-path="常用函数.html"><a href="常用函数.html#linear-models"><i class="fa fa-check"></i><b>4.3.2</b> Linear models</a></li>
+<li class="chapter" data-level="4.3.3" data-path="常用函数.html"><a href="常用函数.html#测试函数"><i class="fa fa-check"></i><b>4.3.3</b> 测试函数</a></li>
+<li class="chapter" data-level="4.3.4" data-path="常用函数.html"><a href="常用函数.html#随机变量"><i class="fa fa-check"></i><b>4.3.4</b> 随机变量</a></li>
+<li class="chapter" data-level="4.3.5" data-path="常用函数.html"><a href="常用函数.html#矩阵运算"><i class="fa fa-check"></i><b>4.3.5</b> 矩阵运算</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="常用函数.html"><a href="常用函数.html#使用r"><i class="fa fa-check"></i><b>4.4</b> 使用R</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="常用函数.html"><a href="常用函数.html#workspace"><i class="fa fa-check"></i><b>4.4.1</b> Workspace</a></li>
+<li class="chapter" data-level="4.4.2" data-path="常用函数.html"><a href="常用函数.html#help"><i class="fa fa-check"></i><b>4.4.2</b> Help</a></li>
+<li class="chapter" data-level="4.4.3" data-path="常用函数.html"><a href="常用函数.html#debugging"><i class="fa fa-check"></i><b>4.4.3</b> Debugging</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="常用函数.html"><a href="常用函数.html#io函数"><i class="fa fa-check"></i><b>4.5</b> I/O函数</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="常用函数.html"><a href="常用函数.html#output"><i class="fa fa-check"></i><b>4.5.1</b> Output</a></li>
+<li class="chapter" data-level="4.5.2" data-path="常用函数.html"><a href="常用函数.html#reading-and-writing-data"><i class="fa fa-check"></i><b>4.5.2</b> Reading and writing data</a></li>
+<li class="chapter" data-level="4.5.3" data-path="常用函数.html"><a href="常用函数.html#files-and-directories"><i class="fa fa-check"></i><b>4.5.3</b> Files and directories</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="面向对象编程.html"><a href="面向对象编程.html"><i class="fa fa-check"></i><b>5</b> 面向对象编程</a><ul>
+<li class="chapter" data-level="5.1" data-path="面向对象编程.html"><a href="面向对象编程.html#小知识点"><i class="fa fa-check"></i><b>5.1</b> 小知识点</a></li>
+<li class="chapter" data-level="5.2" data-path="面向对象编程.html"><a href="面向对象编程.html#例子"><i class="fa fa-check"></i><b>5.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="泛函.html"><a href="泛函.html"><i class="fa fa-check"></i><b>6</b> 泛函</a><ul>
+<li class="chapter" data-level="6.1" data-path="泛函.html"><a href="泛函.html#小知识点-1"><i class="fa fa-check"></i><b>6.1</b> 小知识点</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="环境.html"><a href="环境.html"><i class="fa fa-check"></i><b>7</b> 环境</a><ul>
+<li class="chapter" data-level="7.1" data-path="环境.html"><a href="环境.html#小知识点-2"><i class="fa fa-check"></i><b>7.1</b> 小知识点</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="函数运算符.html"><a href="函数运算符.html"><i class="fa fa-check"></i><b>8</b> 函数运算符</a><ul>
+<li class="chapter" data-level="8.1" data-path="函数运算符.html"><a href="函数运算符.html#缓存"><i class="fa fa-check"></i><b>8.1</b> 缓存</a></li>
+<li class="chapter" data-level="8.2" data-path="函数运算符.html"><a href="函数运算符.html#惰性"><i class="fa fa-check"></i><b>8.2</b> 惰性</a></li>
+<li class="chapter" data-level="8.3" data-path="函数运算符.html"><a href="函数运算符.html#预填充函数参数"><i class="fa fa-check"></i><b>8.3</b> 预填充函数参数</a></li>
+<li class="chapter" data-level="8.4" data-path="函数运算符.html"><a href="函数运算符.html#改变输入类型"><i class="fa fa-check"></i><b>8.4</b> 改变输入类型</a></li>
+<li class="chapter" data-level="8.5" data-path="函数运算符.html"><a href="函数运算符.html#组合函数运算符"><i class="fa fa-check"></i><b>8.5</b> 组合函数运算符</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="函数式编程.html"><a href="函数式编程.html"><i class="fa fa-check"></i><b>9</b> 函数式编程</a><ul>
+<li class="chapter" data-level="9.1" data-path="函数式编程.html"><a href="函数式编程.html#闭包"><i class="fa fa-check"></i><b>9.1</b> 闭包</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="函数式编程.html"><a href="函数式编程.html#例1"><i class="fa fa-check"></i><b>9.1.1</b> 例1</a></li>
+<li class="chapter" data-level="9.1.2" data-path="函数式编程.html"><a href="函数式编程.html#例2"><i class="fa fa-check"></i><b>9.1.2</b> 例2</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="函数式编程.html"><a href="函数式编程.html#编译优化"><i class="fa fa-check"></i><b>9.2</b> 编译优化</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="非标准计算.html"><a href="非标准计算.html"><i class="fa fa-check"></i><b>10</b> 非标准计算</a><ul>
+<li class="chapter" data-level="10.1" data-path="非标准计算.html"><a href="非标准计算.html#定义"><i class="fa fa-check"></i><b>10.1</b> 定义</a></li>
+<li class="chapter" data-level="10.2" data-path="非标准计算.html"><a href="非标准计算.html#例子-1"><i class="fa fa-check"></i><b>10.2</b> 例子</a></li>
+<li class="chapter" data-level="10.3" data-path="非标准计算.html"><a href="非标准计算.html#小知识点-3"><i class="fa fa-check"></i><b>10.3</b> 小知识点</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="debug.html"><a href="debug.html"><i class="fa fa-check"></i><b>11</b> Debug</a><ul>
+<li class="chapter" data-level="11.1" data-path="debug.html"><a href="debug.html#查看调用栈"><i class="fa fa-check"></i><b>11.1</b> 查看调用栈</a></li>
+<li class="chapter" data-level="11.2" data-path="debug.html"><a href="debug.html#debug模式"><i class="fa fa-check"></i><b>11.2</b> Debug模式</a></li>
+<li class="chapter" data-level="11.3" data-path="debug.html"><a href="debug.html#服务器环境debug"><i class="fa fa-check"></i><b>11.3</b> 服务器环境Debug</a></li>
+<li class="chapter" data-level="11.4" data-path="debug.html"><a href="debug.html#warning"><i class="fa fa-check"></i><b>11.4</b> Warning</a></li>
+<li class="chapter" data-level="11.5" data-path="debug.html"><a href="debug.html#message"><i class="fa fa-check"></i><b>11.5</b> Message</a></li>
+<li class="chapter" data-level="11.6" data-path="debug.html"><a href="debug.html#处理错误"><i class="fa fa-check"></i><b>11.6</b> 处理错误</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="debug.html"><a href="debug.html#try"><i class="fa fa-check"></i><b>11.6.1</b> try()</a></li>
+<li class="chapter" data-level="11.6.2" data-path="debug.html"><a href="debug.html#trycatch"><i class="fa fa-check"></i><b>11.6.2</b> tryCatch()</a></li>
+<li class="chapter" data-level="11.6.3" data-path="debug.html"><a href="debug.html#withcallinghandlers"><i class="fa fa-check"></i><b>11.6.3</b> withCallingHandlers()</a></li>
+<li class="chapter" data-level="11.6.4" data-path="debug.html"><a href="debug.html#自定义信号类"><i class="fa fa-check"></i><b>11.6.4</b> 自定义信号类</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="rcpp.html"><a href="rcpp.html"><i class="fa fa-check"></i><b>12</b> Rcpp</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">关于R的一点总结</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="debug" class="section level1">
+<h1><span class="header-section-number">11</span> Debug</h1>
+<div id="查看调用栈" class="section level2">
+<h2><span class="header-section-number">11.1</span> 查看调用栈</h2>
+<p><code>traceback()</code>，调用栈(call stack)，显示导致错误的调用顺序，由下向上阅读调用栈，初始调用在最下方。它只告诉我们问题在哪里发生，而不会告诉我们为什么会出错。</p>
+</div>
+<div id="debug模式" class="section level2">
+<h2><span class="header-section-number">11.2</span> Debug模式</h2>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="debug.html#cb35-1"></a><span class="kw">options</span>(<span class="dt">error =</span> browser)</span></code></pre></div>
+<p>在错误发生的地方打开一个交互式对话，<code>browser[1]&gt;</code>的位置输入以下命令：</p>
+<ul>
+<li><code>Next  n</code>：执行函数的下一步</li>
+<li><code>Stop info  s</code>：与执行下一步类似，但如果下一步是一个函数，就单步执行这个函数</li>
+<li><code>Finish  f</code>：结束当前循环或函数的执行</li>
+<li><code>Continue  c</code>：离开交互式调试并继续函数的正常执行</li>
+<li><code>Stop  Q</code>：停止调试，终止函数</li>
+<li><code>Enter</code>：重复前一个命令，它很容易被我们不小心地激活，所以可以使用<code>options(browserNLdisabled = TRUE)</code> 这一项在帮助文档中没有找到，可能在新版本的R中已经被删除</li>
+<li><code>where</code>：输出当前调用的栈追踪（等价于交互式的traceback）</li>
+</ul>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="debug.html#cb36-1"></a><span class="kw">options</span>(<span class="dt">error =</span> recover)</span></code></pre></div>
+<p>这是browser的增强版，可以让我们在交互环境下选择进入调用栈中的某一个。</p>
+</div>
+<div id="服务器环境debug" class="section level2">
+<h2><span class="header-section-number">11.3</span> 服务器环境Debug</h2>
+<p>某些情况下，例：代码在服务器上运行出错时，此时没有一个IDE可供使用，可以先将错误信息存在一个rda文件里，随后在rstudio中load它，再使用<code>debugger()</code>调试代码</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="debug.html#cb37-1"></a><span class="co"># In batch R process ----</span></span>
+<span id="cb37-2"><a href="debug.html#cb37-2"></a>dump_and_quit &lt;-<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb37-3"><a href="debug.html#cb37-3"></a>  <span class="kw">dump.frames</span>(<span class="dt">to.file =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb37-4"><a href="debug.html#cb37-4"></a>  <span class="kw">q</span>(<span class="dt">status =</span> <span class="dv">1</span>)</span>
+<span id="cb37-5"><a href="debug.html#cb37-5"></a>}</span>
+<span id="cb37-6"><a href="debug.html#cb37-6"></a><span class="kw">options</span>(<span class="dt">error =</span> dump_and_quit)</span></code></pre></div>
+<ul>
+<li>这里运行程序，在遇到错误时R会生成一个last.dump.rda文件并自动退出</li>
+<li>用于非交互使用的默认错误处理程序会调用<code>q(“no”，1，false)</code>并返回错误状态1</li>
+<li>这个状态是可以自定义的，例如定义一个条件发生时R退出<code>if () quit(status = 100)</code>，这里的状态码可以自定义</li>
+<li>在定义了退出附带的状态码之后，当R程序以脚本从外部执行时，如果出错，会向操作系统返回这个状态码</li>
+</ul>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="debug.html#cb38-1"></a><span class="co"># In a later interactive session</span></span>
+<span id="cb38-2"><a href="debug.html#cb38-2"></a><span class="kw">load</span>(<span class="st">&quot;last.dump.rda&quot;</span>)</span>
+<span id="cb38-3"><a href="debug.html#cb38-3"></a><span class="kw">debugger</span>()</span></code></pre></div>
+<p>记得调试完代码后将错误行为重置为默认状态。</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="debug.html#cb39-1"></a><span class="kw">options</span>(<span class="dt">error =</span> <span class="ot">NULL</span>)</span></code></pre></div>
+</div>
+<div id="warning" class="section level2">
+<h2><span class="header-section-number">11.4</span> Warning</h2>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="debug.html#cb40-1"></a><span class="kw">options</span>(<span class="dt">warn =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>函数可能产生一个意想不到的警告(warnings)，查找警告最简单的方法就是通过设置上面代码将其转变成错误，再使用<code>traceback()</code>查看调用栈；</p>
+<p>在调用栈中会看到一些函数：</p>
+<ul>
+<li><p><code>doWithOneRestart()</code></p></li>
+<li><p><code>withOneRestart()</code></p></li>
+<li><p><code>withRestarts</code></p></li>
+<li><p><code>.signalSimpleWarning()</code></p></li>
+</ul>
+<p>这些函数只是用来将警告变成错误的，不用理会。</p>
+</div>
+<div id="message" class="section level2">
+<h2><span class="header-section-number">11.5</span> Message</h2>
+<p>函数还有可能产生一个意想不到的信息(message)，R没有内置的方法让我们将消息转变成错误，不过可以自己编写一个：</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="debug.html#cb41-1"></a>message2error &lt;-<span class="st"> </span><span class="cf">function</span>(code) {</span>
+<span id="cb41-2"><a href="debug.html#cb41-2"></a>  <span class="kw">withCallingHandlers</span>(code, <span class="dt">message =</span> <span class="cf">function</span>(e) <span class="kw">stop</span>(e))</span>
+<span id="cb41-3"><a href="debug.html#cb41-3"></a>}</span>
+<span id="cb41-4"><a href="debug.html#cb41-4"></a></span>
+<span id="cb41-5"><a href="debug.html#cb41-5"></a><span class="co"># 测试代码如下：</span></span>
+<span id="cb41-6"><a href="debug.html#cb41-6"></a>f &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">g</span>()</span>
+<span id="cb41-7"><a href="debug.html#cb41-7"></a>g &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">message</span>(<span class="st">&quot;Hi!&quot;</span>)</span>
+<span id="cb41-8"><a href="debug.html#cb41-8"></a><span class="kw">f</span>()</span>
+<span id="cb41-9"><a href="debug.html#cb41-9"></a><span class="co">#&gt; Hi!</span></span></code></pre></div>
+<p>我们不知道这个message是怎么来的，将其转变成错误再查看调用栈来搞清楚</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="debug.html#cb42-1"></a><span class="kw">message2error</span>(<span class="kw">f</span>())</span>
+<span id="cb42-2"><a href="debug.html#cb42-2"></a><span class="kw">traceback</span>()</span></code></pre></div>
+<p>只适用于将message转error，对于cat()或print()的输出，我暂时没有找到可以用的调试方法。</p>
+</div>
+<div id="处理错误" class="section level2">
+<h2><span class="header-section-number">11.6</span> 处理错误</h2>
+<p>有三个处理错误条件编程的工具：</p>
+<div id="try" class="section level3">
+<h3><span class="header-section-number">11.6.1</span> try()</h3>
+<p>可以忽略错误继续执行下面的代码，通过设置<code>try(..., silent = TRUE)</code>来禁止报错信息的显示，如果需要在<code>try()</code>中写入大段代码块，将它们包裹在<code>{}</code>里，例：</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="debug.html#cb43-1"></a><span class="kw">try</span>({</span>
+<span id="cb43-2"><a href="debug.html#cb43-2"></a>  x &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb43-3"><a href="debug.html#cb43-3"></a>  b &lt;-<span class="st"> &quot;x&quot;</span></span>
+<span id="cb43-4"><a href="debug.html#cb43-4"></a>  a <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb43-5"><a href="debug.html#cb43-5"></a>})</span></code></pre></div>
+<p>将<code>try()</code>的输出绑定到一个对象时，如果代码执行错误，这个对象就是一个<code>try-error</code>类，没有内置函数可以处理这个类，可以自定义一个用来定位错误发生位置的函数</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="debug.html#cb44-1"></a>is.error &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">inherits</span>(x, <span class="st">&quot;try-error&quot;</span>) </span></code></pre></div>
+<p>这里判断对象<code>x</code>是否继承了<code>try-error</code>类，默认参数<code>which = FALSE</code>的情况下，如果的确继承，则函数返回逻辑值<code>TRUE</code></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="debug.html#cb45-1"></a>succeeded &lt;-<span class="st"> </span><span class="op">!</span><span class="kw">sapply</span>(results, is.error)</span></code></pre></div>
+<p><code>try()</code>还可以用来在表达式失败时使用默认值，实现方式如下：</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="debug.html#cb46-1"></a>default &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb46-2"><a href="debug.html#cb46-2"></a><span class="kw">try</span>(default &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;possibly-bad-input.csv&quot;</span>), <span class="dt">silent =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p>同样可以用<code>plyr::failwith(default = NULL, f, quiet = TRUE)</code>来实现。</p>
+</div>
+<div id="trycatch" class="section level3">
+<h3><span class="header-section-number">11.6.2</span> tryCatch()</h3>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="debug.html#cb47-1"></a>try2 &lt;-<span class="st"> </span><span class="cf">function</span>(code, <span class="dt">silent =</span> <span class="ot">FALSE</span>) {</span>
+<span id="cb47-2"><a href="debug.html#cb47-2"></a>  <span class="kw">tryCatch</span>(code, <span class="dt">error =</span> <span class="cf">function</span>(c) {</span>
+<span id="cb47-3"><a href="debug.html#cb47-3"></a>    msg &lt;-<span class="st"> </span><span class="kw">conditionMessage</span>(c)</span>
+<span id="cb47-4"><a href="debug.html#cb47-4"></a>    <span class="cf">if</span> (<span class="op">!</span>silent) <span class="kw">message</span>(c)</span>
+<span id="cb47-5"><a href="debug.html#cb47-5"></a>    <span class="kw">invisible</span>(<span class="kw">structure</span>(msg, <span class="dt">class =</span> <span class="st">&quot;try-error&quot;</span>))</span>
+<span id="cb47-6"><a href="debug.html#cb47-6"></a>  })</span>
+<span id="cb47-7"><a href="debug.html#cb47-7"></a>}</span></code></pre></div>
+<p>上面的函数用<code>tryCatch()</code>实现了<code>try()</code>的功能，其中<code>conditionMessage()</code>是用来从<code>condition</code>中提取<code>message</code>的，在函数的最后定义了一个不可见的S3类下的对象。</p>
+<p><code>tryCatch()</code>还有一个参数<code>finally</code>，它与<code>on.exit()</code>功能类似。</p>
+</div>
+<div id="withcallinghandlers" class="section level3">
+<h3><span class="header-section-number">11.6.3</span> withCallingHandlers()</h3>
+<p><code>tryCatch()</code>处理程序的返回值是由<code>tryCatch()</code>返回的，而<code>withCallingHandlers()</code>处理程序的返回值是被忽略的。</p>
+<p><em>The handlers in <code>withCallingHandlers()</code> are called in the context of the call.
+The handlers in <code>tryCatch()</code> are called in the context of tryCatch().</em></p>
+<p>这就会导致查看调用栈时，它们的输出是不同的，但通常没有必要使用<code>withCallingHandlers()</code>，除非希望更精确地捕获什么出错了并将其传递给其他对象。</p>
+</div>
+<div id="自定义信号类" class="section level3">
+<h3><span class="header-section-number">11.6.4</span> 自定义信号类</h3>
+<p>大多数函数运行出错时都只会调用一个<code>stop()</code>，输出一段字符串，这对于我们想具体地识别错误有时具有挑战性。</p>
+<p>如果我们想区分不同类型的错误，可以定义自己的类，每一个信号函数<code>stop()</code>、<code>warning()</code>、<code>message()</code>都接受一个字符串或一个condition S3对象作为它们的输入。</p>
+<p>R没有内置函数来构造conditions，我们可以自己写一个，conditions必须包含message和call元素，且必须继承condition类和error、warning、message类中的任意一个：</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="debug.html#cb48-1"></a>condition &lt;-<span class="st"> </span><span class="cf">function</span>(subclass, message, <span class="dt">call =</span> <span class="kw">sys.call</span>(<span class="op">-</span><span class="dv">1</span>), ...) {</span>
+<span id="cb48-2"><a href="debug.html#cb48-2"></a>  <span class="kw">structure</span>(</span>
+<span id="cb48-3"><a href="debug.html#cb48-3"></a>    <span class="kw">list</span>(<span class="dt">message =</span> message, <span class="dt">call =</span> call),</span>
+<span id="cb48-4"><a href="debug.html#cb48-4"></a>    <span class="dt">class =</span> <span class="kw">c</span>(subclass, <span class="st">&quot;condition&quot;</span>),</span>
+<span id="cb48-5"><a href="debug.html#cb48-5"></a>    ...</span>
+<span id="cb48-6"><a href="debug.html#cb48-6"></a>  )</span>
+<span id="cb48-7"><a href="debug.html#cb48-7"></a>}</span>
+<span id="cb48-8"><a href="debug.html#cb48-8"></a>is.condition &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">inherits</span>(x, <span class="st">&quot;condition&quot;</span>)</span>
+<span id="cb48-9"><a href="debug.html#cb48-9"></a></span>
+<span id="cb48-10"><a href="debug.html#cb48-10"></a><span class="co"># 自定义my_error类继承error类与condition类</span></span>
+<span id="cb48-11"><a href="debug.html#cb48-11"></a>e &lt;-<span class="st"> </span><span class="kw">condition</span>(<span class="kw">c</span>(<span class="st">&quot;my_error&quot;</span>, <span class="st">&quot;error&quot;</span>), <span class="st">&quot;This is an error&quot;</span>)</span>
+<span id="cb48-12"><a href="debug.html#cb48-12"></a><span class="kw">stop</span>(e)</span>
+<span id="cb48-13"><a href="debug.html#cb48-13"></a><span class="co">#&gt; Error: This is an error</span></span>
+<span id="cb48-14"><a href="debug.html#cb48-14"></a></span>
+<span id="cb48-15"><a href="debug.html#cb48-15"></a><span class="co"># 自定义my_warning类继承warning类与condition类</span></span>
+<span id="cb48-16"><a href="debug.html#cb48-16"></a>w &lt;-<span class="st"> </span><span class="kw">condition</span>(<span class="kw">c</span>(<span class="st">&quot;my_warning&quot;</span>, <span class="st">&quot;warning&quot;</span>), <span class="st">&quot;This is a warning&quot;</span>)</span>
+<span id="cb48-17"><a href="debug.html#cb48-17"></a><span class="kw">warning</span>(w)</span>
+<span id="cb48-18"><a href="debug.html#cb48-18"></a><span class="co">#&gt; Warning message: This is a warning</span></span>
+<span id="cb48-19"><a href="debug.html#cb48-19"></a></span>
+<span id="cb48-20"><a href="debug.html#cb48-20"></a><span class="co"># 自定义my_message类继承message类与condition类</span></span>
+<span id="cb48-21"><a href="debug.html#cb48-21"></a>m &lt;-<span class="st"> </span><span class="kw">condition</span>(<span class="kw">c</span>(<span class="st">&quot;my_message&quot;</span>, <span class="st">&quot;message&quot;</span>), <span class="st">&quot;This is a message&quot;</span>)</span>
+<span id="cb48-22"><a href="debug.html#cb48-22"></a><span class="kw">message</span>(m)</span>
+<span id="cb48-23"><a href="debug.html#cb48-23"></a><span class="co">#&gt; This is a message</span></span></code></pre></div>
+<p>下来就可以使用<code>tryCatch()</code>对不同的错误采取不同的行动</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="debug.html#cb49-1"></a>custom_stop &lt;-<span class="st"> </span><span class="cf">function</span>(subclass, message, <span class="dt">call =</span> <span class="kw">sys.call</span>(<span class="op">-</span><span class="dv">1</span>), ...) {</span>
+<span id="cb49-2"><a href="debug.html#cb49-2"></a>  c &lt;-<span class="st"> </span><span class="kw">condition</span>(<span class="kw">c</span>(subclass, <span class="st">&quot;error&quot;</span>), message, <span class="dt">call =</span> call, ...)</span>
+<span id="cb49-3"><a href="debug.html#cb49-3"></a>  <span class="kw">stop</span>(c)</span>
+<span id="cb49-4"><a href="debug.html#cb49-4"></a>}</span>
+<span id="cb49-5"><a href="debug.html#cb49-5"></a>my_log &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb49-6"><a href="debug.html#cb49-6"></a>  <span class="cf">if</span>(<span class="op">!</span><span class="kw">is.numeric</span>(x))</span>
+<span id="cb49-7"><a href="debug.html#cb49-7"></a>    <span class="kw">custom_stop</span>(<span class="st">&quot;invalid_class&quot;</span>, <span class="st">&quot;my_log() needs numeric input&quot;</span>)</span>
+<span id="cb49-8"><a href="debug.html#cb49-8"></a>  <span class="cf">if</span>(<span class="kw">any</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>))</span>
+<span id="cb49-9"><a href="debug.html#cb49-9"></a>    <span class="kw">custom_stop</span>(<span class="st">&quot;invalid_value&quot;</span>, <span class="st">&quot;my_log() needs positive input&quot;</span>)</span>
+<span id="cb49-10"><a href="debug.html#cb49-10"></a>  <span class="kw">log</span>(x)</span>
+<span id="cb49-11"><a href="debug.html#cb49-11"></a>}</span>
+<span id="cb49-12"><a href="debug.html#cb49-12"></a></span>
+<span id="cb49-13"><a href="debug.html#cb49-13"></a><span class="co"># tryCatch()中可以针对每个自定义的条件信号类设置handler</span></span>
+<span id="cb49-14"><a href="debug.html#cb49-14"></a><span class="kw">tryCatch</span>(</span>
+<span id="cb49-15"><a href="debug.html#cb49-15"></a>  <span class="kw">my_log</span>(<span class="st">&quot;a&quot;</span>),</span>
+<span id="cb49-16"><a href="debug.html#cb49-16"></a>  <span class="dt">invalid_class =</span> <span class="cf">function</span>(c) <span class="st">&quot;invalid class&quot;</span>,</span>
+<span id="cb49-17"><a href="debug.html#cb49-17"></a>  <span class="dt">invalid_value =</span> <span class="cf">function</span>(c) <span class="st">&quot;invalid value&quot;</span></span>
+<span id="cb49-18"><a href="debug.html#cb49-18"></a>)</span></code></pre></div>
+<p>但需要注意的是，<code>tryCatch()</code>在匹配handler时，会去匹配与条件信号类继承关系中任意类相匹配的第一个handler，而不会去匹配类名完全一致的那一个handler，所以在handler的放置顺序上要注意。举个例子：</p>
+<p>invalid_class类的继承关系是 invalid_class -&gt; error -&gt; condition，那么如果像下面这样就会出错</p>
+<pre><code>tryCatch(
+  my_log(-1),
+  condition = function(c) &quot;invalid class&quot;,
+  invalid_value = function(c) &quot;invalid value&quot;
+)
+#&gt; [1] &quot;invalid class&quot;</code></pre>
+<p>这也是R的S3没有真正意义上的类继承关系所导致，所谓的类继承只是将所有类名依次放在<code>class()</code>属性的字符向量中。</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="非标准计算.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rcpp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": true,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false,
+"info": false
+});
+});
+</script>
+
+</body>
+
+</html>
