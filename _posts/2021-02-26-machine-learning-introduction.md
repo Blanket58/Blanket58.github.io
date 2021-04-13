@@ -3,7 +3,7 @@ layout: post
 title: "机器学习的一些基本概念笔记"
 date: 2021-02-26
 description: "机器学习的一些基本概念笔记"
-tag: 机器学习
+tag: Algorithms
 ---
 
 1. 机器学习致力于研究如何通过计算的手段，利用经验来改善系统自身的性能。
