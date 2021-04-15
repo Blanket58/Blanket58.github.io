@@ -28,7 +28,7 @@
 
 <!-- 站点统计 -->
   <script
-  async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
   </script>
 
 <!-- 百度统计 -->
@@ -46,22 +46,28 @@
 
 <!-- Mermaid -->
   {% if page.mermaid %}
-  <script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+  <script src="//cdn.bootcdn.net/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
   {% endif %}
 
 <!-- Markmap -->
   {% if page.markmap %}
-  <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
+  <script src="//cdn.jsdelivr.net/npm/markmap-autoloader"></script>
   {% endif %}
 
 <!-- Mathjax -->
   {% if page.mathjax %}
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <link rel="dns-prefetch" href="//cdn.bootcss.com" />
+  <link rel="dns-prefetch" href="//cdn.mathjax.org" />
+  <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        inlineMath:  [ ["$", "$"] ],
+        displayMath: [ ["$$","$$"] ],
         processEscapes: true
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX","TeX"]
       }
     });
   </script>
