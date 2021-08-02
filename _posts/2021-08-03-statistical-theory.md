@@ -13,7 +13,7 @@ mathjax: true
 
 1. 样本均值
 
-$$\bar X=\frac 1 n \Sigma X_i$$
+$$ \bar X=\frac 1 n \Sigma X_i $$
 
 2. 样本方差
 
