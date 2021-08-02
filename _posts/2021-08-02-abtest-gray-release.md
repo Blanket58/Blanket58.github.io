@@ -41,6 +41,7 @@ def gray_release(prefix: str, key: str, low: float, high: float) -> bool:
 ```python
 from collections import Counter
 
+
 x = ['A' if gray_release('test', str(x), 0, .5) else 'B' for x in range(10000)]
 Counter(x)
 # Counter({'A': 5025, 'B': 4975})
