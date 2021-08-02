@@ -1,0 +1,75 @@
+---
+layout: post
+title: "一些统计知识点"
+date: 2021-08-03
+description: "一些统计知识点"
+tag: 数据分析
+mathjax: true
+---
+
+## 统计量
+
+设$X{}_{1}, ..., X{}_{n}$是从总体$X$中抽样的样本，如果由此样本构造一个不依赖任何未知参数的函数$T(X{}_{1}, ..., X{}_{n})$，则称函数$T$是一个统计量。
+
+1. 样本均值
+
+$$
+\bar X=\frac 1 n \Sigma X_i
+$$
+
+2. 样本方差
+
+$$
+s^2=\frac 1 {n-1} \Sigma (X_i - \bar X)^2
+$$
+
+3. 变异系数
+
+$$
+CV=\frac s {\bar X}
+$$
+
+样本标准差除以样本均值。当比较两组不同量纲数据的离散程度时，直接用标准差比较不合适，应该消除量纲的影响。
+
+4. 异众比率
+
+$$
+V_r = 1 - \frac{f_m}{\Sigma f_i}
+$$
+
+其中$f_m$是众数组的频数，$\Sigma f_i$是总频数。
+
+5. k阶原点矩
+
+$$
+m_k = \frac 1 n \Sigma X^k_i
+$$
+
+6. k阶中心距
+
+$$
+v_k = \frac 1 {n-1} \Sigma (X_i - \bar X)^k
+$$
+
+7. 偏度
+
+$$
+skew = E[(\frac {X - \mu} \sigma)^3]
+$$
+
+即3阶中心距。
+
+![](/assets/2021-08-03-statistical-theory-1.png)
+
+8. 峰度
+
+$$
+kurt = E[(\frac {X - \mu} \sigma)^4]
+$$
+
+即4阶中心距。
+
+![](/assets/2021-08-03-statistical-theory-2.png)
+
+## 分布
+
