@@ -150,11 +150,11 @@ t = \frac X {\sqrt{\frac Y n}}
 
 若$X \sim N(\mu, \sigma^2)$，则
 
-\begin{equation}
-\bar X = \frac 1 n \sum^n_{i=1} X_i \\\\
-E \bar X = \frac 1 n \sum EX_i = \mu \\\\
+$$
+\bar X = \frac 1 n \sum^n_{i=1} X_i \\
+E \bar X = \frac 1 n \sum EX_i = \mu \\
 D \bar X = \frac 1 {n^2} \sum EX_i = \frac {\sigma^2} n
-\end{equation}
+$$
 
 因此：
 
