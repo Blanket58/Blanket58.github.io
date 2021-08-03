@@ -14,13 +14,13 @@ mathjax: true
 - 样本均值
 
 $$
-\bar{X}=\frac{1}{n} \Sigma X_i
+\bar{X}=\frac{1}{n} \sum X_i
 $$
 
 - 样本方差
 
 $$
-s^2=\frac{1}{n-1} \Sigma (X_i - \bar{X})^2
+s^2=\frac{1}{n-1} \sum (X_i - \bar{X})^2
 $$
 
 - 变异系数
@@ -34,27 +34,27 @@ $$
 - 异众比率
 
 $$
-V_r=1-\frac{f_m}{\Sigma f_i}
+V_r=1-\frac{f_m}{\sum f_i}
 $$
 
-其中$f_m$是众数组的频数，$\Sigma f_i$是总频数。
+其中$f_m$是众数组的频数，$\sum f_i$是总频数。
 
 - k阶原点矩
 
 $$
-m_k = \frac{1}{n} \Sigma X^k_i
+m_k = \frac{1}{n} \sum X^k_i
 $$
 
 - k阶中心距
 
 $$
-v_k = \frac{1}{n-1} \Sigma (X_i - \bar{X})^k
+v_k = \frac{1}{n-1} \sum (X_i - \bar{X})^k
 $$
 
 - 偏度
 
 $$
-skew = E[(\frac{X - \mu}{\sigma})^3]
+skew = E[(\frac{X - \mu}{\sum})^3]
 $$
 
 即3阶中心距。
@@ -64,7 +64,7 @@ $$
 - 峰度
 
 $$
-kurt = E[(\frac{X - \mu}{\sigma})^4]
+kurt = E[(\frac{X - \mu}{\sum})^4]
 $$
 
 即4阶中心距。
