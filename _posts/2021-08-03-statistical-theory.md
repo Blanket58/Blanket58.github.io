@@ -4,7 +4,7 @@ title: "一些统计知识点"
 date: 2021-08-03
 description: "一些统计知识点"
 tag: 数据分析
-mathjax: true
+katex: true
 ---
 
 ## 统计量
