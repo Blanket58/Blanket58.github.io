@@ -76,10 +76,8 @@ kurt = E[(\frac{X - \mu}{\sigma})^4]
 ### 二项分布
 
 \begin{equation}
-\begin{split}
 B(n, p) \\\\
 EX = np, DX = np(1 - p)
-\end{split}
 \end{equation}
 
 ### 泊松分布
@@ -99,33 +97,30 @@ EX = \mu, DX = \sigma^2
 ### 指数分布
 
 \begin{equation}
-f(x) = \left\{
-\begin{array}{l}
+f(x) =
+\begin{cases}
 \lambda e^{-\lambda x}, x>0 \\\\
 0, x \le 0
-\end{array}
-\right.
+\end{cases}
 \end{equation}
 
 或
 
 \begin{equation}
-f(x) = \left\{
-\begin{array}{l}
+f(x) =
+\begin{cases}
 \frac 1 \theta e^{-\frac x \theta}, x>0 \\\\
 0, x \le 0
-\end{array}
-\right.,
-\theta = \frac 1 \lambda
+\end{cases}
+\quad \theta = \frac 1 \lambda
 \end{equation}
 
 \begin{equation}
-F(x) = \left\{
-\begin{array}{l}
+F(x) =
+\begin{cases}
 1 - e^{-\lambda x}, x>0 \\\\
 0, x \le 0
-\end{array}
-\right.
+\end{cases}
 \end{equation}
 
 \begin{equation}
