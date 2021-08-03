@@ -14,7 +14,7 @@ mathjax: true
 - 样本均值
 
 $$
-\bar{X}=\frac{1}{n} \sum X_i
+\overline{X}=\frac{1}{n} \sum X_i
 $$
 
 - 样本方差
@@ -54,7 +54,7 @@ $$
 - 偏度
 
 $$
-skew = E[(\frac{X - \mu}{\sum})^3]
+skew = E[(\frac{X - \mu}{\sigma})^3]
 $$
 
 即3阶中心距。
@@ -64,7 +64,7 @@ $$
 - 峰度
 
 $$
-kurt = E[(\frac{X - \mu}{\sum})^4]
+kurt = E[(\frac{X - \mu}{\sigma})^4]
 $$
 
 即4阶中心距。
