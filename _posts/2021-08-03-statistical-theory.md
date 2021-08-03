@@ -13,35 +13,35 @@ mathjax: true
 
 1. 样本均值
 
-$$\bar{X}=\frac{1}{n} \Sigma X_i$$
+$$ \bar{X}=\frac{1}{n} \Sigma X_i $$
 
 2. 样本方差
 
-$$s^2=\frac{1}{n-1} \Sigma (X_i - \bar{X})^2$$
+$$ s^2=\frac{1}{n-1} \Sigma (X_i - \bar{X})^2 $$
 
 3. 变异系数
 
-$$CV=\frac{s}{\bar{X}}$$
+$$ CV=\frac{s}{\bar{X}} $$
 
 样本标准差除以样本均值。当比较两组不同量纲数据的离散程度时，直接用标准差比较不合适，应该消除量纲的影响。
 
 4. 异众比率
 
-$$V_r=1-\frac{f_m}{\Sigma f_i}$$
+$$ V_r=1-\frac{f_m}{\Sigma f_i} $$
 
 其中$f_m$是众数组的频数，$\Sigma f_i$是总频数。
 
 5. k阶原点矩
 
-$$m_k = \frac{1}{n} \Sigma X^k_i$$
+$$ m_k = \frac{1}{n} \Sigma X^k_i $$
 
 6. k阶中心距
 
-$$v_k = \frac{1}{n-1} \Sigma (X_i - \bar{X})^k$$
+$$ v_k = \frac{1}{n-1} \Sigma (X_i - \bar{X})^k $$
 
 7. 偏度
 
-$$skew = E[(\frac{X - \mu}{\sigma})^3]$$
+$$ skew = E[(\frac{X - \mu}{\sigma})^3] $$
 
 即3阶中心距。
 
@@ -49,7 +49,7 @@ $$skew = E[(\frac{X - \mu}{\sigma})^3]$$
 
 8. 峰度
 
-$$kurt = E[(\frac{X - \mu}{\sigma})^4]$$
+$$ kurt = E[(\frac{X - \mu}{\sigma})^4] $$
 
 即4阶中心距。
 
