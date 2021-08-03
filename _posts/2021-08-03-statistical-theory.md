@@ -14,9 +14,7 @@ mathjax: true
 ### 样本均值
 
 \begin{equation}
-$$
 \bar{X} = \frac{1}{n} \sum X_i
-$$
 \end{equation}
 
 ### 样本方差
