@@ -76,8 +76,10 @@ kurt = E[(\frac{X - \mu}{\sigma})^4]
 ### 二项分布
 
 \begin{equation}
+\begin{split}
 B(n, p) \\\\
 EX = np, DX = np(1 - p)
+\end{split}
 \end{equation}
 
 ### 泊松分布
