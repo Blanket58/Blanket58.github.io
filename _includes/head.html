@@ -31,8 +31,8 @@
   async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
   </script>
 
-<!-- 百度统计 -->
   {% if site.baidu.id %}
+  <!-- 百度统计 -->
   <script>
       var _hmt = _hmt || [];
       (function() {
@@ -44,26 +44,26 @@
   </script>
   {% endif %}
 
-<!-- Mermaid -->
   {% if page.mermaid %}
+  <!-- Mermaid -->
   <script src="//cdn.bootcdn.net/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
   {% endif %}
 
-<!-- Markmap -->
   {% if page.markmap %}
+  <!-- Markmap -->
   <script src="//cdn.jsdelivr.net/npm/markmap-autoloader"></script>
   {% endif %}
 
-<!-- Mathjax -->
   {% if page.mathjax %}
+  <!-- Mathjax -->
   <link rel="dns-prefetch" href="//cdn.bootcss.com" />
   <link rel="dns-prefetch" href="//cdn.mathjax.org" />
   <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
-        inlineMath:  [ ["$", "$"] ],
-        displayMath: [ ["$$","$$"] ],
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$','$$'], ['\[','\]'] ],
         processEscapes: true
       },
       "HTML-CSS": {
