@@ -124,7 +124,7 @@ F(x) =
 $$
 
 $$
-EX = \frac 1 \lambda, DX = \frac 1 \lambda^2
+EX = \frac 1 \lambda, DX = \frac 1 {\lambda^2}
 $$
 
 ### 卡方分布
@@ -167,8 +167,7 @@ $$
 $$
 s^2 = \frac 1 {n - 1} \sum^n_{i=1} (X_i - \bar X)^2 \\
 \begin{aligned}
-\frac {(n-1)s^2}{\sigma^2} &= \frac {\sum(X_i - \bar X)^2}{\sigma^2} \\
-&= \sum (\frac{X_i}{\sigma} - \frac{\bar X}{\sigma})^2 \\
+\frac {(n-1)s^2}{\sigma^2} &= \frac {\sum(X_i - \bar X)^2}{\sigma^2} = \sum (\frac{X_i}{\sigma} - \frac{\bar X}{\sigma})^2 \\
 &= \sum (\frac{X_i - \mu}{\sigma} - \frac{\bar X - \mu}{\sigma})^2 \\
 &= \sum (Z_i - \bar Z)^2 \\
 &= \sum (Z_i^2 - 2Z_i \bar Z + \bar Z^2) \\
