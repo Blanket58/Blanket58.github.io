@@ -76,21 +76,21 @@ kurt = E[(\frac{X - \mu}{\sigma})^4]
 ### 二项分布
 
 \begin{equation}
-B(n, p) \\
+B(n, p) \\\\
 EX = np, DX = np(1 - p)
 \end{equation}
 
 ### 泊松分布
 
 \begin{equation}
-P(x) = \frac{\lambda^x e^{-\lambda}}{x!}, x = 0, 1, 2, ... \\
+P(x) = \frac{\lambda^x e^{-\lambda}}{x!}, x = 0, 1, 2, ... \\\\
 EX = \lambda, DX = \lambda
 \end{equation}
 
 ### 正态分布
 
 \begin{equation}
-f(x) = \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{(x - \mu)^2}{2 \sigma^2}}, x \in \mathbb{R} \\
+f(x) = \frac 1 {\sqrt{2\pi} \sigma} e^{-\frac{(x - \mu)^2}{2 \sigma^2}}, x \in \mathbb{R} \\\\
 EX = \mu, DX = \sigma^2
 \end{equation}
 
@@ -99,7 +99,7 @@ EX = \mu, DX = \sigma^2
 \begin{equation}
 f(x) = \left\{
 \begin{array}{l}
-\lambda e^{-\lambda x}, x>0 \\
+\lambda e^{-\lambda x}, x>0 \\\\
 0, x \le 0
 \end{array}
 \right.
@@ -110,7 +110,7 @@ f(x) = \left\{
 \begin{equation}
 f(x) = \left\{
 \begin{array}{l}
-\frac 1 \theta e^{-\frac x \theta}, x>0 \\
+\frac 1 \theta e^{-\frac x \theta}, x>0 \\\\
 0, x \le 0
 \end{array}
 \right.,
@@ -120,7 +120,7 @@ f(x) = \left\{
 \begin{equation}
 F(x) = \left\{
 \begin{array}{l}
-1 - e^{-\lambda x}, x>0 \\
+1 - e^{-\lambda x}, x>0 \\\\
 0, x \le 0
 \end{array}
 \right.
@@ -135,7 +135,7 @@ EX = \frac 1 \lambda, DX = \frac 1 \lambda^2
 若$X_1, ..., X_n$相互独立，且$X_i \sim N(0, 1)$，则
 
 \begin{equation}
-\sum^n_{i=1} \sim \chi^2 (n) \\
+\sum^n_{i=1} \sim \chi^2 (n) \\\\
 EX = n, DX = 2n
 \end{equation}
 
@@ -154,8 +154,8 @@ t = \frac X {\sqrt{\frac Y n}}
 若$X \sim N(\mu, \sigma^2)$，则
 
 \begin{equation}
-\bar X = \frac 1 n \sum^n_{i=1} X_i \\
-E \bar X = \frac 1 n \sum EX_i = \mu \\
+\bar X = \frac 1 n \sum^n_{i=1} X_i \\\\
+E \bar X = \frac 1 n \sum EX_i = \mu \\\\
 D \bar X = \frac 1 {n^2} \sum EX_i = \frac {\sigma^2} n
 \end{equation}
 
@@ -168,13 +168,13 @@ D \bar X = \frac 1 {n^2} \sum EX_i = \frac {\sigma^2} n
 又有如下的推导存在：
 
 \begin{equation}
-s^2 = \frac 1 {n - 1} \sum^n_{i=1} (X_i - \bar X)^2 \\
+s^2 = \frac 1 {n - 1} \sum^n_{i=1} (X_i - \bar X)^2 \\\\
 \begin{aligned}
-\frac {(n-1)s^2}{\sigma^2} &= \frac {\sum(X_i - \bar X)^2}{\sigma^2} \\
-&= \sum (\frac{X_i}{\sigma} - \frac{\bar X}{\sigma})^2 \\
-&= \sum (\frac{X_i - \mu}{\sigma} - \frac{\bar X - \mu}{\sigma})^2 \\
-&= \sum (Z_i - \bar Z)^2 \\
-&= \sum (Z_i^2 - 2Z_i \bar Z + \bar Z^2) \\
+\frac {(n-1)s^2}{\sigma^2} &= \frac {\sum(X_i - \bar X)^2}{\sigma^2} \\\\
+&= \sum (\frac{X_i}{\sigma} - \frac{\bar X}{\sigma})^2 \\\\
+&= \sum (\frac{X_i - \mu}{\sigma} - \frac{\bar X - \mu}{\sigma})^2 \\\\
+&= \sum (Z_i - \bar Z)^2 \\\\
+&= \sum (Z_i^2 - 2Z_i \bar Z + \bar Z^2) \\\\
 &= \sum^n_{i=1} Z^2_i - n\bar Z^2 \sim \chi^2(n - 1)
 \end{aligned}
 \end{equation}
