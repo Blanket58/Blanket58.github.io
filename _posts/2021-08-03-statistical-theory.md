@@ -19,43 +19,43 @@ mathjax: true
 
 ### 样本方差
 
-$$
+\begin{equation}
 s^2 = \frac{1}{n-1} \sum (X_i - \bar{X})^2
-$$
+\end{equation}
 
 ### 变异系数
 
-$$
+\begin{equation}
 CV = \frac{s}{\bar{X}}
-$$
+\end{equation}
 
 样本标准差除以样本均值。当比较两组不同量纲数据的离散程度时，直接用标准差比较不合适，应该消除量纲的影响。
 
 ### 异众比率
 
-$$
+\begin{equation}
 V_r = 1 - \frac{f_m}{\sum f_i}
-$$
+\end{equation}
 
 其中$f_m$是众数组的频数，$\sum f_i$是总频数。
 
 ### k阶原点矩
 
-$$
+\begin{equation}
 m_k = \frac{1}{n} \sum X^k_i
-$$
+\end{equation}
 
 ### k阶中心距
 
-$$
+\begin{equation}
 v_k = \frac{1}{n-1} \sum (X_i - \bar{X})^k
-$$
+\end{equation}
 
 ### 偏度
 
-$$
+\begin{equation}
 skew = E[(\frac{X - \mu}{\sigma})^3]
-$$
+\end{equation}
 
 即3阶中心距。
 
@@ -63,9 +63,9 @@ $$
 
 ### 峰度
 
-$$
+\begin{equation}
 kurt = E[(\frac{X - \mu}{\sigma})^4]
-$$
+\end{equation}
 
 即4阶中心距。
 
