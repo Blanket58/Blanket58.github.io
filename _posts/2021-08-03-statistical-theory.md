@@ -181,3 +181,19 @@ $$
 \frac {\frac {\sqrt n (\bar X - \mu)} \sigma} {\sqrt{\frac{\frac{(n-1)\s^2}{\sigma^2}}{n - 1}}} = \frac {\sqrt n (\bar X - \mu)} s \sim t(n-1)
 $$
 
+### F分布
+
+若$Y$​​与$Z$​​相互独立，$Y \sim \chi^2(m)$​，$Z \sim \chi^2(n)$​​，则
+$$
+X = \frac {\frac Y m}{\frac Z m} \sim F(m, n) \\
+EX = \frac n {n - 2} \\
+DX = \frac {2 n^2(m+n-2)} {m(n-2)(n-4)}, n>4
+$$
+
+## 定理
+
+### 中心极限定理
+
+从均值为$\mu$，方差为$\sigma^2$的任意总体中抽取样本量为$n$的样本，当$n$充分大时，样本均值$\bar X$的抽样分布近似服从正态分布$N(\mu, \frac {\sigma^2} n)$。
+
+### 大数定理
