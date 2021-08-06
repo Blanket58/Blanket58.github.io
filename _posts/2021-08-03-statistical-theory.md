@@ -183,7 +183,8 @@ $$
 
 ### F分布
 
-若$Y$​​与$Z$​​相互独立，$Y \sim \chi^2(m)$​，$Z \sim \chi^2(n)$​​，则
+若$Y$与$Z$相互独立，$Y \sim \chi^2(m)$，$Z \sim \chi^2(n)$，则
+
 $$
 X = \frac {\frac Y m}{\frac Z m} \sim F(m, n) \\
 EX = \frac n {n - 2} \\
@@ -197,3 +198,4 @@ $$
 从均值为$\mu$，方差为$\sigma^2$的任意总体中抽取样本量为$n$的样本，当$n$充分大时，样本均值$\bar X$的抽样分布近似服从正态分布$N(\mu, \frac {\sigma^2} n)$。
 
 ### 大数定理
+
