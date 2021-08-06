@@ -132,7 +132,7 @@ $$
 若$X_1, ..., X_n$相互独立，且$X_i \sim N(0, 1)$，则
 
 $$
-\sum^n_{i=1} \sim \chi^2 (n) \\
+\sum^n_{i=1} X^2_i \sim \chi^2 (n) \\
 EX = n, DX = 2n
 $$
 
@@ -153,7 +153,7 @@ $$
 $$
 \bar X = \frac 1 n \sum^n_{i=1} X_i \\
 E \bar X = \frac 1 n \sum EX_i = \mu \\
-D \bar X = \frac 1 {n^2} \sum EX_i = \frac {\sigma^2} n
+D \bar X = \frac 1 {n^2} \sum DX_i = \frac {\sigma^2} n
 $$
 
 因此：
@@ -178,7 +178,7 @@ $$
 故
 
 $$
-\frac {\frac {\sqrt n (\bar X - \mu)} \sigma} {\sqrt{\frac{\frac{(n-1)\s^2}{\sigma^2}}{n - 1}}} = \frac {\sqrt n (\bar X - \mu)} s \sim t(n-1)
+\frac {\frac {\sqrt n (\bar X - \mu)} \sigma} {\sqrt{\frac{\frac{(n-1)s^2}{\sigma^2}}{n - 1}}} = \frac {\sqrt n (\bar X - \mu)} s \sim t(n-1)
 $$
 
 ### F分布
