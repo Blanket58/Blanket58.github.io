@@ -84,9 +84,9 @@ public class App {
             for (int i = 0; i < 8; i++) {
                 firstUnsignedLong[7 - i] = messageDigest[i];
             }
-            BigInteger number = new BigInteger(1, firstUnsignedLong);
-            BigInteger division = new BigInteger("18446744073709551616", 10);
-            result = number.doubleValue() / division.doubleValue();
+            BigInteger numerator = new BigInteger(1, firstUnsignedLong);
+            BigInteger denominator = new BigInteger("18446744073709551616", 10);
+            result = numerator.doubleValue() / denominator.doubleValue();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
