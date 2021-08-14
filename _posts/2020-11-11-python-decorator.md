@@ -15,8 +15,7 @@ from email.header import Header
 from email.mime.text import MIMEText
 from functools import wraps
 from smtplib import SMTP
-from time import localtime, strftime
-from time import time
+from time import time, localtime, strftime
 
 __all__ = ['retry', 'timer', 'TaskHandler']
 
