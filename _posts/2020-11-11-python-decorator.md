@@ -1,25 +1,86 @@
 ---
 layout: post
-title: "使用python装饰器处理错误"
+title: "Python装饰器"
 date: 2020-11-11
-description: "使用python装饰器实现自动化任务日志持久化，并自动触发错误报警邮件。"
+description: "一些Python装饰器"
 tag: Python
 ---
 
-下面是如何使用Python装饰器实现自动化任务日志持久化，并自动触发错误报警邮件。
+整理了一些平时经常会用到的装饰器。
 
 ```python
 import logging
 import traceback
 from email.header import Header
 from email.mime.text import MIMEText
+from functools import wraps
 from smtplib import SMTP
-from time import time, localtime, strftime
+from time import localtime, strftime
+from time import time
 
-__all__ = ['ExceptionLogger']
+__all__ = ['retry', 'timer', 'TaskHandler']
 
 
-class ExceptionLogger:
+def _stream_logger_factory(func):
+    """Factory to create stream logger."""
+    logger = logging.getLogger(func.__name__.upper())
+    logger.setLevel(logging.DEBUG)
+    fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    formatter = logging.Formatter(fmt)
+    sh = logging.StreamHandler()
+    sh.setFormatter(formatter)
+    logger.addHandler(sh)
+    return logger
+
+
+def retry(func, max_retry=5, logger=None):
+    """Not stop retrying until reach max limit."""
+    if not logger:
+        logger = _stream_logger_factory(func)
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        error = None
+        for i in range(max_retry):
+            try:
+                return func(*args, **kwargs)
+            except Exception as e:
+                logger.warning(f'Retrying [{i + 1} / {max_retry}]')
+                error = e
+        raise error
+
+    return wrapper
+
+
+def timer(func, logger=None):
+    """Calculate how long the function runs."""
+    if not logger:
+        logger = _stream_logger_factory(func)
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = int(round(time() * 1000))
+        logger.info("Start")
+        result = func(*args, **kwargs)
+        end = int(round(time() * 1000)) - start
+        end /= 1000
+        m, s = divmod(end, 60)
+        h, m = divmod(m, 60)
+        logger.info("Done")
+        logger.info("Total execution time: %d:%02d:%02d" % (h, m, s))
+        return result
+
+    return wrapper
+
+
+class TaskHandler:
+    """自动任务处理器
+
+    功能：
+    1. 留日志
+    2. 自动发送任务执行成功或失败邮件通知（附带报错信息）
+    3. 任务计时
+    """
 
     def __init__(self, name, sender, passwd, receivers, send_success_email=True):
         """
@@ -43,7 +104,7 @@ class ExceptionLogger:
         logger = logging.getLogger(name)
         logger.setLevel(logging.DEBUG)
         fh = logging.FileHandler(f'{name}.log', encoding='utf-8')
-        fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        fmt = '%(asctime)s - %(levelname)s - %(message)s'
         formatter = logging.Formatter(fmt)
         fh.setFormatter(formatter)
         logger.addHandler(fh)
@@ -60,12 +121,12 @@ class ExceptionLogger:
         smtper.sendmail(self.sender, self.receivers, message.as_string())
         smtper.quit()
 
-    def __send_exception_email(self, content):
+    def __send_exception(self, content):
         subject = f'Failed -> {self.task_name}'
         message = MIMEText(content, 'plain', 'utf-8')
         self.__emailer(subject, message)
 
-    def __send_success_email(self, info):
+    def __send_success(self, info):
         subject = f'Success -> {self.task_name}'
         message = MIMEText(f'Task {self.task_name} success.\n{info}', 'plain', 'utf-8')
         self.__emailer(subject, message)
@@ -83,11 +144,11 @@ class ExceptionLogger:
                 self.logger.info('***Start***')
                 func(*args, **kwargs)
                 if self.send_success_email:
-                    self.__send_success_email(f'Complete at {strftime("%Y-%m-%d %H:%M:%S", localtime())}.')
+                    self.__send_success(f'Complete at {strftime("%Y-%m-%d %H:%M:%S", localtime())}.')
             except Exception as e:
                 self.logger.exception(e)
-                self.__send_exception_email(str(e) + '\n' + traceback.format_exc())
-                raise RuntimeError
+                self.__send_exception(str(e) + '\n' + traceback.format_exc())
+                raise e
             finally:
                 self.logger.info('***Exit***')
                 end_ = int(round(time() * 1000)) - start
@@ -99,16 +160,14 @@ class ExceptionLogger:
         return wrapper
 ```
 
-将上面的代码保存为文件`decor.py`，在使用时，只需将其套在需要监控的函数上即可，如下：
+其中`TaskHandler`的使用方法如下：
 
 ```python
-from decor import ExceptionLogger
-
-el = ExceptionLogger(name, sender, passwd, receivers)
-logger = el.logger
+th = TaskHandler(name, sender, passwd, receivers)
+logger = th.logger
 
 
-@ el.handler
+@th.handler
 def main():
     logger.info('Test')
 
