@@ -17,6 +17,8 @@ from functools import wraps
 from smtplib import SMTP
 from time import time, localtime, strftime
 
+from decorator import decorator
+
 __all__ = ['retry', 'timer', 'TaskHandler']
 
 
@@ -32,44 +34,38 @@ def _stream_logger_factory(func):
     return logger
 
 
-def retry(func, max_retry=5, logger=None):
+@decorator
+def retry(func, max_retry=5, logger=None, *args, **kwargs):
     """Not stop retrying until reach max limit."""
     if not logger:
-        logger = _stream_logger_factory(func)
+        logger = stream_logger_factory(func)
 
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        error = None
-        for i in range(max_retry):
-            try:
-                return func(*args, **kwargs)
-            except Exception as e:
-                logger.warning(f'Retrying [{i + 1} / {max_retry}]')
-                error = e
-        raise error
-
-    return wrapper
+    error = None
+    for i in range(max_retry):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            logger.warning(f'Retrying [{i + 1} / {max_retry}]')
+            error = e
+    raise error
 
 
-def timer(func, logger=None):
+@decorator
+def timer(func, logger=None, *args, **kwargs):
     """Calculate how long the function runs."""
     if not logger:
-        logger = _stream_logger_factory(func)
+        logger = stream_logger_factory(func)
 
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        start = int(round(time() * 1000))
-        logger.info("Start")
-        result = func(*args, **kwargs)
-        end = int(round(time() * 1000)) - start
-        end /= 1000
-        m, s = divmod(end, 60)
-        h, m = divmod(m, 60)
-        logger.info("Done")
-        logger.info("Total execution time: %d:%02d:%02d" % (h, m, s))
-        return result
-
-    return wrapper
+    start = int(round(time() * 1000))
+    logger.info("Start")
+    result = func(*args, **kwargs)
+    end = int(round(time() * 1000)) - start
+    end /= 1000
+    m, s = divmod(end, 60)
+    h, m = divmod(m, 60)
+    logger.info("Done")
+    logger.info("Total execution time: %d:%02d:%02d" % (h, m, s))
+    return result
 
 
 class TaskHandler:
@@ -136,6 +132,7 @@ class TaskHandler:
         exceptions if one occur.
         """
 
+        @wraps(func)
         def wrapper(*args, **kwargs):
             start = int(round(time() * 1000))
             try:
