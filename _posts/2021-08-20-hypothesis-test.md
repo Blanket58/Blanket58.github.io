@@ -13,7 +13,7 @@ katex: true
 
 1. 提出原假设与备择假设
 2. 给定显著性水平$\alpha$，选择合适的检验统计量，并确定其分布
-3. 由$P(拒绝H_0 | H_0为真)=\alpha$确定$H_0$的拒绝域的形式
+3. 由$P(拒绝H_0 \mid H_0为真)=\alpha$确定$H_0$的拒绝域的形式
 4. 由样本值求得检验统计量的观察值，若观察值在拒绝域内，则拒绝原假设$H_0$，否则在显著性水平$\alpha$下不能拒绝原假设
 
 **假设检验的理论依据：**
@@ -91,7 +91,7 @@ H_0: \mu = \mu_0 \\
 H_1: \mu \neq \mu_0
 $$
 
-若$|z| > z_{\frac \alpha 2}$则拒绝原假设，总体均值在$1- \alpha$置信度下的置信区间为：
+若$\left|z\right| > z_{\frac \alpha 2}$则拒绝原假设，总体均值在$1- \alpha$置信度下的置信区间为：
 
 $$
 [\bar X - z_{\frac \alpha 2} \frac \sigma {\sqrt n}, \bar X + z_{\frac \alpha 2} \frac \sigma {\sqrt n}]
@@ -130,15 +130,20 @@ $$
 假设$X$与$Y$相互独立，且$X \sim N(\mu_1, \sigma_1^2)$，$Y \sim N(\mu_2, \sigma_2^2)$，
 
 样本均值：
+
 $$
 \bar X \sim N(\mu_1, \frac {\sigma_1^2} {n_1}) \\
 \bar Y \sim N(\mu_2, \frac {\sigma_2^2} {n_2})
 $$
+
 样本均值差：
+
 $$
 \bar X - \bar Y \sim N(\mu_1 - \mu_2, \frac {\sigma_1^2} {n_1} + \frac {\sigma_2^2} {n_2})
 $$
+
 于是检验统计量可以构建为：
+
 $$
 z = \frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {\sqrt {\frac {\sigma_1^2} {n_1} + \frac {\sigma_2^2} {n_2}}} \sim N(0, 1)
 $$
@@ -146,23 +151,32 @@ $$
 #### 总体方差$\sigma_1^2$、$\sigma_2^2$未知，但$\sigma_1^2 = \sigma_2^2$
 
 已知
+
 $$
 \frac {(n_1-1)s_1^2}{\sigma^2} \sim \chi^2(n_1 - 1) \\
 \frac {(n_2-1)s_2^2}{\sigma^2} \sim \chi^2(n_2 - 1)
 $$
+
 由卡方分布可加性得：
+
 $$
 \frac {(n_1-1)s_1^2}{\sigma^2} + \frac {(n_2-1)s_2^2}{\sigma^2} \sim \chi^2(n_1 + n_2 - 2)
 $$
+
 又有
+
 $$
 \frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {\sqrt {\frac {\sigma^2} {n_1} + \frac {\sigma^2} {n_2}}} \sim N(0, 1)
 $$
+
 于是检验统计量可以构建为：
+
 $$
 t = \frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {\sqrt {\frac {\sigma^2} {n_1} + \frac {\sigma^2} {n_2}}} / \sqrt {\frac {\frac {(n_1-1)s_1^2}{\sigma^2} + \frac {(n_2-1)s_2^2}{\sigma^2}} {n_1 + n_2 - 2}} = \frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {s_{pool} \sqrt {\frac 1 {n_1} + \frac 1 {n_2}}} \sim t(n_1 + n_2 - 2)
 $$
+
 其中：
+
 $$
 s_{pool} = \sqrt {\frac {(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2} {n_1 + n_2 - 2}}
 $$
