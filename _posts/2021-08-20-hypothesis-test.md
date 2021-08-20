@@ -91,7 +91,7 @@ H_0: \mu = \mu_0 \\
 H_1: \mu \neq \mu_0
 $$
 
-若$\left|z\right| > z_{\frac \alpha 2}$则拒绝原假设，总体均值在$1- \alpha$置信度下的置信区间为：
+若$\mid z \mid > z_{\frac \alpha 2}$则拒绝原假设，总体均值在$1- \alpha$置信度下的置信区间为：
 
 $$
 [\bar X - z_{\frac \alpha 2} \frac \sigma {\sqrt n}, \bar X + z_{\frac \alpha 2} \frac \sigma {\sqrt n}]
