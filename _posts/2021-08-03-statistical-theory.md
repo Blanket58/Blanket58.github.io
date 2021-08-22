@@ -193,9 +193,92 @@ $$
 
 ## 定理
 
+极限定理是概率论的基本理论，在理论研究和应用中起着重要的作用，其中最重要的是称为“大数定理”和“中心极限定理”的一些定理。**大数定理是叙述随机变量序列的前一些项的算术平均值在某种条件下收敛到这些项的均值；中心极限定理则是确定在什么条件下，大量随机变量之和的分布逼近于正态分布。**
+
+### 切比雪夫不等式
+
+设随机变量$X$具有期望$E(X) = \mu$，方差$D(X) = \sigma^2$，则对于任意$\varepsilon > 0$，下面的不等式成立：
+
+$$
+P(\mid X - \mu \mid \ge \varepsilon) \le \frac {\sigma^2} {\varepsilon^2}
+$$
+
+**证明：**
+
+设$X$的概率密度函数为$f(x)$，则有
+
+$$
+\begin{aligned}
+P(\mid X - \mu \mid \ge \varepsilon) &= \int_{\mid x - \mu \mid \ge \varepsilon} f(x) dx \le \int_{\mid x - \mu \mid \ge \varepsilon} \frac {\mid x - \mu \mid^2} {\varepsilon^2}f(x) dx \\
+&\le \frac 1 {\varepsilon^2} \int_{-\infty}^{\infty} (x- \mu)^2f(x)dx = \frac {\sigma^2} {\varepsilon^2}
+\end{aligned}
+$$
+
+切比雪夫不等式也可以写成下面的形式：
+
+$$
+P(\mid X - \mu \mid < \varepsilon) \ge 1 - \frac {\sigma^2} {\varepsilon^2}
+$$
+
+切比雪夫不等式给出了在随机变量分布未知，但已知期望方差时，估计概率$P(\mid X - EX \mid < \varepsilon)$的界限。
+
+### 大数定理
+
+#### 弱大数定理（辛钦大数定理）
+
+设$X_1, X_2, ...$相互独立、服从同一分布的随机变量序列，且具有数据期望$E(X_k)=\mu (k=1,2,...)$。前n个变量的算术平均为$\frac 1 n \sum_{k=1}^n X_k$，则对于任意$\varepsilon>0$，有
+
+$$
+\lim_{n \to \infty} P\{\mid \frac 1 n \sum_{k=1}^n X_k - \mu \mid < \varepsilon \} = 1
+$$
+
+也称序列$\bar X = \frac 1 n \sum_{k=1}^n X_k$依概率收敛于$\mu$，即$\bar X \xrightarrow{P} \mu$。
+
+**证明：**
+
+在随机变量的方差存在情况下证明。因为：
+
+$$
+E(\frac 1 n \sum_{k=1}^n X_k) = \frac 1 n \sum_{k=1}^nE(X_k)=\frac 1 n (n\mu) = \mu
+$$
+
+又由独立性得：
+
+$$
+D(\frac 1 n \sum_{k=1}^n X_k) = \frac 1 {n^2} \sum_{k=1}^nD(X_k)=\frac 1 {n^2} (n\sigma^2) = \frac {\sigma^2} n
+$$
+
+由切比雪夫不等式得：
+
+$$
+1 \ge P\{\mid \frac 1 n \sum_{k=1}^n X_k - \mu \mid < \varepsilon \} \ge 1 - \frac {\frac {\sigma^2} n} {\varepsilon^2}
+$$
+
+在上式中令$n \to \infty$，即得：
+
+$$
+\lim_{n \to \infty} P\{\mid \frac 1 n \sum_{k=1}^n X_k - \mu \mid < \varepsilon \} = 1
+$$
+
+#### 伯努利大数定理
+
+设$f_A$是$n$次独立重复试验中事件A发生的次数，$p$是事件A在每次试验中发生的概率，则对于任意$\varepsilon > 0$，有
+
+$$
+\lim_{n \to \infty} P(\mid \frac {f_A} n - p \mid < \varepsilon) = 1
+$$
+
+或
+
+$$
+\lim_{n \to \infty} P(\mid \frac {f_A} n - p \mid \ge \varepsilon) = 0
+$$
+
+这即是频率稳定性的真正含义，当试验次数很大时，便可以用事件的频率来代替概率。
+
 ### 中心极限定理
 
 从均值为$\mu$，方差为$\sigma^2$的任意总体中抽取样本量为$n$的样本，当$n$充分大时，样本均值$\bar X$的抽样分布近似服从正态分布$N(\mu, \frac {\sigma^2} n)$。
 
-### 大数定理
+
 
