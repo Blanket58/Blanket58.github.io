@@ -22,15 +22,16 @@ from decorator import decorator
 __all__ = ['retry', 'timer', 'TaskHandler']
 
 
-def _stream_logger_factory(func):
+def stream_logger_factory(func):
     """Factory to create stream logger."""
     logger = logging.getLogger(func.__name__.upper())
-    logger.setLevel(logging.DEBUG)
-    fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    formatter = logging.Formatter(fmt)
-    sh = logging.StreamHandler()
-    sh.setFormatter(formatter)
-    logger.addHandler(sh)
+    if not logger.handlers:
+        logger.setLevel(logging.DEBUG)
+        fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        formatter = logging.Formatter(fmt)
+        sh = logging.StreamHandler()
+        sh.setFormatter(formatter)
+        logger.addHandler(sh)
     return logger
 
 
