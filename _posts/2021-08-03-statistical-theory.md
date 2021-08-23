@@ -278,7 +278,47 @@ $$
 
 ### 中心极限定理
 
-从均值为$\mu$，方差为$\sigma^2$的任意总体中抽取样本量为$n$的样本，当$n$充分大时，样本均值$\bar X$的抽样分布近似服从正态分布$N(\mu, \frac {\sigma^2} n)$。
+#### 独立同分布的中心极限定理
 
+设随机变量$X_1, X_2, ..., X_n$ i.i.d，$E(X_k) = \mu$，$D(X_k) = \sigma^2 > 0$，则随机变量之和$\sum_{k=1}^n X_k$的标准化变量
 
+$$
+Y_n = \frac {\sum_{k=1}^n X_k - E(\sum_{k=1}^n X_k)} {\sqrt {D(\sum_{k=1}^n X_k)}} = \frac {\sum_{k=1}^n X_k - n\mu} {\sqrt n \sigma}
+$$
 
+的分布函数$F_n(x)$对于任意$x$满足
+
+$$
+\begin{aligned}
+\lim_{n \to \infty} F_n(x) &= \lim_{n \to \infty} P(\frac {\sum_{k=1}^n X_k - n\mu} {\sqrt n \sigma} \le x) \\
+&= \int_{-\infty}^x \frac 1 {\sqrt {2\pi}} e^{- \frac {t^2} {2}} dt = \Phi(x)
+\end{aligned}
+$$
+
+#### 李雅普诺夫(Lyapunov)定理
+
+设随机变量$X_1, X_2, ..., X_n$ i.i.d，$E(X_k) = \mu_k$，$D(X_k) = \sigma_k^2 > 0$，记$B_n^2 = \sum_{k=1}^n \sigma_k^2$，若存在$\delta > 0$，使得当$n \to \infty$时
+
+$$
+\frac 1 {B_n^{2 + \delta}} \sum_{k=1}^n E(\mid X_k - \mu_k \mid ^{2+\delta}) \to 0
+$$
+
+则随机变量之和$\sum_{k=1}^n X_k$的标准化变量
+
+$$
+Z_n = \frac {\sum_{k=1}^n X_k - E(\sum_{k=1}^n X_k)} {\sqrt {D(\sum_{k=1}^n X_k)}} = \frac {\sum_{k=1}^n X_k - \sum_{k=1}^n \mu_k} {B_n}
+$$
+的分布函数$F_n(x)$对于任意$x$满足
+$$
+\begin{aligned}
+\lim_{n \to \infty} F_n(x) &= \lim_{n \to \infty} P(\frac {\sum_{k=1}^n X_k - \sum_{k=1}^n \mu_k} {B_n} \le x) \\
+&= \int_{-\infty}^x \frac 1 {\sqrt {2\pi}} e^{- \frac {t^2} {2}} dt = \Phi(x)
+\end{aligned}
+$$
+
+#### 棣莫弗-拉普拉斯定理
+
+设随机变量$\eta_n$服从参数为$n, p (0 < p < 1)$的二项分布，则对于任意$x$有
+$$
+\lim_{n \to \infty} P(\frac {\eta_n - np} {\sqrt{np(1-p)}} \le x) = \int_{-\infty}^x \frac 1 {\sqrt {2\pi}} e^{- \frac {t^2} 2} dt = \Phi(x)
+$$
