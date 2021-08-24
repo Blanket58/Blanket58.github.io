@@ -334,4 +334,5 @@ $$
 $$
 \lim_{n \to \infty} P(\frac {\eta_n - np} {\sqrt{np(1-p)}} \le x) = \int_{-\infty}^x \frac 1 {\sqrt {2\pi}} e^{- \frac {t^2} 2} dt = \Phi(x)
 $$
+
 这个定理表明，正态分布是二项分布的极限分布。
