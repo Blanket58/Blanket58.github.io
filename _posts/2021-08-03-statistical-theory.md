@@ -299,7 +299,7 @@ $$
 
 $$
 \frac {\sum_{k=1}^n X_k - n\mu} {\sqrt n \sigma} = \frac {\frac 1 n \sum_{k=1}^n X_k - \mu} {\sigma / \sqrt n} \overset{近似地}{\sim} N(0, 1) \\
-\sum_{k=1}^n X_k - n\mu \overset{近似地}{\sim} N(\mu, \sigma^2 / n)
+\frac 1 n \sum_{k=1}^n X_k \overset{近似地}{\sim} N(\mu, \sigma^2 / n)
 $$
 
 #### 李雅普诺夫(Lyapunov)定理
