@@ -122,9 +122,9 @@ class TaskHandler:
         message = MIMEText(content, 'plain', 'utf-8')
         self.__emailer(subject, message)
 
-    def __send_success(self, info):
+    def __send_success(self, content):
         subject = f'Success -> {self.task_name}'
-        message = MIMEText(f'Task {self.task_name} success.\n{info}', 'plain', 'utf-8')
+        message = MIMEText(f'Task {self.task_name} success.\n{content}', 'plain', 'utf-8')
         self.__emailer(subject, message)
 
     def handler(self, func):
