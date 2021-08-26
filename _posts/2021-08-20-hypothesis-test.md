@@ -223,7 +223,7 @@ $$
 
 总体比率是指在总体当中符合某种特征的个体所占的比例，如Clickthrough Rate(CTR 曝光点击率)。总体比率可以视为伯努利分布的总体均值，其样本均值等于总体均值等于$p$，总体方差为$p(1-p)$。
 
-##### 单个总体比率的假设检验
+#### 单个总体比率的假设检验
 
 - 双侧：
 
@@ -247,11 +247,12 @@ H_1: \pi > \pi_0
 $$
 
 统计量：
+
 $$
 z = \frac {p - \pi_0} {\sqrt {\frac {p(1-p)} n}} \sim N(0, 1)
 $$
 
-##### 两个总体比率之差的假设检验
+#### 两个总体比率之差的假设检验
 
 - 双侧：
 
@@ -279,6 +280,137 @@ $$
 $$
 z = \frac {(p_1 - p_2) - (\pi_1 - \pi_2)} {\sqrt {\frac {p_1(1-p_1)} {n_1} + \frac {p_2(1-p_2)} {n_2}}} \sim N(0, 1)
 $$
+
+### 单因素试验的方差分析
+
+在试验中，将要考察的指标称为试验指标，影响试验指标的条件称为因素。如果一项试验的过程中只有一个因素在改变称单因素试验，如果多于一个因素在改变称为多因素试验。
+
+#### 单因素试验
+
+设因素A有s个水平$A_1, A_2, ..., A_s$，在水平$A_j(j=1,2,...,s)$下，进行$n_j(n_j \ge 2)$次独立试验。
+
+| 观察结果\水平 |       $A_1$        |       $A_2$        |  …   |       $A_s$        |
+| :-----------: | :----------------: | :----------------: | :--: | :----------------: |
+|               |      $X_{11}$      |      $X_{12}$      |  …   |      $X_{1s}$      |
+|               |      $X_{21}$      |      $X_{22}$      |  …   |      $X_{2s}$      |
+|               |                    |                    |      |                    |
+|               |     $X_{n_11}$     |     $X_{n_22}$     |  …   |     $X_{n_js}$     |
+|   样本均值    | $\bar X_{\cdot 1}$ | $\bar X_{\cdot 2}$ |  …   | $\bar X_{\cdot s}$ |
+|   总体均值    |      $\mu_1$       |      $\mu_2$       |  …   |      $\mu_s$       |
+
+假定各个水平$A_1, A_2, ..., A_s$下的样本$X_{1j}, X_{2j}, ..., X_{n_jj}$来自具有同方差$\sigma^2$，均值分别为$\mu_j(j=1,2,...,s)$的正态总体，均值与方差均未知，且设不同水平$A_j$下的样本相互独立。
+
+由于$X_{ij} \sim N(\mu_j, \sigma^2)$，因此$X_{ij} - \mu_j \sim N(0, \sigma^2)$，故$X_{ij} - \mu_j$可视为随机误差，记$X_{ij} - \mu_j = \varepsilon_{ij}$。
+
+$$
+\left\{
+\begin{aligned}
+& X_{ij} = \mu_j + \varepsilon_{ij} \\
+& \varepsilon_{ij} \sim N(0, \sigma^2), 各\varepsilon_{ij}独立 \\
+& i = 1,2,...,n_j, j=1,2,...,s
+\end{aligned}
+\right.
+$$
+
+上式为单因素试验方差分析的数学模型。
+
+方差分析的任务是对于上面的模型：
+
+1. 检验s个总体的均值是否相等，即
+
+$$
+H_0: \mu_1 = \mu_2 = ... = \mu_s \\
+H_1: \mu_1, \mu_2, ..., \mu_s不全相等
+$$
+
+2. 作出未知参数的$\mu_1, ..., \mu_s, \sigma^2$估计
+
+在这里我们只讨论第1个任务。将各个水平下的总体均值加权平均记为：
+
+$$
+\mu = \frac 1 n \sum_{j=1}^s n_j \mu_j
+$$
+
+其中$n = \sum_{j=1}^s n_j$，$\mu$称为总平均，再引入
+
+$$
+\delta_j = \mu_j - \mu
+$$
+
+此时有$n_1\delta_1 + n_2\delta_2 + ... + n_s\delta_s = 0$，$\delta_j$表示水平$A_j$下总体均值与总平均的差异，将$\delta_j$称为水平$A_j$的**效应**。于是假设可以重写为：
+
+$$
+H_0: \delta_1 = \delta_2 = ... = \delta_s = 0 \\
+H_1: \delta_1, \delta_2, ..., \delta_s不全相等
+$$
+
+这是因为$\mu$是各个水平下总体均值的加权平均，当且仅当$\mu_1 = \mu_2 = ... = \mu_s$时存在$\mu_j = \mu$，即$\delta_j = 0$。
+
+#### 平方和分解
+
+总偏差平方和为
+
+$$
+S_T = \sum_{j=1}^s \sum_{i=1}^{n_j} (X_{ij} - \bar X)^2 \\
+\bar X = \frac 1 n \sum_{j=1}^s \sum_{i=1}^{n_j} X_{ij}
+$$
+
+其中$\bar X$为数据的总平均。$S_T$能反映全部试验数据之间的差异，因此又称为总变差。又记水平$A_j$下的样本均值为：
+
+$$
+\bar X_{\cdot j} = \frac 1 {n_j} \sum_{i=1}^{n_j} X_{ij}
+$$
+
+我们将$S_T$写成
+
+$$
+\begin{aligned}
+S_T &= \sum_{j=1}^s \sum_{i=1}^{n_j} [(X_{ij} - \bar X_{\cdot j}) + (\bar X_{\cdot j} - \bar X)]^2 \\
+&= \sum_{j=1}^s \sum_{i=1}^{n_j} (X_{ij} - \bar X_{\cdot j})^2 + \sum_{j=1}^s \sum_{i=1}^{n_j} (\bar X_{\cdot j} - \bar X)^2 + 2\sum_{j=1}^s \sum_{i=1}^{n_j}(X_{ij} - \bar X_{\cdot j})(\bar X_{\cdot j} - \bar X)
+\end{aligned}
+$$
+
+上式中
+
+$$
+\begin{aligned}
+\sum_{j=1}^s \sum_{i=1}^{n_j}(X_{ij} - \bar X_{\cdot j})(\bar X_{\cdot j} - \bar X) &= \sum_{j=1}^s (\bar X_{\cdot j} - \bar X)[\sum_{i=1}^{n_j}(X_{ij} - \bar X_{\cdot j})] \\
+&= \sum_{j=1}^s (\bar X_{\cdot j} - \bar X)(\sum_{i=1}^{n_j}X_{ij} - n_j\bar X_{\cdot j}) = 0
+\end{aligned}
+$$
+
+于是
+
+$$
+\begin{aligned}
+S_T &= S_E + S_A \\
+&= \sum_{j=1}^s \sum_{i=1}^{n_j} (X_{ij} - \bar X_{\cdot j})^2 + \sum_{j=1}^s \sum_{i=1}^{n_j} (\bar X_{\cdot j} - \bar X)^2 \\
+&= \sum_{j=1}^s \sum_{i=1}^{n_j} (X_{ij} - \bar X_{\cdot j})^2 + \sum_{j=1}^s n_j(\bar X_{\cdot j} - \bar X)^2 \\
+&= \sum_{j=1}^s \sum_{i=1}^{n_j} (X_{ij} - \bar X_{\cdot j})^2 + \sum_{j=1}^s n_j\bar X_{\cdot j}^2 - n\bar X^2
+\end{aligned}
+$$
+
+$S_E$称为误差平方和，$S_A$称为效应平方和。
+
+#### 检验统计量
+
+由[这里](https://blanket58.github.io/2021/08/statistical-theory/)的推导可知，存在：
+$$
+\frac {(n-1)s^2}{\sigma^2} \sim \chi^2(n - 1)
+$$
+即：
+$$
+\frac {\sum_{i=1}^{n_j} (X_{ij} - \bar X_{\cdot j})^2} {\sigma^2} \sim \chi^2(n_j - 1)
+$$
+又不同水平$A_j$下的样本相互独立，由卡方分布可加性得：
+$$
+\frac {S_E} {\sigma^2} \sim \chi^2(\sum_{j=1}^s(n_j - 1)) \Rightarrow \chi^2(n - s)
+$$
+
+
+
+
+
 
 >  以上检验方法都隐含假定总体服从正态分布，而实际中很多总体并不服从正态分布，故引入非参数检验。
 
