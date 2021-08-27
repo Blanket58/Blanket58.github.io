@@ -24,7 +24,12 @@ __all__ = ['retry', 'timer', 'TaskHandler']
 
 def stream_logger_factory(func):
     """Factory to create stream logger."""
-    logger = logging.getLogger(func.__name__.upper())
+    assert callable(func) or isinstance(func, str), 'Only allowed callable object or string.'
+    if callable(func):
+        name = func.__name__.upper()
+    else:
+        name = func.upper()
+    logger = logging.getLogger(name)
     if not logger.handlers:
         logger.setLevel(logging.DEBUG)
         fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
