@@ -410,10 +410,41 @@ $$
 \frac {S_E} {\sigma^2} \sim \chi^2(\sum_{j=1}^s(n_j - 1)) \Rightarrow \chi^2(n - s)
 $$
 
+于是就有：
 
+$$
+E(S_E) = (n - s) \sigma^2 \\
+D(S_E) = 2(n - s) \sigma^2
+$$
 
+对于效应平方和有：
 
+$$
+\begin{aligned}
+E(S_A) &= E(\sum_{j=1}^s n_j \bar X_{\cdot j}^2 - n\bar X^2) = \sum_{j=1}^s n_j E(\bar X_{\cdot j}^2) - n E(\bar X^2) \\
+&= \sum_{j=1}^s n_j [\frac {\sigma^2} {n_j} + (\mu + \delta_j)^2] - n(\frac {\sigma^2} n + \mu^2)) \\
+&= (s - 1) \sigma^2 + 2\mu \sum_{j=1}^s n_j \delta_j + n\mu^2 + \sum_{j=1}^s n_j \delta_j^2 - n\mu^2 \\
+&= (s - 1) \sigma^2 + \sum_{j=1}^s n_j \delta^2
+\end{aligned}
+$$
 
+$S_E$与$S_A$相互独立，当$H_0$为真时有：
+
+$$
+\frac {S_A} {\sigma^2} \sim \chi^2 (s - 1)
+$$
+
+构建F检验统计量：
+
+$$
+F = \frac {S_A / (s - 1)} {S_E / (n - s)} \sim F(s - 1, n - s)
+$$
+
+其拒绝域为
+
+$$
+F = \frac {S_A / (s - 1)} {S_E / (n - s)} \ge F_{\alpha} (s - 1, n - s)
+$$
 
 >  以上检验方法都隐含假定总体服从正态分布，而实际中很多总体并不服从正态分布，故引入非参数检验。
 
