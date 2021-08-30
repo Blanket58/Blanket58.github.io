@@ -24,7 +24,7 @@ __all__ = ['retry', 'timer', 'TaskHandler']
 
 def stream_logger_factory(func):
     """Factory to create stream logger."""
-    assert callable(func) or isinstance(func, str), 'Only allowed callable object or string.'
+    assert callable(func) or isinstance(func, str), 'Input must be a function or a function name.'
     if callable(func):
         name = func.__name__.upper()
     else:
