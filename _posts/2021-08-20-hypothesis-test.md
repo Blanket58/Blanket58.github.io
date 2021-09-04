@@ -51,7 +51,7 @@ $$
 \frac {\bar X - \mu} {\frac \sigma {\sqrt n}} \sim N(0, 1)
 $$
 
-于是检验统计量构建为
+于是检验统计量可以构建为：
 
 $$
 z = \frac {\bar X - \mu_0} {\frac \sigma {\sqrt n}}
@@ -77,7 +77,7 @@ $$
 \frac {\frac {\sqrt n (\bar X - \mu)} \sigma} {\sqrt{\frac{\frac{(n-1)s^2}{\sigma^2}}{n - 1}}} = \frac {\sqrt n (\bar X - \mu)} s \sim t(n-1)
 $$
 
-于是检验统计量构建为
+于是检验统计量可以构建为：
 
 $$
 t = \frac {\sqrt n (\bar X - \mu_0)} s \sim t(n-1)
@@ -147,16 +147,10 @@ $$
 \bar X - \bar Y \sim N(\mu_1 - \mu_2, \frac {\sigma_1^2} {n_1} + \frac {\sigma_2^2} {n_2})
 $$
 
-于是有
+于是检验统计量可以构建为：
 
 $$
-\frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {\sqrt {\frac {\sigma_1^2} {n_1} + \frac {\sigma_2^2} {n_2}}} \sim N(0, 1)
-$$
-
-检验统计量构建为
-
-$$
-z = \frac {\bar X - \bar Y} {\sqrt {\frac {\sigma_1^2} {n_1} + \frac {\sigma_2^2} {n_2}}}
+z = \frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {\sqrt {\frac {\sigma_1^2} {n_1} + \frac {\sigma_2^2} {n_2}}} \sim N(0, 1)
 $$
 
 #### 总体方差$\sigma_1^2$、$\sigma_2^2$未知，但$\sigma_1^2 = \sigma_2^2$
@@ -168,7 +162,7 @@ $$
 \frac {(n_2-1)s_2^2}{\sigma^2} \sim \chi^2(n_2 - 1)
 $$
 
-由卡方分布可加性得
+由卡方分布可加性得：
 
 $$
 \frac {(n_1-1)s_1^2}{\sigma^2} + \frac {(n_2-1)s_2^2}{\sigma^2} \sim \chi^2(n_1 + n_2 - 2)
@@ -180,30 +174,24 @@ $$
 \frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {\sqrt {\frac {\sigma^2} {n_1} + \frac {\sigma^2} {n_2}}} \sim N(0, 1)
 $$
 
-于是
+于是检验统计量可以构建为：
 
 $$
-\frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {\sqrt {\frac {\sigma^2} {n_1} + \frac {\sigma^2} {n_2}}} / \sqrt {\frac {\frac {(n_1-1)s_1^2}{\sigma^2} + \frac {(n_2-1)s_2^2}{\sigma^2}} {n_1 + n_2 - 2}} = \frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {s_{pool} \sqrt {\frac 1 {n_1} + \frac 1 {n_2}}} \sim t(n_1 + n_2 - 2)
+t = \frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {\sqrt {\frac {\sigma^2} {n_1} + \frac {\sigma^2} {n_2}}} / \sqrt {\frac {\frac {(n_1-1)s_1^2}{\sigma^2} + \frac {(n_2-1)s_2^2}{\sigma^2}} {n_1 + n_2 - 2}} = \frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {s_{pool} \sqrt {\frac 1 {n_1} + \frac 1 {n_2}}} \sim t(n_1 + n_2 - 2)
 $$
 
-其中
+其中：
 
 $$
 s_{pool} = \sqrt {\frac {(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2} {n_1 + n_2 - 2}}
 $$
 
-检验统计量构建为
-
-$$
-t = \frac {\bar X - \bar Y} {s_{pool} \sqrt {\frac 1 {n_1} + \frac 1 {n_2}}}
-$$
-
 #### 总体方差$\sigma_1^2$、$\sigma_2^2$未知
 
-这时需要用到Welth’s t检验，与上面用到的Student's t检验不同，上面需要假设双总体方差相同，但这里不用，存在
+这时需要用到Welth’s t检验，与上面用到的Student's t检验不同，上面需要假设双总体方差相同，但这里不用，统计量为：
 
 $$
-\frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {\sqrt {\frac {s_1^2} {n_1} + \frac {s_2^2} {n_2}}} \sim t(df)
+t = \frac {(\bar X - \bar Y) - (\mu_1 - \mu_2)} {\sqrt {\frac {s_1^2} {n_1} + \frac {s_2^2} {n_2}}} \sim t(df)
 $$
 
 其中自由度为：
@@ -287,16 +275,10 @@ H_0: \pi_1 - \pi_2 \le \Delta \\
 H_1: \pi_1 - \pi_2 > \Delta
 $$
 
-有
+统计量：
 
 $$
-\frac {(p_1 - p_2) - (\pi_1 - \pi_2)} {\sqrt {\frac {p_1(1-p_1)} {n_1} + \frac {p_2(1-p_2)} {n_2}}} \sim N(0, 1)
-$$
-
-于是检验统计量构建为
-
-$$
-z = \frac {p_1 - p_2} {\sqrt {\frac {p_1(1-p_1)} {n_1} + \frac {p_2(1-p_2)} {n_2}}}
+z = \frac {(p_1 - p_2) - (\pi_1 - \pi_2)} {\sqrt {\frac {p_1(1-p_1)} {n_1} + \frac {p_2(1-p_2)} {n_2}}} \sim N(0, 1)
 $$
 
 ### 单因素试验的方差分析
