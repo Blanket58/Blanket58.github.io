@@ -19,32 +19,47 @@ from time import time, localtime, strftime
 
 from decorator import decorator
 
-__all__ = ['retry', 'timer', 'TaskHandler']
 
+class LoggerFactory:
+    """Factory to create logger."""
 
-def stream_logger_factory(func):
-    """Factory to create stream logger."""
-    assert callable(func) or isinstance(func, str), 'Input must be a function or a function name.'
-    if callable(func):
-        name = func.__name__.upper()
-    else:
-        name = func.upper()
-    logger = logging.getLogger(name)
-    if not logger.handlers:
-        logger.setLevel(logging.DEBUG)
-        fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        formatter = logging.Formatter(fmt)
-        sh = logging.StreamHandler()
-        sh.setFormatter(formatter)
-        logger.addHandler(sh)
-    return logger
+    @staticmethod
+    def stream(func):
+        """Stream logger."""
+        assert callable(func) or isinstance(func, str), 'Input must be a callable object or its name.'
+        if callable(func):
+            name = func.__name__.upper()
+        else:
+            name = func.upper()
+        logger = logging.getLogger(name)
+        if not logger.handlers:
+            logger.setLevel(logging.DEBUG)
+            fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+            formatter = logging.Formatter(fmt)
+            sh = logging.StreamHandler()
+            sh.setFormatter(formatter)
+            logger.addHandler(sh)
+        return logger
+
+    @staticmethod
+    def file(name):
+        """File logger."""
+        logger = logging.getLogger(name)
+        if not logger.handlers:
+            logger.setLevel(logging.DEBUG)
+            fh = logging.FileHandler(f'{name}.log', encoding='utf-8')
+            fmt = '%(asctime)s - %(levelname)s - %(message)s'
+            formatter = logging.Formatter(fmt)
+            fh.setFormatter(formatter)
+            logger.addHandler(fh)
+        return logger
 
 
 @decorator
 def retry(func, max_retry=5, logger=None, *args, **kwargs):
     """Not stop retrying until reach max limit."""
     if not logger:
-        logger = stream_logger_factory(func)
+        logger = LoggerFactory.stream(func)
 
     error = None
     for i in range(max_retry):
@@ -60,7 +75,7 @@ def retry(func, max_retry=5, logger=None, *args, **kwargs):
 def timer(func, logger=None, *args, **kwargs):
     """Calculate how long the function runs."""
     if not logger:
-        logger = stream_logger_factory(func)
+        logger = LoggerFactory.stream(func)
 
     start = int(round(time() * 1000))
     logger.info("Start")
@@ -95,23 +110,9 @@ class TaskHandler:
         self.passwd = passwd
         self.task_name = name
         self.send_success_email = send_success_email
-        self.logger = self.__create_logger(name)
+        self.logger = LoggerFactory.file(name)
 
-    @staticmethod
-    def __create_logger(name):
-        """
-        Create a logging object and return it.
-        """
-        logger = logging.getLogger(name)
-        logger.setLevel(logging.DEBUG)
-        fh = logging.FileHandler(f'{name}.log', encoding='utf-8')
-        fmt = '%(asctime)s - %(levelname)s - %(message)s'
-        formatter = logging.Formatter(fmt)
-        fh.setFormatter(formatter)
-        logger.addHandler(fh)
-        return logger
-
-    def __emailer(self, subject, message):
+    def __send(self, subject, message):
         message['From'] = self.sender
         message['To'] = '; '.join(self.receivers)
         message['Subject'] = Header(subject, 'utf-8')
@@ -122,21 +123,18 @@ class TaskHandler:
         smtper.sendmail(self.sender, self.receivers, message.as_string())
         smtper.quit()
 
-    def __send_exception(self, content):
-        subject = f'Failed -> {self.task_name}'
-        message = MIMEText(content, 'plain', 'utf-8')
-        self.__emailer(subject, message)
-
-    def __send_success(self, content):
+    def __success(self, content):
         subject = f'Success -> {self.task_name}'
         message = MIMEText(f'Task {self.task_name} success.\n{content}', 'plain', 'utf-8')
-        self.__emailer(subject, message)
+        self.__send(subject, message)
+
+    def __exception(self, content):
+        subject = f'Failed -> {self.task_name}'
+        message = MIMEText(content, 'plain', 'utf-8')
+        self.__send(subject, message)
 
     def handler(self, func):
-        """
-        A decorator that wraps the passed in function and logs
-        exceptions if one occur.
-        """
+        """自动任务处理器装饰器"""
 
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -146,10 +144,10 @@ class TaskHandler:
                 self.logger.info('***Start***')
                 func(*args, **kwargs)
                 if self.send_success_email:
-                    self.__send_success(f'Complete at {strftime("%Y-%m-%d %H:%M:%S", localtime())}.')
+                    self.__success(f'Complete at {strftime("%Y-%m-%d %H:%M:%S", localtime())}.')
             except Exception as e:
-                self.logger.exception(e)
-                self.__send_exception(str(e) + '\n' + traceback.format_exc())
+                self.logger.__exception(e)
+                self.__exception(str(e) + '\n' + traceback.format_exc())
                 raise e
             finally:
                 self.logger.info('***Exit***')
