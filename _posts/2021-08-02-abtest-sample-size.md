@@ -119,8 +119,8 @@ $$
 对于像转化率这类比率型指标，有如下假设
 
 $$
-H_0: p_A - p_B \le \delta \\
-H_1: p_A - p_B > \delta
+H_0: \pi_A - \pi_B \le \delta \\
+H_1: \pi_A - \pi_B > \delta
 $$
 
 同时令
@@ -139,14 +139,14 @@ $$
 
 $$
 n_A = \kappa n_B \\
-n_B = (\frac {p_A(1 - p_A)} \kappa + p_B(1 - p_B))(\frac {z_{\alpha} + z_{\beta}} {p_A - p_B - \delta})^2
+n_B = (\frac {p_A(1 - p_A)} \kappa + p_B(1 - p_B))(\frac {z_{\alpha} + z_{\beta}} {\pi_A - \pi_B - \delta})^2
 $$
 
 由上面的公式即可推出两个分组各自的样本量大小。对于假设
 
 $$
-H_0: p_A - p_B \le 0.05 \\
-H_1: p_A - p_B > 0.05
+H_0: \pi_A - \pi_B \le 0.05 \\
+H_1: \pi_A - \pi_B > 0.05
 $$
 
 设定显著性水平为5%，统计功效为80%，$\kappa = 1$，由公式推导得出样本量为
