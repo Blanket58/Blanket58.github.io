@@ -165,7 +165,7 @@ print(compute(0.5, 0.4, 0.05, 1, 0.05, 0.2))
 # >>> (1211.7812174758753, 1211.7812174758753)
 ```
 
-我们使用Cohen’s h效应量
+我们使用Cohen's h效应量
 
 $$
 h = 2 \times (arcsin(\sqrt {p_A}) - arcsin(\sqrt {p_B}))
