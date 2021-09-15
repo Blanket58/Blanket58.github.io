@@ -146,7 +146,7 @@ class TaskHandler:
                 if self.send_success_email:
                     self.__success(f'Complete at {strftime("%Y-%m-%d %H:%M:%S", localtime())}.')
             except Exception as e:
-                self.logger.__exception(e)
+                self.logger.exception(e)
                 self.__exception(str(e) + '\n' + traceback.format_exc())
                 raise e
             finally:
