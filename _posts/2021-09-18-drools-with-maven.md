@@ -95,7 +95,7 @@ DROOLS (JBOSS RULES)为java语言开发的开源业务规则引擎，具有一�
    }
    ```
 
-   6. 修改App.java文件内容，让drools项目可以在本地运行起来
+6. 修改App.java文件内容，让drools项目可以在本地运行起来
 
    ```java
    package org.example;
@@ -160,4 +160,4 @@ DROOLS (JBOSS RULES)为java语言开发的开源业务规则引擎，具有一�
    }
    ```
 
-   运行结束时程序会打印出共触发了哪些规则，并且将经drools决策修改后的Demo类中所有属性使用json的格式打印在屏幕上。注意到其中还有一个未使用的静态方法convertExcelToDrl，它的作用是当我们使用xls决策表时，单独运行该方法可以将决策表翻译并生成一个rule-excel.drl文件。**但需要明确的是，直接运行runDrl方法程序将直接从决策表中读取规则，无需手动先将其翻译为drl文件。**
+   运行结束时程序会打印出共触发了哪些规则，并且将经drools决策修改后的Demo类中所有属性使用json的格式打印在屏幕上。注意到其中还有一个未使用的静态方法`convertExcelToDrl`，它的作用是当我们使用xls决策表时，单独运行该方法可以将决策表翻译并生成一个rule-excel.drl文件。**但需要明确的是，直接运行`runDrl`方法程序将直接从决策表中读取规则，无需手动先将其翻译为drl文件。**
