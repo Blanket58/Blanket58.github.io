@@ -24,13 +24,13 @@ class LoggerFactory:
     """Factory to create logger."""
 
     @staticmethod
-    def stream(func):
+    def stream(name):
         """Stream logger."""
-        assert callable(func) or isinstance(func, str), 'Input must be a callable object or its name.'
-        if callable(func):
-            name = func.__name__.upper()
+        assert hasattr(name, '__name__') or isinstance(name, str), 'Input must be string or has attribute `__name__`.'
+        if hasattr(name, '__name__'):
+            name = name.__name__.upper()
         else:
-            name = func.upper()
+            name = name.upper()
         logger = logging.getLogger(name)
         if not logger.handlers:
             logger.setLevel(logging.DEBUG)
@@ -47,11 +47,27 @@ class LoggerFactory:
         logger = logging.getLogger(name)
         if not logger.handlers:
             logger.setLevel(logging.DEBUG)
-            fh = logging.FileHandler(f'{name}.log', encoding='utf-8')
             fmt = '%(asctime)s - %(levelname)s - %(message)s'
             formatter = logging.Formatter(fmt)
+            fh = logging.FileHandler(f'{name}.log', encoding='utf-8')
             fh.setFormatter(formatter)
             logger.addHandler(fh)
+        return logger
+
+    @staticmethod
+    def both(name):
+        """Stream and file logger."""
+        logger = logging.getLogger(name)
+        if not logger.handlers:
+            logger.setLevel(logging.DEBUG)
+            fmt = '%(asctime)s - %(levelname)s - %(message)s'
+            formatter = logging.Formatter(fmt)
+            fh = logging.FileHandler(f'{name}.log', encoding='utf-8')
+            fh.setFormatter(formatter)
+            logger.addHandler(fh)
+            sh = logging.StreamHandler()
+            sh.setFormatter(formatter)
+            logger.addHandler(sh)
         return logger
 
 
