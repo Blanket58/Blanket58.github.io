@@ -2,7 +2,7 @@
 layout: post
 title: ABTest灰度上线
 date: 2021-08-02
-tag: 数据分析
+tag: [数据分析, Python, Java]
 mermaid: true
 ---
 
