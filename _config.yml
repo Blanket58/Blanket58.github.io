@@ -1,12 +1,12 @@
 # Basic
 title: G. B.
-subtitle: 个人站
-description: 欢迎来到我的个人站~
+subtitle: 个人博客
+description: 且将新火试新茶，诗酒趁年华
 # 头像里面的标题
 avatarTitle: G. B.
 # 头像里面的描述
 avatarDesc: R / Python / 风控
-url: ""
+url:
 
 # 博客是否自动生成目录，false为不生成
 enableToc: false
