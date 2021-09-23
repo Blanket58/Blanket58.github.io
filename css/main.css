@@ -498,8 +498,8 @@ img::-moz-selection {
     width: 30%;
     margin: 2em 0;
     border-top: 1px solid #DDDDDD; }
-  .post .emoji {
-    display: inline; }
+  .emoji {
+      display: inline; }
 
   .panel {
     display: table;
