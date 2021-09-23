@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "wsl2的ip转发"
+title: wsl2的ip转发
 date: 2020-11-27
 tag: Linux
 ---

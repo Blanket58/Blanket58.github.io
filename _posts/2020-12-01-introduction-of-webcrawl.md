@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "浅尝爬虫技术"
+title: 浅尝爬虫技术
 date: 2020-12-01
-description: "浅尝爬虫技术"
 tag: Web Crawl
 mermaid: true
 ---

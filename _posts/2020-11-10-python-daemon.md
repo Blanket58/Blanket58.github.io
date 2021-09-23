@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "使用python实现一个守护进程"
+title: 使用python实现一个守护进程
 date: 2020-11-10
-description: "使用python实现一个自动化任务的守护进程。"
 tag: Python
 ---
 

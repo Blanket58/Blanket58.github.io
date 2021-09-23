@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "本地使用Maven构建Drools项目"
+title: 本地使用Maven构建Drools项目
 date: 2021-09-18
-description: "本地使用Maven构建Drools项目"
 tag: Java
 ---
 

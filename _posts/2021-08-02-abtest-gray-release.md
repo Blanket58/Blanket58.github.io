@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "ABTest灰度上线"
+title: ABTest灰度上线
 date: 2021-08-02
-description: "ABTest灰度上线"
 tag: 数据分析
 mermaid: true
 ---

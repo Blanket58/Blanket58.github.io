@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "非暴力沟通"
+title: 非暴力沟通
 date: 2021-03-21
-description: "非暴力沟通"
 tag: 杂记
 ---
 

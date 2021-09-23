@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "使用PySimpleGUI编写多线程桌面应用"
+title: 使用PySimpleGUI编写多线程桌面应用
 date: 2021-02-25
-description: "使用PySimpleGUI编写多线程桌面应用"
 tag: Python
 ---
 

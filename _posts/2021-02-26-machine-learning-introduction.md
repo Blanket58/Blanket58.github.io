@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "机器学习的一些基本概念笔记"
+title: 机器学习的一些基本概念笔记
 date: 2021-02-26
-description: "机器学习的一些基本概念笔记"
 tag: Algorithms
 ---
 

@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "假设检验"
+title: 假设检验
 date: 2021-08-20
-description: "假设检验"
 tag: 数据分析
 katex: true
 ---

@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "排序算法"
+title: 排序算法
 date: 2021-04-14
-description: "排序算法"
 tag: Algorithms
 mathjax: true
 ---

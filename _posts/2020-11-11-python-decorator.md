@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "Python装饰器"
+title: Python装饰器
 date: 2020-11-11
-description: "一些Python装饰器"
 tag: Python
 ---
 

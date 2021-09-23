@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "使用代码发送邮件"
+title: 使用代码发送邮件
 date: 2020-11-10
-description: "使用代码发送邮件（带附件或不带附件）。"
 tag: [Python, R]
 ---
 

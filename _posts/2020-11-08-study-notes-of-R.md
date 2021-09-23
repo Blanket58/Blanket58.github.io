@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "关于R的一点总结"
+title: 关于R的一点总结
 date: 2020-11-08
-description: "记录一些关于学习R语言过程中的总结。"
 tag: R
 ---
 

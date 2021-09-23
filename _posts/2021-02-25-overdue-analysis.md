@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "贷后分析体系"
+title: 贷后分析体系
 date: 2021-02-25
-description: "贷后分析体系"
 tag: 风控
 markmap: true
 ---

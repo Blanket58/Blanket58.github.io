@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "辛普森悖论"
+title: 辛普森悖论
 date: 2021-09-07
-description: "辛普森悖论"
 tag: 数据分析
 ---
 

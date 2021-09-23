@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "IRR与APR"
+title: IRR与APR
 date: 2021-08-06
-description: "IRR与APR"
 tag: 风控
 katex: true
 ---
