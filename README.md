@@ -2,8 +2,9 @@
 
 修改自leopardpan/leopardpan.github.io
 
-- 新增了Gittalk功能
-- 新增了Mermaid支持
-- 新增了Markmap支持
-- 新增了Mathjax支持
-- 新增了Katex支持
+- 新增Gittalk支持
+- 新增Mermaid支持
+- 新增Markmap支持
+- 新增Mathjax支持
+- 新增Katex支持
+- 新增jemoji支持
