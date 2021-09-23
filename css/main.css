@@ -499,7 +499,7 @@ img::-moz-selection {
     margin: 2em 0;
     border-top: 1px solid #DDDDDD; }
   .emoji {
-      display: inline; }
+    display: inline; }
 
   .panel {
     display: table;
