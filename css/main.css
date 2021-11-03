@@ -151,7 +151,7 @@ p {
 
   line-height: 1.7em;
   padding-left: 20px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 strong {
@@ -164,14 +164,13 @@ blockquote {
   padding-top: 5px;
   padding-bottom: 5px;
 
-  margin-left: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
 
   font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande", "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-weight: lighter;
   font-size: 1em;
-  border-left: 3px solid #4F4F4F;
+  border-left: 3px solid #D2691E;
 }
 blockquote p:last-child {
   margin-bottom: 0; }
@@ -180,7 +179,7 @@ ol, ul {
   margin: 0 0 0 2.5em; }
 ol li, ul li {
   margin: 0 0 0 0;
-  line-height: 1.6em; }
+  line-height: 2em; }
 ol ol, ol ul, ul ol, ul ul {
   margin: .1em 0 .2em 2em; }
 ol {
