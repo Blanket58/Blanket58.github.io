@@ -4,12 +4,18 @@
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
         <!-- 头像效果-start -->
-        <div class="ih-item circle effect right_to_left">            
+        <div class="ih-item circle effect right_to_left">
             <a href="/#blog" title="前往 {{ site.title }} 的主页" class="blog-button">
-                <div class="img"><img src="/images/avatar.jpg" alt="img"></div>
+                <div class="img">
+                  <picture>
+                    <source type="image/avif" srcset="/images/avatar.avif">
+                    <source type="image/webp" srcset="/images/avatar.webp">
+                    <img src="/images/avatar.jpg" alt="img">
+                  </picture>
+                </div>
                 <div class="info">
                     <div class="info-back">
-                        <h2> 
+                        <h2>
                             {% if site.avatarTitle %}
                                 {{site.avatarTitle}}
                             {% endif %}
@@ -31,11 +37,11 @@
         <hr class="panel-cover__divider" />
         <p class="panel-cover__description">{{ site.description }}</p>
         <hr class="panel-cover__divider panel-cover__divider--secondary" />
-        
+
         {% if site.welcome_message %}
         <p class="panel-cover__description">{{ site.welcome_message }}</p>
         {% endif %}
-        
+
 
         <div class="navigation-wrapper">
           <div>
@@ -47,14 +53,14 @@
                 {% endfor %}
               </ul>
             </nav>
-          </div>          
+          </div>
         </div>
 
 
         </div>
       </div>
     </div>
-    
+
     {% if site.cover_color %}
     <div class="panel-cover--overlay cover-{{site.cover_color}}"></div>
     {% else %}
