@@ -239,16 +239,11 @@ table thead tr th {
   text-align: center;
 }
 
-th:first-child, td:first-child {
-  padding: 0 15px 0 20px;
-}
-
 tbody td {
   font-size: .85em;
   border: 1px solid #363636;
 }
 td:last-child {
-  padding-right: 10px;
   border: 1px solid #363636;
 }
 
