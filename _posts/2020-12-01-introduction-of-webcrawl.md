@@ -2,7 +2,7 @@
 layout: post
 title: 浅尝爬虫技术
 date: 2020-12-01
-tag: Web Crawl
+tag: Web
 mermaid: true
 ---
 
