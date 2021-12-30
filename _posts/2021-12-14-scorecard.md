@@ -58,4 +58,36 @@ graph LR
 
 ![](/assets/2021-12-14-scorecard-2.png)
 
+这里以一个连续型变量来做示例，一开始根据数字大小切分较细的组别。分组的原则为：
+
+- 组间差异大，组内差异小；
+- 分组占率不低于5%；
+- 各组中必须同时有好样本与坏样本。
+
+其中WoE（Weight of Evidence）称为证据权重，计算公式为：
+
+$$
+WoE = \ln (\frac {Good_i} {Good_T} / \frac {Bad_i} {Bad_T}) = \ln \frac {Good_i} {Good_T} - \ln \frac {Bad_i} {Bad_T}
+$$
+
+negprob大于posprob时，WoE为负数，绝对值越高，表示该区间好坏样本的区隔能力越高。各组之间WoE值差距应尽可能拉开并呈现出单调的趋势。
+
 ![](/assets/2021-12-14-scorecard-3.png)
+
+另一个重要的指标为信息量（Information Value），计算公式为：
+
+$$
+IV = \sum_{i=1}^n (\frac {Good_i} {Good_T} - \frac {Bad_i} {Bad_T}) \times WoE_i
+$$
+
+它是每个区间上WoE的加权和，可用来表示变量预测能力的强度。
+
+|   信息量    |             预测能力              |
+| :---------: | :-------------------------------: |
+|    <0.02    |              Useless              |
+| [0.02, 0.1) |               Weak                |
+| [0.1, 0.3)  |              Medium               |
+| [0.3, 0.5)  |              Strong               |
+|    >=0.5    | Suspicious or too good to be true |
+
+为了使IV提高，需要调整合并WoE相近的区间，最后得到的分组结果称为粗分类。待长变量列表中的所有变量IV都计算完成后，可从中挑选变量，优先排除高度相关、趋势异常、不容易解释的。经过筛选后的变量集合称为短变量列表，即为模型的候选变量。
