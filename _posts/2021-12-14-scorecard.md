@@ -108,3 +108,5 @@ $$
 Score = \ln(Odds) \times Scale + Location
 $$
 
+1. 设定Odds=1时的分数，假设为100分；
+2. 设定Odds每增加一倍时增加的分数，假设为10分，此分数称为PDO（Point of Double Odds）；
