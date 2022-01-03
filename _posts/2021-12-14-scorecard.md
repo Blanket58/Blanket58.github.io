@@ -110,3 +110,25 @@ $$
 
 1. 设定Odds=1时的分数，假设为100分；
 2. 设定Odds每增加一倍时增加的分数，假设为10分，此分数称为PDO（Point of Double Odds）；
+2. 将Odds等于1和2时的分数套入公式，得到：
+
+$$
+100 = \ln 1 \times Scale + Location \\
+100 + 10 = \ln 2 \times Scale + Location
+$$
+
+解得：
+
+$$
+Location = 100 \\
+Scale = \frac {10} {\ln 2}
+$$
+
+4. 最终公式为：
+
+$$
+Score = \ln (Odds) \times \frac {10} {\ln 2} + 100
+$$
+
+## 拒绝推论
+
