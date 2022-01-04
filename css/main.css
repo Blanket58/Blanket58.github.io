@@ -1440,3 +1440,7 @@ nav a {
   transform: translateY(-3px);
 }
 /*导航按钮-end*/
+
+.div:mermaid {
+  text-align: center
+}
