@@ -124,7 +124,7 @@ Location = 100 \\
 Scale = \frac {10} {\ln 2}
 $$
 
-4. 最终公式为：
+最终公式为：
 
 $$
 Score = \ln (Odds) \times \frac {10} {\ln 2} + 100
@@ -132,3 +132,14 @@ $$
 
 ## 拒绝推论
 
+拒绝推论多用于申请评分卡。
+
+<div class="mermaid">
+flowchart TD
+    classDef a fill:#bbf,stroke:#f66,stroke-with:2px,color:#fff,stroke-dasharray: 5 5
+    classDef b fill:#f96,stroke:#333,stroke-with:4px
+    申请户 --- 拒绝户 & 核准户
+    拒绝户 --- 拒绝推论:::a --- A(推测正常户A2) & B(推测违约户B2)
+    核准户 --- 实际正常户A1 & 实际违约户B1 --- C(初步模型样本A1+B1):::b
+    A & B & C  --- 修正模型样本A1+A2+B1+B2:::b
+</div>
