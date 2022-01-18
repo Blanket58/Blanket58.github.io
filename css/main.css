@@ -154,6 +154,10 @@ p {
   font-size: 14px;
 }
 
+article p {
+  text-indent: 2em;
+}
+
 strong {
   font-weight: bold; }
 
@@ -176,7 +180,7 @@ blockquote p:last-child {
   margin-bottom: 0; }
 
 ol, ul {
-  margin: 0 0 0 2.5em; }
+  margin: 0 0 0 5.5em; }
 ol li, ul li {
   margin: 0 0 0 0;
   line-height: 2em; }
