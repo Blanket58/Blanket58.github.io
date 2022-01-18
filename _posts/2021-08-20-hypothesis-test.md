@@ -2,7 +2,7 @@
 layout: post
 title: 假设检验
 date: 2021-08-20
-tag: 数据分析
+tag: Data Analysis
 katex: true
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: IRR与APR
 date: 2021-08-06
-tag: 风控
+tag: Risk Management
 katex: true
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: 被讨厌的勇气
 date: 2021-12-24
-tag: 杂记
+tag: Miscellanea
 ---
 
 *摘录一些书中的句子，希望这些文字可以时刻丰盈自己的内心。*

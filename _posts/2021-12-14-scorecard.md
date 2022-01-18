@@ -2,7 +2,7 @@
 layout: post
 title: 评分卡建模全流程
 date: 2021-12-14
-tag: 风控
+tag: Risk Management
 katex: true
 mermaid: true
 ---

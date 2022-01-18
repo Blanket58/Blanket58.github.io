@@ -2,7 +2,7 @@
 layout: post
 title: 贷后分析体系
 date: 2021-02-25
-tag: 风控
+tag: Risk Management
 markmap: true
 ---
 

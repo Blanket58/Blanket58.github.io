@@ -2,7 +2,7 @@
 layout: post
 title: 智力题收集
 date: 2021-11-02
-tag: 杂记
+tag: Miscellanea
 katex: true
 ---
 

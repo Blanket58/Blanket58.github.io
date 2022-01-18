@@ -2,7 +2,7 @@
 layout: post
 title: 概率论与数理统计
 date: 2021-08-03
-tag: 数据分析
+tag: Data Analysis
 katex: true
 ---
 
