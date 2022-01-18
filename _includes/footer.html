@@ -1,13 +1,13 @@
 <section class="footer">
-    <footer>
-        <div class = "footer_div">
-        <nav class="cover-navigation navigation--social">
-          <ul class="navigation">
-
+  <footer>
+    <div class="footer_div">
+      <nav class="cover-navigation navigation--social">
+        <ul class="navigation">
           {% if site.social.github %}
           <!-- Github -->
           <li class="navigation__item_social">
-            <a href="https://github.com/{{site.social.github}}" rel="noreferrer" title="@{{site.social.github}} 的 Github" target="_blank">
+            <a href="https://github.com/{{site.social.github}}" rel="noreferrer"
+              title="@{{site.social.github}} 的 Github" target="_blank">
               <div class="footer-social-icon" style="background:url(/images/github.png);"></div>
             </a>
           </li>
@@ -16,52 +16,52 @@
           {% if site.social.zhihu %}
           <!-- Zhihu -->
           <li class="navigation__item_social">
-            <a href="https://www.zhihu.com/people/{{site.social.zhihu}}" rel="noreferrer" title="@{{site.social.zhihu}}" target="_blank">
+            <a href="https://www.zhihu.com/people/{{site.social.zhihu}}" rel="noreferrer" title="@{{site.social.zhihu}}"
+              target="_blank">
               <div class="footer-social-icon" style="background:url(/images/zhihu.png);"></div>
             </a>
           </li>
-
           {% endif %}
 
           {% if site.social.juejin %}
           <!-- Juejin -->
           <li class="navigation__item_social">
-            <a href="https://juejin.im/user/{{site.social.juejin}}" rel="noreferrer" title="@{{site.social.juejin}}" target="_blank">
+            <a href="https://juejin.im/user/{{site.social.juejin}}" rel="noreferrer" title="@{{site.social.juejin}}"
+              target="_blank">
               <div class="footer-social-icon" style="background:url(/images/juejin.png);"></div>
             </a>
           </li>
-
           {% endif %}
 
           {% if site.social.jianshu %}
           <!-- Jianshu -->
           <li class="navigation__item_social">
-            <a href="https://www.jianshu.com/u/{{site.social.jianshu}}" rel="noreferrer" title="@{{site.social.jianshu}}" target="_blank">
+            <a href="https://www.jianshu.com/u/{{site.social.jianshu}}" rel="noreferrer"
+              title="@{{site.social.jianshu}}" target="_blank">
               <div class="footer-social-icon" style="background:url(/images/jianshu.png);"></div>
             </a>
           </li>
-
           {% endif %}
 
           {% if site.social.weibo %}
           <!-- Weibo -->
           <li class="navigation__item_social">
-            <a href="http://weibo.com/{{site.social.weibo}}" rel="noreferrer" title="@{{site.social.weibo}} 的微博" target="_blank">
+            <a href="http://weibo.com/{{site.social.weibo}}" rel="noreferrer" title="@{{site.social.weibo}} 的微博"
+              target="_blank">
               <div class="footer-social-icon" style="background:url(/images/weibo.png);"></div>
             </a>
           </li>
           {% endif %}
 
-
           {% if site.social.twitter %}
           <!-- Twitter -->
           <li class="navigation__item_social">
-            <a href="http://twitter.com/{{site.social.twitter}}" rel="noreferrer" title="@{{site.social.twitter}}" target="_blank">
+            <a href="http://twitter.com/{{site.social.twitter}}" rel="noreferrer" title="@{{site.social.twitter}}"
+              target="_blank">
               <div class="footer-social-icon" style="background:url(/images/twitter.png);"></div>
             </a>
           </li>
           {% endif %}
-
 
           {% if site.social.mail %}
           <!-- Email -->
@@ -79,30 +79,24 @@
               <span class="label">RSS</span>
             </a>
           </li>
+        </ul>
+      </nav>
+    </div>
 
-          </ul>
-        </nav>
-
-        </div>
-
-        <div class = "footer_div">
-           <p class="copyright text-muted">
-            {{ site.title }} {{ site.time | date: '%Y' }} |
-            <iframe
-                style="margin-left: 2px; margin-bottom:-5px;"
-                frameborder="0" scrolling="0" width="91px" height="20px"
-                src="https://ghbtns.com/github-btn.html?user=blanket58&repo=blanket58.github.io&type=star&count=true" >
-            </iframe>
-            </p>
-        	<div align="right">
-          <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-          <!-- 访问统计 -->
-          <span id="busuanzi_container_site_pv">
-            本站总访问量
-            <span id="busuanzi_value_site_pv"></span>次
-          </span>
-
-        </div>
-        <div>
-    </footer>
+    <div class="footer_div">
+      <p class="copyright text-muted">
+        {{ site.title }} {{ site.time | date: '%Y' }} |
+        <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px"
+          src="https://ghbtns.com/github-btn.html?user=blanket58&repo=blanket58.github.io&type=star&count=true">
+        </iframe>
+      </p>
+      <div align="right">
+        <!-- 访问统计 -->
+        <span id="busuanzi_container_site_pv">
+          本站总访问量
+          <span id="busuanzi_value_site_pv"></span>次
+        </span>
+      </div>
+    </div>
+  </footer>
 </section>

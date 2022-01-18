@@ -1,25 +1,25 @@
-
+/* 头像效果 */
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
-margin: 0
+    margin: 0;
 }
 
 .ih-item.circle.effect {
-    margin-left: 400px;
+    margin: 0 auto;
     -webkit-perspective: 900px;
     -moz-perspective: 900px;
-perspective: 900px;
+    perspective: 900px;
 }
 .ih-item.circle.effect .img {
     z-index: 11;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .ih-item.circle.effect .info {
@@ -31,32 +31,29 @@ transition: all 0.5s ease-in-out;
 }
 
 .ih-item.circle.effect .info .info-back {
-opacity: 1;
+    opacity: 1;
     border-radius: 50%;
-width: 100%;
-height: 100%;
-background: #333333;
+    width: 100%;
+    height: 100%;
+    background: #333333;
 }
 
-.ih-item.circle.effect .info h3 {
-color: #fff;
-    text-transform: uppercase;
-position: relative;
-    letter-spacing: 2px;
-    font-size: 22px;
-margin: 0 30px;
-padding: 55px 0 0 0;
-height: 110px;
+.ih-item.circle.effect .info h2 {
+    color: #fff;
+    position: relative;
+    font-size: 18px;
+    margin: 0 auto;
+    padding-top: 30px;
+    height: 30px;
     text-shadow: 0 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .ih-item.circle.effect .info p {
-color: #bbb;
-padding: 10px 5px;
+    color: #bbb;
+    padding: 0px 0px 0px 0px;
     font-style: italic;
-margin: 0 30px;
-    font-size: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    padding-left: 0px;
+    font-size: 10px;
 }
 
 .ih-item.circle.effect.bottom_to_top .img {
@@ -72,7 +69,7 @@ margin: 0 30px;
     -moz-transform: rotate3d(1, 0, 0, 180deg);
     -ms-transform: rotate3d(1, 0, 0, 180deg);
     -o-transform: rotate3d(1, 0, 0, 180deg);
-transform: rotate3d(1, 0, 0, 180deg);
+    transform: rotate3d(1, 0, 0, 180deg);
 }
 
 .ih-item.circle.effect.top_to_bottom .img {
@@ -88,7 +85,7 @@ transform: rotate3d(1, 0, 0, 180deg);
     -moz-transform: rotate3d(1, 0, 0, -180deg);
     -ms-transform: rotate3d(1, 0, 0, -180deg);
     -o-transform: rotate3d(1, 0, 0, -180deg);
-transform: rotate3d(1, 0, 0, -180deg);
+    transform: rotate3d(1, 0, 0, -180deg);
 }
 
 .ih-item.circle.effect.left_to_right .img {
@@ -104,7 +101,7 @@ transform: rotate3d(1, 0, 0, -180deg);
     -moz-transform: rotate3d(0, 1, 0, 180deg);
     -ms-transform: rotate3d(0, 1, 0, 180deg);
     -o-transform: rotate3d(0, 1, 0, 180deg);
-transform: rotate3d(0, 1, 0, 180deg);
+    transform: rotate3d(0, 1, 0, 180deg);
 }
 
 .ih-item.circle.effect.right_to_left .img {
@@ -120,7 +117,7 @@ transform: rotate3d(0, 1, 0, 180deg);
     -moz-transform: rotate3d(0, 1, 0, -180deg);
     -ms-transform: rotate3d(0, 1, 0, -180deg);
     -o-transform: rotate3d(0, 1, 0, -180deg);
-transform: rotate3d(0, 1, 0, -180deg);
+    transform: rotate3d(0, 1, 0, -180deg);
 }
 
 .ih-item a {
@@ -132,35 +129,33 @@ transform: rotate3d(0, 1, 0, -180deg);
 }
 
 .ih-item img {
-width: 100%;
-height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .ih-item.circle {
-position: relative;
-width: 220px;
-height: 220px;
+    position: relative;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
 }
 
 .ih-item.circle .img {
-position: relative;
-width: 220px;
-height: 220px;
+    position: relative;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
 }
-
 .ih-item.circle .img:before {
-position: absolute;
-display: block;
-content: '';
-width: 100%;
-height: 100%;
+    position: absolute;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    box-shadow: inset 0 0 0 16px rgba(255, 255, 255, 0.6), 0 1px 2px rgba(0, 0, 0, 0.3);
     -webkit-transition: all 0.35s ease-in-out;
     -moz-transition: all 0.35s ease-in-out;
-transition: all 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
 }
 
 .ih-item.circle .img img {
@@ -168,13 +163,32 @@ transition: all 0.35s ease-in-out;
 }
 
 .ih-item.circle .info {
-position: absolute;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     text-align: center;
     border-radius: 50%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+@media all and (max-width: 780px) {
+    .ih-item.circle .img {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        /*margin-top: 20px;*/
+        border-radius: 50%;
+    }
+    .ih-item.circle {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+    .ih-item.circle .info .info-back h2 {
+        font-size: 0.9em;
+    }
 }
