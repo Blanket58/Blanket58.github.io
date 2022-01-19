@@ -140,8 +140,11 @@ blockquote {
   font-size: 1em;
   border-left: 3px solid #D2691E;
 }
-blockquote p:last-child {
-  margin-bottom: 0; }
+
+blockquote p {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 .post ol, .post ul {
   margin: 0 0 0 4em; }
