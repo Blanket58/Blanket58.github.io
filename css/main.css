@@ -143,13 +143,9 @@ blockquote {
 blockquote p:last-child {
   margin-bottom: 0; }
 
-<<<<<<< Updated upstream
-ol, ul {
-  margin: 0 0 0 5.5em; }
-=======
 .post ol, .post ul {
   margin: 0 0 0 4em; }
->>>>>>> Stashed changes
+
 ol li, ul li {
   margin: 0 0 0 0;
   line-height: 2em; }
