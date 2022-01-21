@@ -162,7 +162,7 @@ dot_data = export_graphviz(
 pydotplus.graph_from_dot_data(dot_data).write_png('iris.png')
 ```
 
-![](../assets/2022-01-17-decision-tree-1.png)
+![](/assets/2022-01-17-decision-tree-1.png)
 
 ## 参考文献
 
