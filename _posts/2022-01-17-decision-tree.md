@@ -70,7 +70,7 @@ $$
 信息增益越大，使用属性a进行划分所获得的结点纯度提升越大。因此选择最优化分属性时的准则为：
 
 $$
-a_* = \mathop{\arg \max}_{a \in A} \quad Gain(D, a)
+a_* = \mathop{\arg \max}\limits_{a \in A} \quad Gain(D, a)
 $$
 
 ID3决策树学习算法就使用信息增益准则来选择划分属性。
@@ -111,7 +111,7 @@ $$
 因此选择最优化分属性时的准则为：
 
 $$
-a_* = \mathop{\arg \min}_{a \in A} \quad Gini.index(D, a)
+a_* = \mathop{\arg \min}\limits_{a \in A} \quad Gini.index(D, a)
 $$
 
 ## 剪枝处理
@@ -173,6 +173,7 @@ Gain(D, a) &= \rho \times Gain(\tilde D, a) \\
 $$
 
 同时
+
 $$
 Ent(\tilde D) = - \sum_{k=1}^{\vert \gamma \vert} \tilde p_k \log_2{\tilde p_k}
 $$
