@@ -19,19 +19,19 @@ katex: true
 **过程：**函数$TreeGenerate(D, A)$
 
 1. 生成结点node;
-2. if D 中样本全属于同一类别C then
+2. if D中样本全属于同一类别C then
 3. &nbsp;&nbsp;&nbsp;&nbsp;将node标记为C类叶结点; return
 4. end if
 5. if A = $\emptyset$ or D中样本在A上取值相同 then
 6. &nbsp;&nbsp;&nbsp;&nbsp;将node标记为叶结点，其类别标记为D中样本数最多的类; return
 7. end if
-8. 从A中选择最优划分属性$a_*$;
-9. for $a_*$中的每一个$a_*^v$ do
-10. &nbsp;&nbsp;&nbsp;&nbsp;为node生成一个分支; 令$D_v$表示D中在$a_*$上取值为$a_*^v$的样本子集;
+8. 从A中选择最优划分属性$a_{\ast}$;
+9. for $a_{\ast}$中的每一个$a_{\ast}^v$ do
+10. &nbsp;&nbsp;&nbsp;&nbsp;为node生成一个分支; 令$D_v$表示D中在$a_{\ast}$上取值为$a_{\ast}^v$的样本子集;
 11. &nbsp;&nbsp;&nbsp;&nbsp;if $D_v$为空 then
 12. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将分支结点标记为叶结点，其类别标记为D中样本最多的类; return
 13. &nbsp;&nbsp;&nbsp;&nbsp;else
-14. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以$TreeGenerate(D_v, A \setminus {a_*})$为分支结点
+14. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以$TreeGenerate(D_v, A \setminus {a_{\ast}})$为分支结点
 15. &nbsp;&nbsp;&nbsp;&nbsp;end if
 16. end for
 
@@ -70,7 +70,7 @@ $$
 信息增益越大，使用属性a进行划分所获得的结点纯度提升越大。因此选择最优化分属性时的准则为：
 
 $$
-a_* = \mathop{\arg \max}\limits_{a \in A} \quad Gain(D, a)
+a_{\ast} = \mathop{\arg \max}\limits_{a \in A} \quad Gain(D, a)
 $$
 
 ID3决策树学习算法就使用信息增益准则来选择划分属性。
@@ -111,7 +111,7 @@ $$
 因此选择最优化分属性时的准则为：
 
 $$
-a_* = \mathop{\arg \min}\limits_{a \in A} \quad Gini.index(D, a)
+a_{\ast} = \mathop{\arg \min}\limits_{a \in A} \quad Gini.index(D, a)
 $$
 
 ## 剪枝处理
@@ -120,7 +120,7 @@ $$
 
 **预剪枝：**
 
-*在决策树生成过程中，对每个结点在划分前先进行估计，若当前划分不能带来决策树泛化性能的提升，则标记为叶结点。*预剪枝降低了过拟合的风险，还显著减少了决策树的训练时间开销和测试时间开销。但另一方面，有些分支的当前划分虽不能提升泛化性能，甚至可能导致泛化性能暂时下降，但在其基础上进行的后续划分却有可能导致性能显著提高，预剪枝基于贪心原则禁止这些分支的展开，使得预剪枝决策树可能会欠拟合。  
+*在决策树生成过程中，对每个结点在划分前先进行估计，若当前划分不能带来决策树泛化性能的提升，则标记为叶结点。*预剪枝降低了过拟合的风险，还显著减少了决策树的训练时间开销和测试时间开销。但另一方面，有些分支的当前划分虽不能提升泛化性能，甚至可能导致泛化性能暂时下降，但在其基础上进行的后续划分却有可能导致性能显著提高，预剪枝基于贪心原则禁止这些分支的展开，使得预剪枝决策树可能会欠拟合。
 
 **后剪枝：**
 
