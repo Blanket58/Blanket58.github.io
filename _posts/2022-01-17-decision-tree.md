@@ -26,7 +26,7 @@ katex: true
 6. &nbsp;&nbsp;&nbsp;&nbsp;将node标记为叶结点，其类别标记为D中样本数最多的类; return
 7. end if
 8. 从A中选择最优划分属性$a_*$;
-9. for $a_*^v$ in $a_*$ do
+9. for $a_*$中的每一个$a_*^v$ do
 10. &nbsp;&nbsp;&nbsp;&nbsp;为node生成一个分支; 令$D_v$表示D中在$a_*$上取值为$a_*^v$的样本子集;
 11. &nbsp;&nbsp;&nbsp;&nbsp;if $D_v$为空 then
 12. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将分支结点标记为叶结点，其类别标记为D中样本最多的类; return
@@ -128,21 +128,68 @@ $$
 
 ## 连续与缺失值
 
+### 连续值处理
 
+上面讨论的都是基于离散属性的决策树，对于连续型属性，需要使用连续属性离散化技术，C4.5采用了**二分法**。
 
+给定样本集D和连续属性a，假定a在D上出现了n个不同的取值，将这些值从小到大进行排序，记为$\{a^1, a^2, ..., a^n\}$。基于划分点t可将D分为子集$D_t^-$和$D_t^+$，其中$D_t^-$包含那些在属性a上取值小于等于t的样本。对于相邻的属性取值$a^i$和$a^{i+1}$来说，t在区间$[a^i, a^{i+1})$中取任意值所产生的划分结果相同。因此对于连续属性a我们可考察包含n-1个元素的候选划分点集合：
 
+$$
+T_a = \{\frac {a^i + a^{i+1}} 2 \vert 1 \leq i \leq n - 1 \}
+$$
 
+即把区间的中位点当作候选划分点，于是我们就可以像离散属性一样来考察这些划分点。
 
+$$
+\begin{aligned}
+Gain(D, a) &= \max_{t \in T_a} Gain(D, a, t) \\
+&= \max_{t \in T_a} Ent(D) - \sum_{\lambda \in \{-, +\}} \frac {\vert D_t^{\lambda} \vert} {\vert D \vert} Ent(D_t^{\lambda})
+\end{aligned}
+$$
+
+不同于离散属性，若当前结点划分属性为连续属性，该属性还可作为其后代结点的划分属性。
+
+### 缺失值处理
+
+现实情况中经常会存在样本的某些属性值缺失，C4.5采用了如下的解决方法。
+
+#### 如何在属性值缺失的情况下进行划分属性选择？
+
+给定样本集D和连续属性a，令$\tilde D$表示D中在属性a上没有缺失值的样本子集。假定属性a有V个可取值$\{a^1, a^2, ..., a^V\}$，令$\tilde D^v$表示$\tilde D$中在属性a上取值为$a^v$的样本子集，$\tilde D_k$表示$\tilde D$中属于第k类（$k = 1, 2, ..., \vert \gamma \vert$）的样本子集，于是就有$\tilde D = \bigcup_{k=1}^{\vert \gamma \vert} \tilde D_k$，$\tilde D = \bigcup_{v=1}^{V} \tilde D^v$。假定为每个样本x赋予一个权重$w_x$，并定义
+
+$$
+\rho = \frac {\sum_{x \in \tilde D} w_x} {\sum_{x \in D} w_x} \\
+\tilde p_k = \frac {\sum_{x \in \tilde D_k} w_x} {\sum_{x \in \tilde D} w_x} \quad (1 \leq k \leq \vert \gamma \vert) \\
+\tilde r_v = \frac {\sum_{x \in \tilde D^v} w_x} {\sum_{x \in \tilde D} w_x} \quad (1 \leq v \leq V)
+$$
+
+其中对属性a，$\rho$表示无缺失值样本所占的比例，$\tilde p_k$表示无缺失值样本中第k类所占的比例，$\tilde r_v$表示无缺失值样本中在属性a取值$a^v$的样本所占的比例。显然$\sum_{k = 1}^{\vert \gamma \vert} \tilde p_k = 1$，$\sum_{v = 1}^{V} \tilde r_v = 1$。于是信息增益的计算公式可以推广为：
+
+$$
+\begin{aligned}
+Gain(D, a) &= \rho \times Gain(\tilde D, a) \\
+&= \rho \times (Ent(\tilde D) - \sum_{v=1}^{V} Ent(\tilde D^v))
+\end{aligned}
+$$
+
+同时
+$$
+Ent(\tilde D) = - \sum_{k=1}^{\vert \gamma \vert} \tilde p_k \log_2{\tilde p_k}
+$$
+
+#### 给定划分属性，若样本在该属性上的值缺失，如何对样本进行划分？
+
+若样本x在划分属性a上的取值已知，则将x划入与其取值对应的子结点，且样本权重维持$w_x$不变；若样本x在划分属性a上的取值未知，则将x同时划入所有子结点，并将样本权重在与属性值$a^v$对应的子结点中调整为$\tilde r_v \cdot w_x$。直观地看，这就是让同一个样本以不同的概率划入到不同的子结点中去。
 
 ## 多变量决策树
 
+若把每个属性都视为坐标空间中的一个坐标轴，则d个属性描述的样本就对应了d维空间中的一个数据点，对样本分类就意味着在这个坐标空间中寻找不同类样本之间的分类边界。决策树所形成的分类边界有一个明显的特点就是**轴平行**，它的分类边界由若干个与坐标轴平行的分段组成。但真实数据上的分类边界往往很复杂，需要很多段划分才能获得较好的近似，时间开销将会很大。如果能使用“斜”的划分边界，决策树模型将大为简化。
 
-
-
-
-
+多变量决策树，非叶节点不再仅对某个属性，而是对属性的线性组合进行测试。在多变量决策树的学习过程中，不是为每个非叶节点寻找一个最优划分属性，而是试图建立一个合适的线性分类器。
 
 ## 示例
+
+绘制CART分类树的详细分支结果。
 
 ```python
 import pydotplus
