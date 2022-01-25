@@ -66,7 +66,7 @@ $$
 P(H(T) \leq k) = \sum_{i=0}^k C_T^i (1 - \epsilon)^i \epsilon^{T-i}
 $$
 
-其中$H(T)$表示T个基分类器中分类正确的个数。对于$\delta > 0$，$k = (1 - \epsilon - \delta)T$，有[Hoeffding不等式](https://en.m.wikipedia.org/wiki/Hoeffding%27s_inequality)
+其中$H(T)$表示T个基分类器中分类正确的个数。对于$\delta > 0$，$k = (1 - \epsilon - \delta)T$，有[Hoeffding不等式](https://en.m.wikipedia.org/wiki/Hoeffding%27s_inequality)（N个独立有界随机变量之和偏离该和的期望的程度是存在上界的）
 
 $$
 \begin{aligned}
