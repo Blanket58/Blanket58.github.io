@@ -11,3 +11,7 @@
 .mermaid {
   text-align: center
 }
+
+.post li {
+  white-space: pre-wrap;
+}
