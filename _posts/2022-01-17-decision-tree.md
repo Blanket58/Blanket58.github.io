@@ -20,19 +20,19 @@ katex: true
 
 1. 生成结点node;
 2. if D中样本全属于同一类别C then
-3. &nbsp;&nbsp;&nbsp;&nbsp;将node标记为C类叶结点; return
+3. <span>    </span>将node标记为C类叶结点; return
 4. end if
 5. if A = $\emptyset$ or D中样本在A上取值相同 then
-6. &nbsp;&nbsp;&nbsp;&nbsp;将node标记为叶结点，其类别标记为D中样本数最多的类; return
+6. <span>    </span>将node标记为叶结点，其类别标记为D中样本数最多的类; return
 7. end if
 8. 从A中选择最优划分属性$a_{\ast}$;
 9. for $a_{\ast}$中的每一个$a_{\ast}^v$ do
-10. &nbsp;&nbsp;&nbsp;&nbsp;为node生成一个分支; 令$D_v$表示D中在$a_{\ast}$上取值为$a_{\ast}^v$的样本子集;
-11. &nbsp;&nbsp;&nbsp;&nbsp;if $D_v$为空 then
-12. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将分支结点标记为叶结点，其类别标记为D中样本最多的类; return
-13. &nbsp;&nbsp;&nbsp;&nbsp;else
-14. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以$TreeGenerate(D_v, A \setminus {a_{\ast}})$为分支结点
-15. &nbsp;&nbsp;&nbsp;&nbsp;end if
+10. <span>    </span>为node生成一个分支; 令$D_v$表示D中在$a_{\ast}$上取值为$a_{\ast}^v$的样本子集;
+11. <span>    </span>if $D_v$为空 then
+12. <span>        </span>将分支结点标记为叶结点，其类别标记为D中样本最多的类; return
+13. <span>    </span>else
+14. <span>        </span>以$TreeGenerate(D_v, A \setminus {a_{\ast}})$为分支结点
+15. <span>    </span>end if
 16. end for
 
 **输出：**以node为根节点的一棵决策树
