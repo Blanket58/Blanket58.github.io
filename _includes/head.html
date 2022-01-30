@@ -13,14 +13,14 @@
   <script>function F(a){document.documentElement.classList.add(a)}var A=new Image;A.src="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=",A.onload=function(){F("avif")},A.onerror=function(){var a=new Image;a.src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==",a.onload=function(){F("webp")}};</script>
 
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-  <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" rel="stylesheet">
 
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
 
   <meta name="google-site-verification" content="sAgQL9g1qxSs3Ig8ECxkpE-vKobrWxT4ajy4T5mjtwU" />
 
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script type="text/javascript" src="/js/main.js"></script>
 
   <!-- 站点统计 -->
@@ -43,19 +43,17 @@
 
   {% if page.mermaid %}
   <!-- Mermaid -->
-  <script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@8.13.10/dist/mermaid.core.min.js"></script>
   {% endif %}
 
   {% if page.markmap %}
   <!-- Markmap -->
-  <script src="//cdn.jsdelivr.net/npm/markmap-autoloader"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@0.2.0/dist/index.min.js"></script>
   {% endif %}
 
   {% if page.mathjax %}
   <!-- Mathjax -->
-  <link rel="dns-prefetch" href="//cdn.bootcss.com" />
-  <link rel="dns-prefetch" href="//cdn.mathjax.org" />
-  <script src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
@@ -72,9 +70,9 @@
 
   {% if page.katex %}
   <!-- Katex -->
-  <link href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.1/katex.min.css" rel="stylesheet" crossorigin="anonymous">
-  <script defer src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.1/katex.min.js" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.1/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" rel="stylesheet" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       renderMathInElement(document.body, {
