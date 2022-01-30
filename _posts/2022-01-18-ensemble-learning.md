@@ -3,7 +3,7 @@ layout: post
 title: 集成学习
 date: 2022-01-18
 tag: Algorithms
-mathjax: true
+katex: true
 mermaid: true
 ---
 
