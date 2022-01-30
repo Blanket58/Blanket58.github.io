@@ -124,8 +124,7 @@ $$
 4. ​    $\epsilon = P_{x \sim \mathcal{D}_t} (h_t(x) \neq f(x))$;
 5. ​    if $\epsilon > 0.5$ then break
 6. ​    $\alpha_t = \frac 1 2 \ln (\frac {1 - \epsilon_t} {\epsilon_t})$;
-7. ​    $
-   \begin{aligned}
+7. ​    $\begin{aligned}
    \mathcal{D}_{t+1} (x) &= \frac {\mathcal{D}_t(x)} {Z_t} \times
    \begin{cases}
    exp(-\alpha_t) &\text{if} \enspace h_t(x) = f(x) \\
