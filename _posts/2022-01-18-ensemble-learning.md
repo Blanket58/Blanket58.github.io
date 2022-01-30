@@ -4,7 +4,7 @@ title: 集成学习
 date: 2022-01-18
 tag: Algorithms
 katex: true
-mathjax: true
+mermaid: true
 ---
 
 ## 个体与集成
