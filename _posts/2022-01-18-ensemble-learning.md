@@ -66,7 +66,7 @@ $$
 P(H(T) \leq k) = \sum_{i=0}^k C_T^i (1 - \epsilon)^i \epsilon^{T-i}
 $$
 
-其中$H(T)$表示T个基分类器中分类正确的个数。对于$\delta > 0$，$k = (1 - \epsilon - \delta)T$，有[Hoeffding不等式](https://en.m.wikipedia.org/wiki/Hoeffding%27s_inequality)（N个独立有界随机变量之和偏离该和的期望的程度是存在上界的）
+其中$H(T)$表示T个基分类器中分类正确的个数。*假设基分类器的错误率相互独立*，对于$\delta > 0$，$k = (1 - \epsilon - \delta)T$，有[Hoeffding不等式](https://en.m.wikipedia.org/wiki/Hoeffding%27s_inequality)（N个独立有界随机变量之和偏离该和的期望的程度是存在上界的）
 
 $$
 \begin{aligned}
@@ -85,4 +85,101 @@ $$
 
 $$
 P(H(x) \neq f(x)) \leq \exp{\Bigg(-\frac 1 2 T (1 - 2 \epsilon) ^2\Bigg)}
+$$
+
+随着集成中个体分类器数目T的增大，集成的错误率将指数级下降，最终趋向于零。
+
+上面的推导中假设了基分类器的错误率相互独立，实际中个体学习器是为解决同一个问题训练出来的，它们显然不可能相互独立。个体学习器的“准确性”与“多样性”之间此消彼长，需要权衡。
+
+根据个体学习器的生成方式，目前的集成学习大致分为两类：
+
+- 个体学习器之间存在强依赖关系，必须串行生成的序列化方法，例如Boosting；
+- 个体学习器之间不存在强依赖关系，可同时生成的并行化方法，例如Bagging和随机森林。
+
+## Boosting
+
+Boosting是一族可将弱学习器提升为强学习器的算法。这族算法的工作机制为先从初始训练集训练出一个基学习器，再根据基学习器的表现对训练样本分布进行调整，使得先一步基学习器做错的训练样本在后续受到更多关注，再训练下一步的基学习器，如此反复，直至基学习器数量达到事先指定的值T，最终对T个基学习器进行加权结合。
+
+### AdaBoost
+
+AdaBoost是第一个具有适应性的算法，可以适应弱学习器各自的训练误差率，这也是其名称的由来（Adaptive）。先对每个样本赋予相同的初始权重，每一轮学习器训练过后都会根据其表现对每个样本的权重进行调整，增加分错样本的权重，这样先前做错的样本在后续就能得到更多关注，按这样的过程重复训练出T个学习器，最后进行加权组合。最后得到的强学习器为基学习器的线性组合，即加法模型
+
+$$
+H(x) = \sum_{t=1}^T \alpha_t h_t(x)
+$$
+
+它使用的是指数损失函数
+
+$$
+\ell_{exp} (H \vert \mathcal{D}) = \mathbb{E}_{x \sim \mathcal{D}} [e^{-f(x)H(x)}]
+$$
+
+------
+
+**输入：**
+
+训练集$D = \{(x_1, y_1), (x_2, y_2), ..., (x_m, y_m)\}$；基学习算法$\mathcal{L}$；训练轮数$T$
+
+**过程：**
+
+1. $\mathcal{D}_1(x) = 1/m$;
+2. for t = 1, 2, …, T do
+3. ​    $h_t(x) = \mathcal{L}(D, \mathcal{D}_t)$;
+4. ​    $\epsilon = P_{x \sim \mathcal{D}_t} (h_t(x) \neq f(x))$;
+5. ​    if $\epsilon > 0.5$ then break
+6. ​    $\alpha_t = \frac 1 2 \ln (\frac {1 - \epsilon_t} {\epsilon_t})$;
+7. ​    $
+   \begin{aligned}
+   \mathcal{D}_{t+1} (x) &= \frac {\mathcal{D}_t(x)} {Z_t} \times 
+   \begin{cases}
+   exp(-\alpha_t) &\text{if} \enspace h_t(x) = f(x) \\
+   exp(\alpha_t) &\text{if} \enspace h_t(x) \neq f(x)
+   \end{cases} \\
+   &= \frac {\mathcal{D}_t (x) exp(-\alpha_t f(x)h_t(x))} {Z_t}
+   \end{aligned}
+   $
+8. end for
+
+**输出：**$H(x) = sign (\sum_{t=1}^T \alpha_t h_t(x))$
+
+------
+
+#### 使用指数损失函数的原因
+
+$$
+\begin{aligned}
+\ell_{exp} (H \vert \mathcal{D}) &= \mathbb{E}_{x \sim \mathcal{D}} [e^{-f(x)H(x)}] \\
+&= e^{-H(x)} P(f(x)=1 \vert x) + e^{H(x)} P(f(x)=-1 \vert x)
+\end{aligned}
+$$
+
+若$H(x)$能使指数损失函数最小化，则对上式求关于$H(x)$的偏导并令其为零
+
+$$
+\frac {\partial \ell_{exp} (H \vert \mathcal{D})} {\partial H(x)} = -e^{-H(x)} P(f(x)=1 \vert x) + e^{H(x)} P(f(x)=-1 \vert x) = 0
+$$
+
+于是有
+
+$$
+H(x) = \frac 1 2 \ln \frac {P(f(x)=1 \vert x)} {P(f(x)=-1 \vert x)}
+$$
+
+换一种写法
+
+$$
+P(f(x)=1 \vert x) = \frac 1 {1 + e^{-2H(x)}}
+$$
+
+**每一轮最小化指数损失函数实际是在训练一个logistic回归模型。**
+
+$$
+\begin{aligned}
+sign(H(x)) &= sign \Bigg( \frac 1 2 \ln \frac {P(f(x)=1 \vert x)} {P(f(x)=-1 \vert x)} \Bigg) \\
+&= \begin{cases}
+1 & P(f(x)=1 \vert x) > P(f(x)=-1 \vert x) \\
+-1 & P(f(x)=1 \vert x) < P(f(x)=-1 \vert x)
+\end{cases} \\
+&= \mathop{\arg \max}\limits_{y \in \{-1,1\}} \quad P(f(x) = y \vert x)
+\end{aligned}
 $$
