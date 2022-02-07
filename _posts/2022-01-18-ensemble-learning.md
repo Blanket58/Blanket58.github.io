@@ -128,9 +128,9 @@ $$
    \begin{aligned}
    \mathcal{D}_{t+1} (x) &= \frac {\mathcal{D}_t(x)} {Z_t} \times
    \begin{cases}
-   exp(-\alpha_t) &\text{if} \enspace h_t(x) = f(x) \\
+   exp(-\alpha_t) &\text{if} \enspace h_t(x) = f(x) \newline
    exp(\alpha_t) &\text{if} \enspace h_t(x) \neq f(x)
-   \end{cases} \\
+   \end{cases} \newline
    &= \frac {\mathcal{D}_t (x) exp(-\alpha_t f(x)h_t(x))} {Z_t}
    \end{aligned}
    $
@@ -168,7 +168,6 @@ P(f(x)=1 \vert x) = \frac 1 {1 + e^{-2H(x)}}
 $$
 
 **每一轮最小化指数损失函数实际是在训练一个logistic回归模型。**
-
 $$
 \begin{aligned}
 sign(H(x)) &= sign \Bigg( \frac 1 2 \ln \frac {P(f(x)=1 \vert x)} {P(f(x)=-1 \vert x)} \Bigg) \\
