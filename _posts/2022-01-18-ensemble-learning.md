@@ -166,6 +166,7 @@ P(f(x)=1 \vert x) = \frac 1 {1 + e^{-2H(x)}}
 $$
 
 **每一轮最小化指数损失函数实际是在训练一个logistic回归模型。**
+
 $$
 \begin{aligned}
 sign(H(x)) &= sign \Bigg( \frac 1 2 \ln \frac {P(f(x)=1 \vert x)} {P(f(x)=-1 \vert x)} \Bigg) \\
