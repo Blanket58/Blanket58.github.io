@@ -3,7 +3,7 @@ layout: post
 title: 集成学习
 date: 2022-01-18
 tag: Algorithms
-katex: true
+mathjax: true
 mermaid: true
 ---
 
@@ -48,7 +48,7 @@ graph LR
 | $h_3$ |    ×    |    ×    |    √    |
 | 集成  |    ×    |    ×    |    ×    |
 
-于是我们可以得出结论：**想要获得泛化性能好的集成，每个个体学习器应该要有一定的准确性，同时学习器之间要存在差异。**对于一个二分类问题$y \in \{-1, +1\}$和真实函数$f$，假定基分类器的错误率为$\epsilon$，即对每个基分类器$h_i$有
+于是我们可以得出结论：**想要获得泛化性能好的集成，每个个体学习器应该要有一定的准确性，同时学习器之间要存在差异。**对于一个二分类问题$y \in \lbrace-1, +1\rbrace$和真实函数$f$，假定基分类器的错误率为$\epsilon$，即对每个基分类器$h_i$有
 
 $$
 P(h_i(x) \neq f(x)) = \epsilon
@@ -124,16 +124,14 @@ $$
 4. ​    $\epsilon = P_{x \sim \mathcal{D}_t} (h_t(x) \neq f(x))$;
 5. ​    if $\epsilon > 0.5$ then break
 6. ​    $\alpha_t = \frac 1 2 \ln (\frac {1 - \epsilon_t} {\epsilon_t})$;
-7. ​    $
-   \begin{aligned}
+7. ​    $\begin{aligned}
    \mathcal{D}_{t+1} (x) &= \frac {\mathcal{D}_t(x)} {Z_t} \times
    \begin{cases}
    exp(-\alpha_t) &\text{if} \enspace h_t(x) = f(x) \newline
    exp(\alpha_t) &\text{if} \enspace h_t(x) \neq f(x)
    \end{cases} \newline
    &= \frac {\mathcal{D}_t (x) exp(-\alpha_t f(x)h_t(x))} {Z_t}
-   \end{aligned}
-   $
+   \end{aligned}$
 8. end for
 
 **输出：**$H(x) = sign (\sum_{t=1}^T \alpha_t h_t(x))$
@@ -178,3 +176,4 @@ sign(H(x)) &= sign \Bigg( \frac 1 2 \ln \frac {P(f(x)=1 \vert x)} {P(f(x)=-1 \ve
 &= \mathop{\arg \max}\limits_{y \in \{-1,1\}} \quad P(f(x) = y \vert x)
 \end{aligned}
 $$
+
