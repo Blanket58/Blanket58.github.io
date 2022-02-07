@@ -121,8 +121,8 @@ $$
 1. $\mathcal{D}_1(x) = 1/m$;
 2. for t = 1, 2, …, T do
 3. ​    $h_t(x) = \mathcal{L}(D, \mathcal{D}_t)$;
-4. ​    $\epsilon = P_{x \sim \mathcal{D}_t} (h_t(x) \neq f(x))$;
-5. ​    if $\epsilon > 0.5$ then break
+4. ​    $\epsilon_t = P_{x \sim \mathcal{D}_t} (h_t(x) \neq f(x))$;
+5. ​    if $\epsilon_t > 0.5$ then break
 6. ​    $\alpha_t = \frac 1 2 \ln (\frac {1 - \epsilon_t} {\epsilon_t})$;
 7. ​    $\begin{aligned}
    \mathcal{D}_{t+1} (x) &= \frac {\mathcal{D}_t(x)} {Z_t} \times
@@ -137,6 +137,20 @@ $$
 **输出：**$H(x) = sign (\sum_{t=1}^T \alpha_t h_t(x))$
 
 ------
+
+#### 0-1损失函数
+
+在二分类任务中，0-1损失函数本来是最恰当的：
+
+$$
+\ell(Y, f(X)) =
+\begin{cases}
+1 & Y \neq f(X) \\
+0 & Y = f(X)
+\end{cases}
+$$
+
+但优化0-1损失函数下的目标函数，等同于直接优化分类准确率。并且它非凸、不连续，无法使用梯度下降求解，从而导致目标函数难以直接求解，这时就需要用到替代损失函数。
 
 #### 使用指数损失函数的原因
 
@@ -178,3 +192,9 @@ sign(H(x)) &= sign \Bigg( \frac 1 2 \ln \frac {P(f(x)=1 \vert x)} {P(f(x)=-1 \ve
 \end{aligned}
 $$
 
+这意味着$sign(H(x))$达到了贝叶斯最优错误率（*为最小化总体风险，只需在每个样本上选择那个能使条件风险最小的类别标记*，反映了分类器所能达到的最好性能，即通过机器学习所能产生的模型精度的理论上限）。**即若指数损失函数最小化，则分类错误率也将最小化。**
+
+> - 如果最优化替代损失函数的同时也最优化了原本的损失函数，则称替代损失函数具有一致性；
+> - 如果替代损失函数是凸函数、并且在零点可导，其导数小于0，那么它一定是具有一致性的。
+
+因此指数损失函数是分类任务原本0-1损失函数的一致的替代损失函数。
