@@ -1,0 +1,17 @@
+new_session: true
+delete_merged_file: true
+output_dir: "book-output"
+rmd_files: [
+  "index.Rmd",
+  "01-数据结构.md",
+  "02-子集选取.md",
+  "03-常用函数.md",
+  "04-面向对象.md",
+  "05-泛函.md",
+  "06-环境.md",
+  "07-函数运算符.md",
+  "08-函数式编程.md",
+  "09-非标准计算.md",
+  "10-Debug.md",
+  "11-Rcpp.md"
+]
