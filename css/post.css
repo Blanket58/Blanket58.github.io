@@ -12,6 +12,6 @@
   text-align: center
 }
 
-.post li {
+.post ol li {
   white-space: pre-wrap;
 }
