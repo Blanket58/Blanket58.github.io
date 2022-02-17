@@ -234,3 +234,59 @@ Boosting算法要求基学习器能对特定的数据分布进行学习，有两
 
 从偏差-方差权衡的角度看，Boosting主要关注降低偏差，因此Boosting算法可以基于泛化性能相当弱的基学习器构建出很强的集成。
 
+## Bagging与随机森林
+
+### Bagging
+
+自助法聚集（Bootstrap Aggregating），又名Bagging，是并行集成学习方法最著名的代表。它基于自助法抽样，给定一个m个样本的数据集，我们经过m次有放回抽样，样本在m次抽样中始终不被抽到的概率是
+
+$$
+\begin{aligned}
+\lim_{x \to \infty} (1 - \frac 1 x) ^ x &= \lim_{x \to \infty} \frac 1 {(1 + \frac 1 {x - 1}) ^ x} \\
+&= \lim_{x \to \infty} \frac 1 {(1 + \frac 1 {x - 1}) ^ {x - 1}} \cdot \frac 1 {(1 + \frac 1 {x - 1})} \\
+&= \frac 1 e \approx 0.368
+\end{aligned}
+$$
+
+按照这样的方式，抽样出T个含m个样本的数据集，基于每个数据集训练一个基学习器，再将所有基学习器结合。对于分类任务，Bagging通常使用简单投票法，对于回归任务则使用简单平均法。
+
+------
+
+**输入：**
+
+训练集$D = \{(x_1, y_1), (x_2, y_2), ..., (x_m, y_m)\}$；基学习算法$\mathcal{L}$；训练轮数$T$
+
+**过程：**
+
+1. for t = 1, 2, …, T do
+2. ​    $h_t(x) = \mathcal{L}(D, \mathcal{D}_{bs})$;
+3. end for
+
+**输出：**$H(x) = \mathop{\arg\max}\limits_{y \in \mathcal{Y}} \sum_{t=1}^T \Bbb{I} (h_t(x) = y)$
+
+------
+
+其中$\mathcal{D}_{bs}$是自助法抽样产生的样本分布。训练一个Bagging集成与直接训练一个基学习器的复杂度同阶，这是一个很高效的集成学习算法。**与AdaBoost只适用于二分类任务不同，Bagging可用于多分类、回归任务。**自助法采样使得每个基学习器只用到了初始数据集63.2%的样本，因此剩下的样本可用作验证集来对学习器的泛化性能进行包外估计（Out-of-Bag Estimate）。令$D_t$表示$h_t$实际使用的训练样本集，令$H^{oob}(x)$表示对样本x的包外预测，即仅考虑那些未使用x训练的基学习器在x上的预测，有
+
+$$
+H^{oob}(x) = \mathop{\arg \max} \limits_{y \in \mathcal{Y}} \sum_{t=1}^T \Bbb{I} (h_t(x) = y) \cdot \Bbb{I} (x \notin D_t)
+$$
+
+于是Bagging泛化误差的包外估计为
+
+$$
+\epsilon^{oob} = \frac 1 {\vert D \vert} \sum_{(x,y) \in D} \Bbb{I} (H^{oob}(x) \neq y)
+$$
+
+从偏差-方差权衡的角度看，Bagging主要关注降低方差，因此它在不剪枝决策树、神经网络等易受样本扰动的学习器上效用更为明显。
+
+### 随机森林
+
+随机森林是Bagging的一个扩展变体。RF在以决策树为基学习器构建Bagging集成的基础上，进一步在[决策树](https://blanket58.github.io/2022/01/decision-tree/)训练过程中引入了随机属性选择。每一次选择最优化分属性时，是从全属性集的一个抽样中选择，若全属性集中有d个属性，抽样需要选出k个，一般建议
+
+$$
+k = \log_2 d
+$$
+
+RF相对于原始的Bagging进一步增加了集成中基学习器之间的差异度，这将使得最终集成的泛化性能得到提高。因为引入了属性扰动，每一个基学习器的性能往往会有所下降，因此RF的起始性能往往较差，但随着基学习器数量的增加，RF通常会收敛到相对于Bagging更低的泛化误差。并且RF因为每一轮最优化分属性的选择集缩小，使得它的训练效率要优于Bagging决策树。
+
