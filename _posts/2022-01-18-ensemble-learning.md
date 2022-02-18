@@ -328,3 +328,42 @@ Stacking先从初始数据集训练出初级学习器，然后根据初级学习
 
 在训练阶段，次级训练集是利用初级学习器产生的，若直接用初级学习器的训练集来产生次级训练集，过拟合的风险会比较大，因此一般都是使用交叉验证或留一法这样的方式，用训练初级学习器未使用的样本来产生次级学习器的训练样本。
 
+## 比较
+
+```python
+from matplotlib import pyplot as plt
+from sklearn.datasets import make_classification
+from sklearn.ensemble import AdaBoostClassifier, BaggingClassifier, RandomForestClassifier
+from sklearn.metrics import roc_curve, roc_auc_score
+from sklearn.model_selection import train_test_split
+
+X, y = make_classification(n_samples=1000, random_state=2)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.3, random_state=2)
+
+adaboost = AdaBoostClassifier()
+adaboost.fit(X_train, y_train)
+
+bagging = BaggingClassifier()
+bagging.fit(X_train, y_train)
+
+rf = RandomForestClassifier()
+rf.fit(X_train, y_train)
+
+fig, ax = plt.subplots(figsize=(6, 6))
+for clf in [adaboost, bagging, rf]:
+    y_pred = clf.predict_proba(X_test)[:, 1]
+    fpr, tpr, thresholds = roc_curve(y_test, y_pred)
+    auc = roc_auc_score(y_test, y_pred)
+    ax.plot(fpr, tpr, label=f'{str(clf).strip("()")}, AUC={round(auc, 3)}', linewidth=1)
+ax.legend()
+ax.grid(axis='x', linestyle=':')
+ax.grid(axis='y', linestyle=':')
+ax.set_xlabel('FPR')
+ax.set_ylabel('TPR')
+ax.set_title('ROC')
+fig.savefig('result.png', transparent=True)
+plt.close(fig)
+```
+
+![](/assets/2022-01-18-ensemble-learning-1.png)
+
