@@ -306,12 +306,12 @@ Stacking先从初始数据集训练出初级学习器，然后根据初级学习
 
 **输入：**
 
-训练集$D = \{(x_1, y_1), (x_2, y_2), ..., (x_m, y_m)\}$；基学习算法$\mathcal{L_1}, \mathcal{L_2}, ..., \mathcal{L_T}$；元学习算法$\mathcal{L}$
+训练集$D = \{(x_1, y_1), (x_2, y_2), ..., (x_m, y_m)\}$；基学习算法$\mathcal{L}_1, \mathcal{L}_2, ..., \mathcal{L}_T$；元学习算法$\mathcal{L}$
 
 **过程：**
 
 1. for t = 1, 2, …, T do
-2. ​    $h_t(x) = \mathcal{L_t}(D)$;
+2. ​    $h_t(x) = \mathcal{L}_t(D)$;
 3. end for
 4. $D' = \emptyset$;
 5. for i = 1, 2, …, m do
