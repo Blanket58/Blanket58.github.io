@@ -313,16 +313,16 @@ Stacking先从初始数据集训练出初级学习器，然后根据初级学习
 1. for t = 1, 2, …, T do
 2. ​    $h_t(x) = \mathcal{L_t}(D)$;
 3. end for
-4. $D^{'} = \emptyset$;
+4. $D' = \emptyset$;
 5. for i = 1, 2, …, m do
 6. ​    for t = 1, 2, …, T do
 7. ​        $z_{it} = h_t(x_i)$;
 8. ​    end for
-9. ​    $D^{'} = D^{'} \cup ((z_{i1}, z_{i2}, ..., z_{iT}), y_i)$;
+9. ​    $D' = D' \cup ((z_{i1}, z_{i2}, ..., z_{iT}), y_i)$;
 10. end for
-11. $h^{'} = \mathcal{L}(D^{'})$;
+11. $h' = \mathcal{L}(D')$;
 
-**输出：**$H(x) = h^{'}(h_1(x), h_2(x), ..., h_T(x))$
+**输出：**$H(x) = h' (h_1(x), h_2(x), ..., h_T(x))$
 
 ------
 
