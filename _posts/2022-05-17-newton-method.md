@@ -46,7 +46,7 @@ $$
 > 
 > 则称该序列为$q$阶收敛的，收敛速率为$\mu$。
 
-假设$f(x)$，$f^{'}(x)$，$f^{''}(x)$在根$\alpha$附近是连续的，且$f^{'}(\alpha) \neq 0$，于是
+假设$f(x)$，$f^{\prime}(x)$，$f^{\prime\prime}(x)$在根$\alpha$附近是连续的，且$f^{\prime}(\alpha) \neq 0$，于是
 
 $$
 \lim_{n \to \infty} \frac {\alpha - x_{n+1}} {(\alpha - x_n)^2} = - \frac {f''(\alpha)} {2f'(\alpha)}
